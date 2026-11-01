@@ -1442,7 +1442,7 @@ export const EditorToolbar = ({
         return;
       }
       if (resp.status === 401) {
-        window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+        setMessage({ type: 'error', text: 'Authentication is not configured.' });
         return;
       }
       if (resp.status === 422) {
@@ -1494,7 +1494,7 @@ export const EditorToolbar = ({
         return;
       }
       if (resp.status === 401) {
-        window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+        setMessage({ type: 'error', text: 'Authentication is not configured.' });
         return;
       }
       if (!resp.ok) {

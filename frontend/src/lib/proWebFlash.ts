@@ -1,3 +1,5 @@
+import { getProQueryOverride } from './proAccess';
+
 /**
  * Pro web-flash registry.
  *
@@ -246,10 +248,14 @@ export function installHardwareFlashGate(gate: HardwareFlashGate | null): void {
 }
 
 export function hardwareFlashAllowed(): boolean {
+  const queryOverride = getProQueryOverride();
+  if (queryOverride !== null) return queryOverride;
+  if (typeof window !== 'undefined' && window.location?.pathname?.includes('/pro')) {
+    return false;
+  }
   return _gate ? _gate.allowed() : true;
 }
 
 export function hardwareFlashUpgradeUrl(): string {
   return _gate?.upgradeUrl ?? '/pricing';
 }
-

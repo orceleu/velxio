@@ -11,7 +11,7 @@
       },
       "what": {
         "heading": "您可以仿真什么？",
-        "lead": "Velxio在每个时间步运行真实的ngspice求解器——与专业EDA工具使用的引擎相同。这不是线性近似。二极管具有正确的正向压降，BJT会截止和饱和，运放会触及电源轨，稳压器有压差。"
+        "lead": "CircuitSkill在每个时间步运行真实的ngspice求解器——与专业EDA工具使用的引擎相同。这不是线性近似。二极管具有正确的正向压降，BJT会截止和饱和，运放会触及电源轨，稳压器有压差。"
       },
       "cards": {
         "passive": {
@@ -41,13 +41,13 @@
       },
       "how": {
         "heading": "模拟仿真如何工作",
-        "leadPrefix": "Velxio使用",
+        "leadPrefix": "CircuitSkill使用",
         "leadHighlight": "ngspice-WASM",
         "leadMid": "通过开源",
         "leadCode": "eecircuit-engine",
         "leadSuffix": "。画布上的每条导线都成为SPICE网表，每个元件都成为SPICE器件卡，求解器在每个时间步运行完整的改进节点分析法。",
         "wireTitle": "1. 连线",
-        "wireBody": "放置元件，拖动导线。Velxio在您构建时实时将导线图合并为SPICE网表。",
+        "wireBody": "放置元件，拖动导线。CircuitSkill在您构建时实时将导线图合并为SPICE网表。",
         "solveTitle": "2. 求解",
         "solveBody": "ngspice以约60 Hz的频率求解完整电路。非线性器件迭代至收敛——没有捷径，没有理想化。",
         "probeTitle": "3. 探测",
@@ -55,7 +55,7 @@
       },
       "co": {
         "heading": "独特功能：混合数字+模拟协同仿真",
-        "lead": "大多数浏览器电路仿真器止步于无源模拟。Velxio还在同一时钟上运行驱动电路的微控制器固件。",
+        "lead": "大多数浏览器电路仿真器止步于无源模拟。CircuitSkill还在同一时钟上运行驱动电路的微控制器固件。",
         "gpioTitle": "GPIO驱动电路",
         "gpioBodyPrefix": "",
         "gpioBodyCode": "digitalWrite(HIGH)",
@@ -70,17 +70,17 @@
       "faq": {
         "heading": "常见问题",
         "q1": "这个电路仿真器真的免费吗？",
-        "a1": "是的。Velxio完全免费开源，采用GNU AGPLv3许可证。无需账户，无需云订阅，无付费组件——仿真器的每个部分都在您的浏览器中运行。",
-        "q2": "Velxio使用哪种模拟仿真？",
-        "a2": "Velxio运行ngspice——专业EDA工具使用的开源SPICE仿真器——通过eecircuit-engine编译为WebAssembly。每个时间步执行完整的改进节点分析法求解，因此非线性器件（二极管、BJT、MOSFET、带饱和的运放）表现如真实硅片，而非理想化近似。",
+        "a1": "是的。CircuitSkill完全免费开源，采用GNU AGPLv3许可证。无需账户，无需云订阅，无付费组件——仿真器的每个部分都在您的浏览器中运行。",
+        "q2": "CircuitSkill使用哪种模拟仿真？",
+        "a2": "CircuitSkill运行ngspice——专业EDA工具使用的开源SPICE仿真器——通过eecircuit-engine编译为WebAssembly。每个时间步执行完整的改进节点分析法求解，因此非线性器件（二极管、BJT、MOSFET、带饱和的运放）表现如真实硅片，而非理想化近似。",
         "q3": "我可以将微控制器连接到我的电路吗？",
         "a3": "可以——这是独特功能。GPIO引脚作为电压源驱动SPICE网表，ADC输入将求解的模拟节点电压读回固件。您可以构建PWM驱动的RC滤波器、晶体管开关、运放信号链或MOSFET电机驱动器，并实时观察固件和电路的交互。",
         "q4": "有哪些元件可用？",
         "a4": "电阻、电容、电感、电位器、光敏电阻（LDR）、光电二极管、NTC热敏电阻、电池（9V/AA/纽扣）、5种BJT（2N2222、2N3055、2N3906、BC547、BC557）、4种MOSFET（2N7000、IRF540、IRF9540、FQP27P06）、5种运放（LM358、LM741、TL072、LM324、理想）、4种线性稳压器（7805、7812、7905、LM317）、齐纳和肖特基二极管、光耦（4N25、PC817）、继电器、L293D双H桥驱动器，以及7种逻辑门和7种74HC系列IC（DIP-14封装）。",
         "q5": "仿真器有示波器和电压表吗？",
-        "a5": "有。Velxio包含多通道示波器、电压表、电流表和信号发生器（正弦、方波、直流）作为实时仪器，可放置在画布上。它们探测任何节点或导线，并在仿真运行时实时更新。",
+        "a5": "有。CircuitSkill包含多通道示波器、电压表、电流表和信号发生器（正弦、方波、直流）作为实时仪器，可放置在画布上。它们探测任何节点或导线，并在仿真运行时实时更新。",
         "q6": "这是Falstad / CircuitLab / Tinkercad的替代品吗？",
-        "a6": "对于模拟电路，是的——而且更精确，因为Velxio运行真实的ngspice引擎而非简化求解器。与这些工具不同，Velxio还运行驱动电路的微控制器固件，因此您无需离开浏览器即可同时验证固件和硬件。"
+        "a6": "对于模拟电路，是的——而且更精确，因为CircuitSkill运行真实的ngspice引擎而非简化求解器。与这些工具不同，CircuitSkill还运行驱动电路的微控制器固件，因此您无需离开浏览器即可同时验证固件和硬件。"
       },
       "bottom": {
         "title": "准备好仿真您的电路了吗？",
@@ -114,8 +114,8 @@
         "usartBody": "全双工串行，可配置波特率。TX、RX和UDRE中断。与内置串口监视器配合使用。"
       },
       "boards": {
-        "heading": "Velxio中的ATmega328P板",
-        "lead": "ATmega328P为几款流行的Arduino板供电——全部可在Velxio中选择。更广泛的AVR8系列还包括ATmega2560（Mega）和ATtiny85。",
+        "heading": "CircuitSkill中的ATmega328P板",
+        "lead": "ATmega328P为几款流行的Arduino板供电——全部可在CircuitSkill中选择。更广泛的AVR8系列还包括ATmega2560（Mega）和ATtiny85。",
         "unoTitle": "Arduino Uno R3",
         "unoBody": "经典板。14个数字I/O引脚（6个PWM），6个模拟输入，32 KB闪存。最广泛使用的ATmega328P板。",
         "nanoTitle": "Arduino Nano",
@@ -132,7 +132,7 @@
         "q1": "什么是ATmega328P？",
         "a1": "ATmega328P是Microchip（原Atmel）的8位AVR微控制器。它是Arduino Uno和Arduino Nano的核心，运行在16 MHz，具有32 KB闪存、2 KB SRAM和1 KB EEPROM。",
         "q2": "我可以仿真ATmega328P寄存器级代码吗？",
-        "a2": "可以。Velxio的AVR8仿真忠实执行所有ATmega328P寄存器：DDRB/C/D、PORTB/C/D、PINB/C/D、TCCR0/1/2、OCR0/1/2、UBRR、UDR、ADCL/ADCH以及所有中断向量——包括无需Arduino抽象层的直接寄存器操作。",
+        "a2": "可以。CircuitSkill的AVR8仿真忠实执行所有ATmega328P寄存器：DDRB/C/D、PORTB/C/D、PINB/C/D、TCCR0/1/2、OCR0/1/2、UBRR、UDR、ADCL/ADCH以及所有中断向量——包括无需Arduino抽象层的直接寄存器操作。",
         "q3": "它是否正确仿真了ATmega328P定时器？",
         "a3": "定时器0（8位）、定时器1（16位）和定时器2（8位）全部仿真，支持完整预分频器、PWM模式、溢出中断和输出比较匹配中断。millis()、delay()、analogWrite()和tone()均正常工作。",
         "q4": "我可以在仿真器中使用analogRead()和analogWrite()吗？",
@@ -158,7 +158,7 @@
       },
       "boards": {
         "heading": "支持的RISC-V板",
-        "lead": "Velxio通过QEMU lcgamboa分支仿真RISC-V微控制器——与Xtensa ESP32/ESP32-S3相同的后端模式，使用libqemu-riscv32代替libqemu-xtensa。",
+        "lead": "CircuitSkill通过QEMU lcgamboa分支仿真RISC-V微控制器——与Xtensa ESP32/ESP32-S3相同的后端模式，使用libqemu-riscv32代替libqemu-xtensa。",
         "devkitTitle": "ESP32-C3 DevKitM-1",
         "devkitBody": "RISC-V RV32IMC，160 MHz。WiFi + BLE 5.0，22个GPIO，400 KB SRAM。官方Espressif开发板。",
         "xiaoTitle": "XIAO ESP32-C3",
@@ -192,11 +192,11 @@
         "q2": "ESP32-C3仿真器在浏览器中运行吗？",
         "a2": "是的。与基于Xtensa的ESP32不同，ESP32-C3 RISC-V仿真完全在浏览器中运行——无需QEMU后端。这使其成为仿真最快的ESP32变体。",
         "q3": "这也是RISC-V仿真器吗？",
-        "a3": "是的。ESP32-C3使用RISC-V RV32IMC指令集。Velxio还支持CH32V003（RV32EC，48 MHz）——另一款流行的RISC-V微控制器。",
+        "a3": "是的。ESP32-C3使用RISC-V RV32IMC指令集。CircuitSkill还支持CH32V003（RV32EC，48 MHz）——另一款流行的RISC-V微控制器。",
         "q4": "支持哪些ESP32-C3板？",
-        "a4": "Velxio支持ESP32-C3 DevKitM-1、Seeed XIAO ESP32-C3和ESP32-C3 SuperMini（Aitewinrobot）。三者使用相同的RISC-V核心。",
+        "a4": "CircuitSkill支持ESP32-C3 DevKitM-1、Seeed XIAO ESP32-C3和ESP32-C3 SuperMini（Aitewinrobot）。三者使用相同的RISC-V核心。",
         "q5": "我可以将Arduino代码与ESP32-C3一起使用吗？",
-        "a5": "可以。Velxio使用官方ESP32 Arduino核心（以ESP32-C3板为目标）编译您的.ino草图。所有标准Arduino函数均有效——Serial、GPIO、analogRead等。"
+        "a5": "可以。CircuitSkill使用官方ESP32 Arduino核心（以ESP32-C3板为目标）编译您的.ino草图。所有标准Arduino函数均有效——Serial、GPIO、analogRead等。"
       },
       "bottom": {
         "title": "准备好仿真ESP32-C3了吗？",

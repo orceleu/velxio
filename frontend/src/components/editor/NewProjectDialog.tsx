@@ -12,8 +12,8 @@
  * Selecting a board loads its gallery Blink example when one exists (full
  * wiring: 220Ω resistor + LED); boards without one get a fresh board whose
  * default sketch blinks the on-board LED. Pro-gated boards (STM32 + QEMU
- * Raspberry Pi) carry the same PRO pill as the component picker and go
- * through the same board-gate seam ('add' action) before anything is created.
+ * Raspberry Pi) carry the same locked-state PRO pill as the component picker
+ * and go through the same board-gate seam ('add' action) before anything is created.
  */
 import React, { useEffect, useMemo, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next';
 import type { BoardKind } from '../../types/board';
 import { BOARD_KIND_LABELS } from '../../types/board';
 import { blockedByBoardGate, isProBoardKind } from '../../lib/proBoardGate';
+import { isProUnlocked } from '../../lib/proAccess';
 import {
   listProBoards,
   subscribeProBoards,
@@ -408,7 +409,7 @@ export const NewProjectDialog: React.FC<NewProjectDialogProps> = ({ isOpen, onCl
                             height={180}
                           />
                         </span>
-                        {isProBoardKind(kind) && <ProPill />}
+                        {!isProUnlocked() && isProBoardKind(kind) && <ProPill />}
                         <span className="new-project-card-info">
                           <span className="new-project-card-name">{label}</span>
                           <span className="new-project-card-desc">{blurb}</span>

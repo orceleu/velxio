@@ -3,10 +3,9 @@
  *
  * STM32 and the QEMU-backed Raspberry Pi family are Pro-only emulation
  * features. The OSS app knows *which* boards are Pro (public information —
- * `isProBoardKind`) and renders a PRO badge for them, but it does NOT know
- * the current user's entitlement. The pro overlay installs the real gate via
- * `installBoardGateImpl`, deciding whether a given action on a board is
- * allowed for the signed-in user on the web.
+ * `isProBoardKind`) and displays a PRO badge while they are locked. The pro
+ * overlay installs the real gate via `installBoardGateImpl`, deciding whether
+ * a given action on a board is allowed for the signed-in user on the web.
  *
  * Two actions go through the gate, and the overlay may answer them
  * differently:
@@ -48,6 +47,7 @@
 import type { BoardKind } from '../types/board';
 import { isPiBoardKind, isStm32BoardKind } from '../types/board';
 import { getProBoard } from './proBoardRegistry';
+import { getProQueryOverride } from './proAccess';
 
 export type BoardGateDecision = 'allow' | 'block';
 
@@ -74,8 +74,8 @@ export type BoardGateVerdict = { decision: 'allow' } | BoardGateBlock;
 
 /**
  * Static, public predicate: which board kinds are Pro emulation features.
- * Used for the PRO badge (always shown for these) and as the precondition the
- * overlay's gate checks. STM32 (libqemu-arm) + every QEMU Raspberry Pi
+ * Used for the locked-state PRO badge and as the precondition the overlay's
+ * gate checks. STM32 (libqemu-arm) + every QEMU Raspberry Pi
  * (Zero/1/2/3/4/5; excludes the Pico, which is browser emulation).
  */
 export function isProBoardKind(kind: BoardKind | string): boolean {
@@ -107,6 +107,11 @@ export function hasBoardGateImpl(): boolean {
  */
 export function boardGateVerdict(kind: BoardKind, action: BoardGateAction): BoardGateVerdict {
   if (!isProBoardKind(kind)) return { decision: 'allow' };
+  const queryOverride = getProQueryOverride();
+  if (queryOverride !== null) return { decision: queryOverride ? 'allow' : 'block' };
+  if (typeof window !== 'undefined' && window.location?.pathname?.includes('/pro')) {
+    return { decision: 'block' };
+  }
   if (!_impl) return { decision: 'allow' };
   try {
     const raw = _impl(kind, action);

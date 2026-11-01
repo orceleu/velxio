@@ -21,7 +21,7 @@
         "title": "Arduino-Bibliotheken suchen und installieren",
         "label": "Bibliotheken"
       },
-      "import": "Projekt importieren (.vlx Velxio oder .zip Wokwi)",
+      "import": "Projekt importieren (.vlx CircuitSkill oder .zip Wokwi)",
       "export": "Aktuelles Projekt als .zip-Datei exportieren",
       "uploadFirmware": "Firmware hochladen (.hex, .bin, .elf, .ihex) zur Umgehung der Kompilierung",
       "toggleConsole": "Ausgabekonsole umschalten",
@@ -406,8 +406,8 @@
       "toggleExplorer": "Datei-Explorer",
       "toggleConsole": "Ausgabekonsole",
       "toggleScope": "Oszilloskop / Logikanalysator",
-      "home": "Velxio-Startseite",
-      "about": "Über Velxio",
+      "home": "CircuitSkill-Startseite",
+      "about": "Über CircuitSkill",
       "discord": "Discord-Community",
       "github": "GitHub-Repository",
       "compile": "Kompilieren",
@@ -432,7 +432,7 @@
       "title": "{{board}} flashen",
       "close": "Schließen",
       "detectingPorts": "USB-Serialports werden erkannt...",
-      "needsDesktop": "Hardware-Flashen braucht Velxio Desktop. Die Web-App hat keinen Zugriff auf lokale USB-Serialports.",
+      "needsDesktop": "Hardware-Flashen braucht CircuitSkill Desktop. Die Web-App hat keinen Zugriff auf lokale USB-Serialports.",
       "noPorts": "Keine USB-Serialports erkannt.",
       "noPortsHint": "Board per USB anschließen und auf Aktualisieren klicken. Unter Linux musst du dich eventuell zur Gruppe dialout hinzufügen:",
       "noPortsHintLogout": "(danach ab- und wieder anmelden.)",
@@ -462,7 +462,7 @@
       "retryCompile": "Neu kompilieren und flashen",
       "cancel": "Abbrechen",
       "hide": "Ausblenden",
-      "paidOnlyTitle": "Das Flashen echter Boards gehört zur bezahlten Velxio-Desktop-Lizenz",
+      "paidOnlyTitle": "Das Flashen echter Boards gehört zur bezahlten CircuitSkill-Desktop-Lizenz",
       "paidOnlyBody": "Einen Sketch auf ein echtes, per USB angeschlossenes Board hochzuladen gibt es mit einer Personal-, Commercial- oder Enterprise-Lizenz. Der Simulator selbst bleibt kostenlos.",
       "seePlans": "Pläne ansehen",
       "log": {
@@ -493,15 +493,15 @@
   },
   "about": {
     "hero": {
-      "title": "Über Velxio",
+      "title": "Über CircuitSkill",
       "subtitle": "Ein kostenloser, quelloffener Emulator für eingebettete Systeme – entwickelt von einem einzelnen Entwickler mit Leidenschaft für Hardware und Open Source."
     },
     "story": {
       "heading": "Die Geschichte",
-      "p1": "Velxio begann als persönliche Erkundung, wie Mikrocontroller-Emulatoren intern funktionieren – CPU-Befehle, Speicherverwaltung, Peripherie-Timing und Low-Level-Architektur. Was als Lernprojekt während eines Urlaubs begann, wuchs schnell zu etwas Größerem heran.",
+      "p1": "CircuitSkill begann als persönliche Erkundung, wie Mikrocontroller-Emulatoren intern funktionieren – CPU-Befehle, Speicherverwaltung, Peripherie-Timing und Low-Level-Architektur. Was als Lernprojekt während eines Urlaubs begann, wuchs schnell zu etwas Größerem heran.",
       "p2": "Die Idee war einfach: <strong>Was wäre, wenn jeder Arduino-, ESP32- und Raspberry-Pi-Boards direkt im Browser simulieren könnte, ohne Hardware zu kaufen, ohne Toolchains zu installieren, ohne Cloud-Konten?</strong>",
-      "p3": "Velxio v1 startete auf Product Hunt und Hacker News und unterstützte Arduino Uno und Raspberry Pi Pico. Das Feedback der Maker- und Embedded-Community war unglaublich – und trieb das Projekt voran.",
-      "p4": "<strong>Velxio 2.0</strong> wurde mit ESP32-Emulation über QEMU (unter Verwendung des lcgamboa-Forks), einem Raspberry Pi 3 mit echtem Linux, RISC-V-Unterstützung für ESP32-C3 und CH32V003, realistischer Sensor-Simulation (DHT22, HC-SR04, WS2812B NeoPixel) und 19 Boards auf 5 CPU-Architekturen ausgeliefert – alle mit echtem kompiliertem Code.",
+      "p3": "CircuitSkill v1 startete auf Product Hunt und Hacker News und unterstützte Arduino Uno und Raspberry Pi Pico. Das Feedback der Maker- und Embedded-Community war unglaublich – und trieb das Projekt voran.",
+      "p4": "<strong>CircuitSkill 2.0</strong> wurde mit ESP32-Emulation über QEMU (unter Verwendung des lcgamboa-Forks), einem Raspberry Pi 3 mit echtem Linux, RISC-V-Unterstützung für ESP32-C3 und CH32V003, realistischer Sensor-Simulation (DHT22, HC-SR04, WS2812B NeoPixel) und 19 Boards auf 5 CPU-Architekturen ausgeliefert – alle mit echtem kompiliertem Code.",
       "p5": "Der v2-Start erreichte die <strong>Titelseite von Hacker News für über 20 Stunden</strong> und erreichte fast 600 GitHub-Sterne und Tausende von Besuchern in weniger als 24 Stunden. Es wird jetzt von Studenten, Professoren und Makern auf der ganzen Welt genutzt."
     },
     "howItWorks": {
@@ -513,7 +513,7 @@
     },
     "openSource": {
       "heading": "Open-Source-Philosophie",
-      "lead": "Velxio ist <strong>100 % Open Source</strong> unter der AGPLv3-Lizenz. Keine Cloud-Abhängigkeit, keine Studentenkonten, keine Daten, die Ihr Netzwerk verlassen. Universitäten und Bootcamps können es mit einem einzigen Docker-Befehl auf ihren eigenen Servern bereitstellen und jedem Studenten Zugang zu einer vollständigen Embedded-Entwicklungsumgebung geben – kostenlos.",
+      "lead": "CircuitSkill ist <strong>100 % Open Source</strong> unter der AGPLv3-Lizenz. Keine Cloud-Abhängigkeit, keine Studentenkonten, keine Daten, die Ihr Netzwerk verlassen. Universitäten und Bootcamps können es mit einem einzigen Docker-Befehl auf ihren eigenen Servern bereitstellen und jedem Studenten Zugang zu einer vollständigen Embedded-Entwicklungsumgebung geben – kostenlos.",
       "creditsIntro": "Das Projekt baut auf erstaunlicher Open-Source-Arbeit der Community auf:",
       "credits": {
         "avr8js": "AVR8-CPU-Emulation von Wokwi",
@@ -522,7 +522,7 @@
         "qemuLcgamboa": "ESP32- und Raspberry-Pi-QEMU-Emulation",
         "arduinoCli": "Arduino-Kompilierungstoolchain"
       },
-      "inspiredBy": "Velxio wurde von <a>Wokwi</a> inspiriert, einem fantastischen Tool. Das Ziel von Velxio ist es, einen anderen Weg zu gehen: vollständig Open Source, selbst hostbar und Unterstützung mehrerer heterogener Boards in derselben Schaltung."
+      "inspiredBy": "CircuitSkill wurde von <a>Wokwi</a> inspiriert, einem fantastischen Tool. Das Ziel von CircuitSkill ist es, einen anderen Weg zu gehen: vollständig Open Source, selbst hostbar und Unterstützung mehrerer heterogener Boards in derselben Schaltung."
     },
     "creator": {
       "heading": "Der Schöpfer",
@@ -562,7 +562,7 @@
       }
     },
     "cta": {
-      "title": "Bereit, Velxio auszuprobieren?",
+      "title": "Bereit, CircuitSkill auszuprobieren?",
       "subtitle": "Keine Anmeldung erforderlich. Läuft zu 100 % in Ihrem Browser. Kostenlos und Open Source.",
       "openEditor": "Editor öffnen"
     }

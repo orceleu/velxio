@@ -12,9 +12,7 @@
  *
  * The OSS build never registers anything here — like the proRoutes /
  * __velxio_pro_gate__ / registerComponentDoc seams, this module is dead code
- * until an overlay imports it. Board ad cards (ONLINE_ONLY_BOARD_ADS) hide
- * automatically for registered kinds: the picker filter checks
- * `ad.id in BOARD_KIND_LABELS`, and registration inserts the label.
+ * until an overlay imports it.
  */
 import type React from 'react';
 import type { ESP32BoardOptions } from '../types/boardOptions';
@@ -287,8 +285,7 @@ export function registerProBoards(defs: ProBoardDef[]): void {
   for (const def of defs) {
     registry.set(def.kind, def);
     const kind = def.kind as BoardKind;
-    // Patch the exported maps so every existing read site sees the board —
-    // labels also make the picker's ONLINE ad for this kind disappear.
+    // Patch the exported maps so every existing read site sees the board.
     (BOARD_KIND_LABELS as Record<string, string>)[kind] = def.label;
     (BOARD_KIND_FQBN as Record<string, string | null>)[kind] = def.fqbn;
     if (def.supportsMicroPython) BOARD_SUPPORTS_MICROPYTHON.add(kind);

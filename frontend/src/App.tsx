@@ -13,7 +13,6 @@ import { ImageToCodePage } from './pages/ImageToCodePage';
 import { LocaleSync } from './i18n/LocaleSync';
 import { NON_DEFAULT_LOCALES } from './i18n/config';
 import { useProRoutes, useProRoutesSettled } from './lib/proRoutes';
-import { triggerSessionCheck } from './lib/proSession';
 import { MessageDialogHost } from './components/ui/MessageDialogHost';
 import './App.css';
 
@@ -48,6 +47,8 @@ const ROOT_ELEMENT: ReactElement = <RootRoute />;
 const ROUTES: { path: string; element: ReactElement; index?: boolean }[] = [
   { path: '/', element: ROOT_ELEMENT, index: true },
   { path: 'editor', element: <EditorPage /> },
+  { path: 'editor/pro', element: <EditorPage /> },
+  { path: 'pro', element: <EditorPage /> },
   { path: 'examples', element: <ExamplesPage /> },
   // /examples/<id> = SEO landing (preview, badges, "Open in Simulator" CTA).
   // /example/<id>  = live editor with the example pre-loaded; the URL
@@ -89,10 +90,6 @@ function App() {
   const allRoutes = [...ROUTES, ...proRoutes.filter((r) => !r.index)];
 
   useEffect(() => {
-    // Pro overlay's mountPro() registers a session-check callback that
-    // resolves the JWT cookie into a user object. No-op in OSS without
-    // the overlay.
-    triggerSessionCheck();
     // #root-seo is a static SEO fallback in index.html (position:absolute,
     // visibility:hidden). It still contributes to document scrollHeight, so
     // every page got a phantom scroll the size of the prerendered SEO body.

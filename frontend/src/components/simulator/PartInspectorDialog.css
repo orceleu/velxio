@@ -339,7 +339,7 @@
 }
 
 /* Solid fills, per the brand kit: interactive surfaces are the accent blue
-   (--blue-600 var(--color-action-primary)), destructive ones the danger red (--red-500 var(--color-feedback-error)),
+   (emerald-600 var(--color-action-primary)), destructive ones the danger red (--red-500 var(--color-feedback-error)),
    both with white text. Velxio does not use outline buttons. */
 .pid-action-button {
   background: var(--color-action-primary, var(--color-action-primary));
@@ -519,7 +519,7 @@
 .pid-sensor-range {
   flex: 1 1 60px;
   min-width: 40px;
-  accent-color: var(--accent, #0071e3);
+  accent-color: var(--accent, #059669);
 }
 
 .pid-sensor-input {
@@ -531,7 +531,7 @@
 .pid-sensor-check {
   flex: 0 0 auto;
   margin: 0;
-  accent-color: var(--accent, #0071e3);
+  accent-color: var(--accent, #059669);
 }
 
 .pid-sensor-select {

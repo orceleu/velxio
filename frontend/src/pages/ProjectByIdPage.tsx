@@ -31,16 +31,16 @@ export const ProjectByIdPage: React.FC = () => {
   useSEO(
     projectMeta && projectMeta.isPublic
       ? {
-          title: `${projectMeta.name} by ${projectMeta.ownerUsername} | Velxio`,
+          title: `${projectMeta.name} by ${projectMeta.ownerUsername} | CircuitSkill`,
           description: projectMeta.description
-            ? `${projectMeta.description} — Simulate and remix this Arduino project on Velxio.`
-            : `Arduino project by ${projectMeta.ownerUsername}. View and simulate it free on Velxio.`,
+            ? `${projectMeta.description} — Simulate and remix this Arduino project on CircuitSkill.`
+            : `Arduino project by ${projectMeta.ownerUsername}. View and simulate it free on CircuitSkill.`,
           url: `${DOMAIN}/project/${id}`,
         }
       : {
-          title: 'Project — Velxio Arduino Emulator',
+          title: 'Project — CircuitSkill Arduino Emulator',
           description:
-            'View and simulate this Arduino project on Velxio — free, open-source multi-board emulator.',
+            'View and simulate this Arduino project on CircuitSkill — free, open-source multi-board emulator.',
           url: `${DOMAIN}/editor`,
           noindex: true,
         },

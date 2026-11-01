@@ -3,7 +3,7 @@
     "components": {
       "label": "// リファレンス",
       "heading": "コンポーネントリファレンス",
-      "lead": "Velxioには<a>wokwi-elements</a>を搭載した<strong>48以上のインタラクティブな電子部品</strong>が含まれています。すべてのコンポーネントはシミュレーションキャンバスに配置し、配線で接続し、Arduinoスケッチとリアルタイムで連携できます。",
+      "lead": "CircuitSkillには<a>wokwi-elements</a>を搭載した<strong>48以上のインタラクティブな電子部品</strong>が含まれています。すべてのコンポーネントはシミュレーションキャンバスに配置し、配線で接続し、Arduinoスケッチとリアルタイムで連携できます。",
       "addingHeading": "コンポーネントの追加",
       "adding1": "シミュレーションキャンバスの<strong>+</strong>ボタンをクリックします。",
       "adding2": "コンポーネントピッカーで<strong>検索</strong>または<strong>カテゴリ</strong>から参照します。",
@@ -98,59 +98,59 @@
     },
     "sectionMeta": {
       "intro": {
-        "title": "はじめに | Velxio ドキュメント",
-        "description": "Velxioについて学ぶ：無料のオープンソースArduinoエミュレータ。実際のAVR8およびRP2040 CPUエミュレーションと48以上のインタラクティブな電子部品を搭載。"
+        "title": "はじめに | CircuitSkill ドキュメント",
+        "description": "CircuitSkillについて学ぶ：無料のオープンソースArduinoエミュレータ。実際のAVR8およびRP2040 CPUエミュレーションと48以上のインタラクティブな電子部品を搭載。"
       },
       "gettingStarted": {
-        "title": "はじめに | Velxio ドキュメント",
-        "description": "Velxioを始める：ホスト型エディタを使用する、Dockerでセルフホストする、またはローカル開発環境をセットアップする。数分で最初のArduinoスケッチをシミュレート。"
+        "title": "はじめに | CircuitSkill ドキュメント",
+        "description": "CircuitSkillを始める：ホスト型エディタを使用する、Dockerでセルフホストする、またはローカル開発環境をセットアップする。数分で最初のArduinoスケッチをシミュレート。"
       },
       "emulator": {
-        "title": "エミュレータアーキテクチャ | Velxio ドキュメント",
-        "description": "VelxioがAVR8（ATmega328p）、RP2040、RISC-V（ESP32-C3）CPUをエミュレートする方法。サポートされているすべてのボードの実行ループ、ペリフェラル、ピンマッピングについて。"
+        "title": "エミュレータアーキテクチャ | CircuitSkill ドキュメント",
+        "description": "CircuitSkillがAVR8（ATmega328p）、RP2040、RISC-V（ESP32-C3）CPUをエミュレートする方法。サポートされているすべてのボードの実行ループ、ペリフェラル、ピンマッピングについて。"
       },
       "riscvEmulation": {
-        "title": "RISC-Vエミュレーション（ESP32-C3） | Velxio ドキュメント",
+        "title": "RISC-Vエミュレーション（ESP32-C3） | CircuitSkill ドキュメント",
         "description": "ESP32-C3、XIAO ESP32-C3、C3 SuperMini向けブラウザサイドRV32IMCエミュレータ。メモリマップ、GPIO、UART0、ESP32イメージパーサー、RV32IMC ISA、テストスイートについて。"
       },
       "esp32Emulation": {
-        "title": "ESP32エミュレーション（Xtensa） | Velxio ドキュメント",
+        "title": "ESP32エミュレーション（Xtensa） | CircuitSkill ドキュメント",
         "description": "ESP32およびESP32-S3（Xtensa LX6/LX7）向けQEMUベースのエミュレーション。lcgamboaフォーク、libqemu-xtensa、GPIO、WiFi、I2C、SPI、RMT/NeoPixel、LEDC/PWMについて。"
       },
       "components": {
-        "title": "コンポーネントリファレンス | Velxio ドキュメント",
-        "description": "Velxioの48以上のインタラクティブな電子部品の完全リファレンス：LED、ディスプレイ、センサー、ボタン、ポテンショメータなど。配線とプロパティの詳細を含む。"
+        "title": "コンポーネントリファレンス | CircuitSkill ドキュメント",
+        "description": "CircuitSkillの48以上のインタラクティブな電子部品の完全リファレンス：LED、ディスプレイ、センサー、ボタン、ポテンショメータなど。配線とプロパティの詳細を含む。"
       },
       "roadmap": {
-        "title": "ロードマップ | Velxio ドキュメント",
-        "description": "Velxioの機能ロードマップ：実装済み、進行中、将来のリリースで計画されているもの。"
+        "title": "ロードマップ | CircuitSkill ドキュメント",
+        "description": "CircuitSkillの機能ロードマップ：実装済み、進行中、将来のリリースで計画されているもの。"
       },
       "architecture": {
-        "title": "プロジェクトアーキテクチャ | Velxio ドキュメント",
-        "description": "Velxioシステムアーキテクチャの詳細概要：フロントエンド、バックエンド、AVR8エミュレーションパイプライン、データフロー、Zustandストア、配線システム。"
+        "title": "プロジェクトアーキテクチャ | CircuitSkill ドキュメント",
+        "description": "CircuitSkillシステムアーキテクチャの詳細概要：フロントエンド、バックエンド、AVR8エミュレーションパイプライン、データフロー、Zustandストア、配線システム。"
       },
       "thirdParty": {
-        "title": "Wokwiライブラリ | Velxio ドキュメント",
-        "description": "Velxioが公式Wokwiオープンソースライブラリ（avr8js、wokwi-elements、rp2040js）を統合する方法。設定、更新、利用可能な48コンポーネントについて。"
+        "title": "Wokwiライブラリ | CircuitSkill ドキュメント",
+        "description": "CircuitSkillが公式Wokwiオープンソースライブラリ（avr8js、wokwi-elements、rp2040js）を統合する方法。設定、更新、利用可能な48コンポーネントについて。"
       },
       "mcp": {
-        "title": "MCPサーバー | Velxio ドキュメント",
-        "description": "Velxio MCPサーバーリファレンス：AIエージェント（Claude、Cursor）をModel Context Protocol経由でVelxioと統合。ツール、トランスポート、回路フォーマット、サンプルウォークスルーについて。"
+        "title": "MCPサーバー | CircuitSkill ドキュメント",
+        "description": "CircuitSkill MCPサーバーリファレンス：AIエージェント（Claude、Cursor）をModel Context Protocol経由でCircuitSkillと統合。ツール、トランスポート、回路フォーマット、サンプルウォークスルーについて。"
       },
       "setup": {
-        "title": "プロジェクトステータス | Velxio ドキュメント",
-        "description": "実装済みのすべてのVelxio機能の完全なステータス：AVRエミュレーション、コンポーネントシステム、配線システム、コードエディタ、サンプルプロジェクト、次のステップ。"
+        "title": "プロジェクトステータス | CircuitSkill ドキュメント",
+        "description": "実装済みのすべてのCircuitSkill機能の完全なステータス：AVRエミュレーション、コンポーネントシステム、配線システム、コードエディタ、サンプルプロジェクト、次のステップ。"
       },
       "rp2040Emulation": {
-        "title": "RP2040エミュレーション（Raspberry Pi Pico） | Velxio ドキュメント",
-        "description": "Velxioがrp2040jsを使用してRaspberry Pi PicoおよびPico Wをエミュレートする方法：ARM Cortex-M0+ 133 MHz、GPIO、UART、ADC、I2C、SPI、PWM、WFI最適化。"
+        "title": "RP2040エミュレーション（Raspberry Pi Pico） | CircuitSkill ドキュメント",
+        "description": "CircuitSkillがrp2040jsを使用してRaspberry Pi PicoおよびPico Wをエミュレートする方法：ARM Cortex-M0+ 133 MHz、GPIO、UART、ADC、I2C、SPI、PWM、WFI最適化。"
       },
       "raspberryPi3Emulation": {
-        "title": "Raspberry Pi 3エミュレーション（QEMU） | Velxio ドキュメント",
-        "description": "VelxioがQEMU raspi3bを使用して完全なRaspberry Pi 3Bをエミュレートする方法：実際のRaspberry Pi OS、Python + RPi.GPIOシム、デュアルチャンネルUART、VFS、マルチボードシリアルブリッジ。"
+        "title": "Raspberry Pi 3エミュレーション（QEMU） | CircuitSkill ドキュメント",
+        "description": "CircuitSkillがQEMU raspi3bを使用して完全なRaspberry Pi 3Bをエミュレートする方法：実際のRaspberry Pi OS、Python + RPi.GPIOシム、デュアルチャンネルUART、VFS、マルチボードシリアルブリッジ。"
       },
       "buildQemu": {
-        "title": "QEMUをソースからビルド | Velxioドキュメント",
+        "title": "QEMUをソースからビルド | CircuitSkillドキュメント",
         "description": "lcgamboa/qemu フォークから libqemu-xtensa と libqemu-riscv32 をコンパイルするステップバイステップガイド。AGPLv3 ライセンスの下、完全な透明性を提供します。"
       }
     },
@@ -209,7 +209,7 @@
     "rpi3": {
       "label": "// qemu raspi3b",
       "heading": "Raspberry Pi 3エミュレーション（QEMU）",
-      "lead": "Raspberry Pi 3Bは<strong>QEMU 8.1.3</strong>と<code>-M raspi3b</code>を使用してエミュレートされます。これはVelxioで完全なオペレーティングシステムを実行する唯一のボードであり、エミュレータ内で実際の<strong>Raspberry Pi OS（Trixie）</strong>イメージが起動します。ユーザーはC++ではなくPythonスクリプトを書き、VM内の実際のPython 3インタプリタで実行されます。",
+      "lead": "Raspberry Pi 3Bは<strong>QEMU 8.1.3</strong>と<code>-M raspi3b</code>を使用してエミュレートされます。これはCircuitSkillで完全なオペレーティングシステムを実行する唯一のボードであり、エミュレータ内で実際の<strong>Raspberry Pi OS（Trixie）</strong>イメージが起動します。ユーザーはC++ではなくPythonスクリプトを書き、VM内の実際のPython 3インタプリタで実行されます。",
       "boardsHeading": "サポートされているボード",
       "boardRpi3": "Raspberry Pi 3B",
       "altRpi3": "Raspberry Pi 3B",
@@ -278,7 +278,7 @@
     "thirdParty": {
       "label": "// オープンソースライブラリ",
       "heading": "Wokwiライブラリ",
-      "lead": "Velxioは公式のWokwiオープンソースリポジトリを<code>third-party/</code>にローカルクローンして使用しています。これにより、npmレジストリの依存関係なしに、最新で互換性のあるエミュレーションエンジンとビジュアルコンポーネントを提供します。",
+      "lead": "CircuitSkillは公式のWokwiオープンソースリポジトリを<code>third-party/</code>にローカルクローンして使用しています。これにより、npmレジストリの依存関係なしに、最新で互換性のあるエミュレーションエンジンとビジュアルコンポーネントを提供します。",
       "clonedHeading": "クローンされたリポジトリ",
       "thLibrary": "ライブラリ",
       "thLocation": "場所",
@@ -315,13 +315,13 @@
     "mcp": {
       "label": "// AI統合",
       "heading": "MCPサーバー",
-      "lead": "Velxioは<a>Model Context Protocol</a>（MCP）サーバーを公開しており、AIエージェント（Claude、Cursorなど）が回路を作成し、コードを生成し、Arduinoスケッチを直接コンパイルできます。",
+      "lead": "CircuitSkillは<a>Model Context Protocol</a>（MCP）サーバーを公開しており、AIエージェント（Claude、Cursorなど）が回路を作成し、コードを生成し、Arduinoスケッチを直接コンパイルできます。",
       "toolsHeading": "利用可能なツール",
       "thTool": "ツール",
       "toolCompileDesc": "Arduinoスケッチファイルをコンパイル - Intel HEX / バイナリ",
       "toolRunDesc": "コンパイルし、アーティファクトをシミュレーション準備完了としてマーク",
-      "toolImportDesc": "Wokwiの<code>diagram.json</code>を解析 - Velxio回路",
-      "toolExportDesc": "Velxio回路をシリアライズ - Wokwiの<code>diagram.json</code>",
+      "toolImportDesc": "Wokwiの<code>diagram.json</code>を解析 - CircuitSkill回路",
+      "toolExportDesc": "CircuitSkill回路をシリアライズ - Wokwiの<code>diagram.json</code>",
       "toolCreateDesc": "新しい回路定義を作成",
       "toolUpdateDesc": "既存の回路に変更をマージ",
       "toolGenerateDesc": "回路からスターター<code>.ino</code>コードを生成",
@@ -331,7 +331,7 @@
       "sseHeading": "2. SSE / HTTP：Cursor IDE / Webエージェント",
       "sseConfigBody": "MCPクライアント設定：",
       "circuitFormatHeading": "回路データ形式",
-      "circuitFormatLead": "Velxio回路はプレーンなJSONオブジェクトです：",
+      "circuitFormatLead": "CircuitSkill回路はプレーンなJSONオブジェクトです：",
       "fqbnHeading": "サポートされているボードFQBN",
       "thFqbn": "FQBN",
       "exampleHeading": "例：スクラッチからLEDを点滅",

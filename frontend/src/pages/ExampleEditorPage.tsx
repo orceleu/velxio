@@ -57,11 +57,11 @@ export const ExampleEditorPage: React.FC = () => {
     title: board
       ? starterTitle(board)
       : example
-        ? `${example.title} — Velxio Arduino Simulator`
-        : 'Example — Velxio',
+        ? `${example.title} — CircuitSkill Arduino Simulator`
+        : 'Example — CircuitSkill',
     description: board
       ? starterDescription(board)
-      : (example?.description ?? 'Arduino example running on Velxio.'),
+      : (example?.description ?? 'Arduino example running on CircuitSkill.'),
     url: example
       ? `${DOMAIN}/example/${example.id}`
       : `${DOMAIN}/examples`,

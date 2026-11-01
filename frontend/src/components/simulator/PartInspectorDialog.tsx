@@ -63,6 +63,7 @@ import {
 } from '../../utils/pinInspectorLayout';
 import { showConfirmDialog } from '../../store/useMessageDialogStore';
 import { scalableSvgThumbnail } from '../../utils/svgThumbnail';
+import { isProUnlocked } from '../../lib/proAccess';
 // The keybind chips and the SD Card panel keep their existing class names and
 // styles — both live in ComponentPropertyDialog.css, imported here so the old
 // dialog file can eventually retire without orphaning them.
@@ -562,7 +563,7 @@ export const PartInspectorDialog: React.FC<PartInspectorDialogProps> = ({
           <span className="pid-name">{componentMetadata.name}</span>
           <span className="pid-badges">
             <span className="pid-cat">{panelData.category}</span>
-            {componentMetadata.pro_only && <span className="pid-pro">PRO</span>}
+            {componentMetadata.pro_only && !isProUnlocked() && <span className="pid-pro">PRO</span>}
             {componentMetadata.pinCount > 0 && (
               <span className="pid-pins-badge">{componentMetadata.pinCount} pins</span>
             )}

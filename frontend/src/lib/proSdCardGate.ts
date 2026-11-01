@@ -15,6 +15,8 @@
  * auto-copy of project files are always allowed.
  */
 
+import { getProQueryOverride } from './proAccess';
+
 let _impl: (() => boolean) | null = null;
 
 /** Installed by the pro overlay (mountPro). Pass null to clear (hot reload). */
@@ -24,6 +26,11 @@ export function installSdCardUploadGate(impl: (() => boolean) | null): void {
 
 /** Whether the current user may upload files to the microSD card. */
 export function sdCardUploadAllowed(): boolean {
+  const queryOverride = getProQueryOverride();
+  if (queryOverride !== null) return queryOverride;
+  if (typeof window !== 'undefined' && window.location?.pathname?.includes('/pro')) {
+    return false;
+  }
   if (!_impl) return true; // OSS self-host: no accounts -> allow
   try {
     return _impl();

@@ -27,7 +27,7 @@
     "shareProject": "プロジェクトを共有"
   },
   "footer": {
-    "about": "Velxioは、ブラウザ上で完全に動作する無料のオープンソース回路・マイクロコントローラシミュレータです。Arduino、ESP32、RP2040、ATtiny85に対応し、SPICE精度のアナログ同時シミュレーションを提供します。メーカー、学生、組み込みエンジニアが実践的に学ぶために作られました。AGPLv3ライセンス。"
+    "about": "CircuitSkillは、ブラウザ上で完全に動作する無料のオープンソース回路・マイクロコントローラシミュレータです。Arduino、ESP32、RP2040、ATtiny85に対応し、SPICE精度のアナログ同時シミュレーションを提供します。メーカー、学生、組み込みエンジニアが実践的に学ぶために作られました。AGPLv3ライセンス。"
   },
   "landing": {
     "hero": {
@@ -37,7 +37,7 @@
       "ctaPrimary": "シミュレータをオンラインで無料で試す →",
       "ctaGithub": "GitHubで見る",
       "trustLine": "サインアップ不要 · 100%ブラウザで動作 · 無料＆オープンソース",
-      "imageAlt": "Arduino Uno交通信号回路を使ったVelxioエディター"
+      "imageAlt": "Arduino Uno交通信号回路を使ったCircuitSkillエディター"
     },
     "boards": {
       "label": "対応ハードウェア",
@@ -76,14 +76,14 @@
     },
     "support": {
       "title": "プロジェクトを支援",
-      "subtitle": "Velxioは無料でオープンソースです。時間を節約できたなら、開発を支援することを検討してください。",
+      "subtitle": "CircuitSkillは無料でオープンソースです。時間を節約できたなら、開発を支援することを検討してください。",
       "ctaSponsors": "GitHub Sponsors",
       "ctaPaypal": "PayPalで寄付"
     },
     "licensing": {
       "label": "ライセンス",
       "title": "無料、商用オプションあり。",
-      "subtitle": "オープンソース版はAGPLv3。クローズドソース製品にVelxioを組み込む必要があるチーム向けの商用ライセンスもあります。",
+      "subtitle": "オープンソース版はAGPLv3。クローズドソース製品にCircuitSkillを組み込む必要があるチーム向けの商用ライセンスもあります。",
       "opensource": {
         "title": "オープンソース — AGPLv3",
         "desc": "個人利用・教育・研究・セルフホスティングは永久無料。改変・フォーク・再配布も自由 — ただし変更内容もAGPLv3で公開する必要があります。",
@@ -133,7 +133,7 @@
           "name": "Maker",
           "tagline": "AI支援で実物の回路を作るメーカー向け。",
           "f1": "AIクレジット1日500回（月15,000回まで）",
-          "f2": "非公開プロジェクト + Velxio Desktop（オフライン）",
+          "f2": "非公開プロジェクト + CircuitSkill Desktop（オフライン）",
           "f3": "ESP32・STM32・Raspberry Pi のシミュレーション時間が無制限",
           "cta": "Makerを始める"
         },
@@ -146,7 +146,7 @@
           "cta": "Proを購読"
         }
       },
-      "classroomBanner": "コースでVelxioを使いますか？ Velxio for Classroomは年$40から学生全員にProアクセスを提供します。",
+      "classroomBanner": "コースでCircuitSkillを使いますか？ CircuitSkill for Classroomは年$40から学生全員にProアクセスを提供します。",
       "classroomCta": "クラスプランを見る →"
     }
   },
@@ -160,7 +160,7 @@
   },
   "pricing": {
     "title": "料金",
-    "selfHosted": "このVelxioインスタンスはオープンソースイメージからセルフホストされています—すべての機能は利用者全員に無料です。",
+    "selfHosted": "このCircuitSkillインスタンスはオープンソースイメージからセルフホストされています—すべての機能は利用者全員に無料です。",
     "hostedVersion": "ホスト版（<link>velxio.dev</link>）では、開発資金を支援するオプションのProプランを提供しています。",
     "sourceCode": "ソースコードは<link>GitHub上でMITライセンス</link>です。"
   },
@@ -370,19 +370,10 @@
     "notFound": "サンプル「{{id}}」が見つかりません。",
     "browseAll": "すべてのサンプルを閲覧"
   },
-  "starBanner": {
-    "ariaLabel": "GitHubでVelxioにスターを付ける",
-    "title": "Velxioを気に入っていますか？",
-    "body": "GitHubで⭐を付けると、より多くの開発者がこのプロジェクトを発見できます—たった2秒で完了します！",
-    "title2": "ちょっとしたお願いです",
-    "body2": "Velxio は無料のオープンソースです。GitHub でスターを付けることが、プロジェクトを応援し、より多くの人に見つけてもらう一番簡単な方法です。",
-    "cta": "GitHubでスターを付ける",
-    "dismiss": "閉じる"
-  },
   "auth": {
     "login": {
       "title": "サインイン",
-      "subtitle": "Velxioに続ける",
+      "subtitle": "CircuitSkillに続ける",
       "email": "メール",
       "password": "パスワード",
       "signIn": "サインイン",

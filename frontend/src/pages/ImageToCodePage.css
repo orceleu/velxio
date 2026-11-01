@@ -175,7 +175,7 @@
 .i2c-field select:focus,
 .i2c-field input:focus {
   outline: none;
-  box-shadow: var(--color-focus-ring, 0 0 0 2px #0071e3);
+  box-shadow: var(--color-focus-ring, 0 0 0 2px #059669);
 }
 
 .i2c-hint {

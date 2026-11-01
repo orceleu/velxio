@@ -3,7 +3,7 @@
     "riscv": {
       "label": "// risc-v",
       "heading": "RISC-Vエミュレーション (ESP32-C3)",
-      "lead": "ESP32-C3、XIAO ESP32-C3、C3 SuperMiniボードは、160 MHzで動作する<strong>RISC-V RV32IMC</strong>アーキテクチャを採用しています。Velxioは、Xtensa ESP32ファミリーと同じQEMUベースのバックエンドを使用してこれらをエミュレートし、<code>esp32c3-picsimlab</code>マシンターゲットで<code>libqemu-riscv32</code>を使用します。別のTypeScript ISA実装がリポジトリにあり、RV32IMC命令デコードの単体テストに使用されますが、本番のエミュレーションパスではありません。",
+      "lead": "ESP32-C3、XIAO ESP32-C3、C3 SuperMiniボードは、160 MHzで動作する<strong>RISC-V RV32IMC</strong>アーキテクチャを採用しています。CircuitSkillは、Xtensa ESP32ファミリーと同じQEMUベースのバックエンドを使用してこれらをエミュレートし、<code>esp32c3-picsimlab</code>マシンターゲットで<code>libqemu-riscv32</code>を使用します。別のTypeScript ISA実装がリポジトリにあり、RV32IMC命令デコードの単体テストに使用されますが、本番のエミュレーションパスではありません。",
       "boardsHeading": "対応ボード",
       "boardEsp32C3": "ESP32-C3 DevKit",
       "boardXiaoC3": "Seeed XIAO ESP32-C3",
@@ -74,7 +74,7 @@
     "setup": {
       "label": "// プロジェクトステータス",
       "heading": "プロジェクトステータス",
-      "lead": "Velxioに現在実装されているすべての機能の包括的な概要です。",
+      "lead": "CircuitSkillに現在実装されているすべての機能の包括的な概要です。",
       "avrHeading": "AVRエミュレーション (avr8js)",
       "thFeature": "機能",
       "thStatus": "ステータス",
@@ -163,7 +163,7 @@
     "esp32": {
       "label": "// xtensa",
       "heading": "ESP32エミュレーション (Xtensa)",
-      "lead": "ESP32およびESP32-S3ボードは<strong>Xtensa LX6 / LX7</strong>アーキテクチャを使用しています。純粋なJavaScriptで利用可能なプロダクション品質のXtensaエミュレータがないため、Velxioはこれらのボードに<strong>QEMUベースのバックエンド</strong>を使用しています。これはlcgamboaフォークで、libqemu-xtensaをネイティブバイナリにコンパイルし、FastAPIバックエンドによって提供されます。",
+      "lead": "ESP32およびESP32-S3ボードは<strong>Xtensa LX6 / LX7</strong>アーキテクチャを使用しています。純粋なJavaScriptで利用可能なプロダクション品質のXtensaエミュレータがないため、CircuitSkillはこれらのボードに<strong>QEMUベースのバックエンド</strong>を使用しています。これはlcgamboaフォークで、libqemu-xtensaをネイティブバイナリにコンパイルし、FastAPIバックエンドによって提供されます。",
       "noteCallout": "<strong>注:</strong> このセクションは<strong>ESP32</strong>、<strong>ESP32-S3</strong> (Xtensa) および<strong>ESP32-C3</strong> (RISC-V) に適用されます。これらはすべて同じQEMU lcgamboaパイプラインを共有しますが、異なるlibqemuバイナリとマシンターゲットを使用します。C3固有の違いについては<strong>RISC-Vエミュレーション (ESP32-C3)</strong>を参照してください。",
       "howHeading": "仕組み",
       "how1": "Arduinoスケッチは<code>arduino-cli</code>によってESP32 <code>.bin</code>フラッシュイメージにコンパイルされます。",
@@ -198,13 +198,13 @@
       "perLedc": "<strong>LEDC / PWM</strong>: ハードウェアPWMチャンネル",
       "perWifi": "<strong>WiFi</strong>: 部分対応 (接続イベント転送)",
       "requirementsHeading": "要件",
-      "requirementsBody": "QEMUベースのエミュレーションにはVelxioバックエンドの実行が必要です。つまり、<a>velxio.dev</a>の<strong>ホスト版</strong>および<strong>Dockerセルフホスティング</strong>では動作しますが、純粋な静的フロントエンドデプロイメントでは動作しません。",
+      "requirementsBody": "QEMUベースのエミュレーションにはCircuitSkillバックエンドの実行が必要です。つまり、<a>velxio.dev</a>の<strong>ホスト版</strong>および<strong>Dockerセルフホスティング</strong>では動作しますが、純粋な静的フロントエンドデプロイメントでは動作しません。",
       "fullDetailsCallout": "<strong>詳細:</strong> リポジトリ内の <a>docs/ESP32_EMULATION.md</a> を参照してください。"
     },
     "roadmap": {
       "label": "// 将来",
       "heading": "ロードマップ",
-      "lead": "Velxioの将来のリリースに向けて実装済み、進行中、計画中の機能です。",
+      "lead": "CircuitSkillの将来のリリースに向けて実装済み、進行中、計画中の機能です。",
       "implementedHeading": "実装済み",
       "impMonaco": "Monacoエディタ (C++シンタックスハイライト、オートコンプリート、ミニマップ)",
       "impMultiFile": "マルチファイルワークスペース、ファイルの作成、名前変更、削除、切り替え",
@@ -244,7 +244,7 @@
     "emulator": {
       "label": "// 内部構造",
       "heading": "エミュレータアーキテクチャ",
-      "lead": "Velxioは簡略化されたモデルではなく、<strong>実際のCPUエミュレーション</strong>を使用しています。このドキュメントでは、シミュレーションの各層の仕組みについて説明します。",
+      "lead": "CircuitSkillは簡略化されたモデルではなく、<strong>実際のCPUエミュレーション</strong>を使用しています。このドキュメントでは、シミュレーションの各層の仕組みについて説明します。",
       "dataFlowHeading": "高レベルデータフロー",
       "avr8Heading": "AVR8エミュレーション (Arduino Uno / Nano / Mega)",
       "avr8Body": "AVRバックエンドは<a>avr8js</a>を使用しており、完全なATmega328p / ATmega2560プロセッサを実装しています。",
@@ -293,7 +293,7 @@
     "architecture": {
       "label": "// システム設計",
       "heading": "プロジェクトアーキテクチャ",
-      "lead": "Velxioは、最大の互換性のために公式のWokwiリポジトリを使用する完全ローカルのArduinoエミュレータです。実際のAVR8 CPUエミュレーション、48以上のインタラクティブな電子コンポーネント、包括的なワイヤシステム、ビルド時のコンポーネント検出パイプラインを備えています。",
+      "lead": "CircuitSkillは、最大の互換性のために公式のWokwiリポジトリを使用する完全ローカルのArduinoエミュレータです。実際のAVR8 CPUエミュレーション、48以上のインタラクティブな電子コンポーネント、包括的なワイヤシステム、ビルド時のコンポーネント検出パイプラインを備えています。",
       "overviewHeading": "高レベル概要",
       "dataFlowsHeading": "データフロー",
       "compilationHeading": "1. コンパイル",
@@ -329,8 +329,8 @@
     "intro": {
       "label": "// 概要",
       "heading": "はじめに",
-      "lead": "<strong>Velxio</strong>は、完全にローカルで動作するオープンソースのArduinoエミュレータで、ブラウザ内で全て実行されます。Arduino C++コードを書き、実際の<code>arduino-cli</code>バックエンドでコンパイルし、真のAVR8 / RP2040 CPUエミュレーションを使用してシミュレートします。48以上のインタラクティブな電子コンポーネントを備え、マシンにソフトウェアをインストールする必要はありません。",
-      "whyHeading": "なぜVelxioなのか？",
+      "lead": "<strong>CircuitSkill</strong>は、完全にローカルで動作するオープンソースのArduinoエミュレータで、ブラウザ内で全て実行されます。Arduino C++コードを書き、実際の<code>arduino-cli</code>バックエンドでコンパイルし、真のAVR8 / RP2040 CPUエミュレーションを使用してシミュレートします。48以上のインタラクティブな電子コンポーネントを備え、マシンにソフトウェアをインストールする必要はありません。",
+      "whyHeading": "なぜCircuitSkillなのか？",
       "whyNoInstall": "<strong>インストール不要</strong>: すべてブラウザで動作します。",
       "whyRealEmulation": "<strong>実際のエミュレーション</strong>: 簡略化されたモデルではなく、正確なAVR8 / RP2040 CPUエミュレーション。",
       "whyInteractive": "<strong>インタラクティブコンポーネント</strong>: LED、ボタン、ポテンショメータ、ディスプレイ、センサーなど。",

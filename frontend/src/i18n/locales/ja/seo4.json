@@ -27,7 +27,7 @@
       },
       "build": {
         "heading": "何が作れますか？",
-        "lead": "ATtiny85プロジェクトは、小型で低消費電力、アナログ対応のときに輝きます — SPICEソルバーが組み込まれたVelxioの強みです。",
+        "lead": "ATtiny85プロジェクトは、小型で低消費電力、アナログ対応のときに輝きます — SPICEソルバーが組み込まれたCircuitSkillの強みです。",
         "blinkTitle": "点滅＆PWMフェード",
         "blinkBody": "古典的な入門 — Timer0によるPB1のハードウェアPWM駆動LEDフェード、およびPB4の高速Timer1 PWM。",
         "buttonTitle": "ボタン駆動LED",
@@ -46,17 +46,17 @@
       "faq": {
         "heading": "よくある質問",
         "q1": "これは本物のATtiny85エミュレーターですか？",
-        "a1": "はい。Velxioはavr8js — サイクル精度のAVR8エミュレーター — を使用して、コンパイルされたATtiny85ファームウェアを実際のDIP-8チップで実行されるのとまったく同じようにバイト単位で実行します。",
+        "a1": "はい。CircuitSkillはavr8js — サイクル精度のAVR8エミュレーター — を使用して、コンパイルされたATtiny85ファームウェアを実際のDIP-8チップで実行されるのとまったく同じようにバイト単位で実行します。",
         "q2": "サポートされているATtiny85の機能は？",
         "a2": "6つのGPIOピン（PB0–PB5）、Timer0（8ビット）PWM、Timer1（8ビット）PWMと高速モード、ウォッチドッグタイマー、10ビットADC（4入力チャンネルADC0–ADC3）、I²C（TWI）およびSPIビットバン用USIペリフェラル、ピン変化割り込み、外部割り込み（INT0）。",
-        "q3": "VelxioでATtiny85をプログラムするには？",
-        "a3": "MonacoエディタでC/C++（Arduino構文）でスケッチを書きます。Velxioはバンドルされたarduino-cliを使用してATTinyCoreボードパッケージでコンパイルし、実際の.hexファイルを生成します — USBaspでフラッシュするものと同じです。",
+        "q3": "CircuitSkillでATtiny85をプログラムするには？",
+        "a3": "MonacoエディタでC/C++（Arduino構文）でスケッチを書きます。CircuitSkillはバンドルされたarduino-cliを使用してATTinyCoreボードパッケージでコンパイルし、実際の.hexファイルを生成します — USBaspでフラッシュするものと同じです。",
         "q4": "Arduino互換ライブラリは使えますか？",
         "a4": "はい。ライブラリマネージャーは完全なArduinoライブラリレジストリをインデックス化します。多くのライブラリが適切なピン割り当てでATtiny85で動作します — I²C用TinyWireM、USI経由のSoftwareSerial、TinyServoなど。",
         "q5": "アナログ回路に配線できますか？",
-        "a5": "はい。VelxioにはリアルタイムSPICEソルバーが含まれています — ATtiny85のADCピンを分圧回路、オペアンプ出力、またはNTCサーミスタブリッジに配線すると、analogRead()はそのピンの実際のSPICE解決電圧を返します。",
+        "a5": "はい。CircuitSkillにはリアルタイムSPICEソルバーが含まれています — ATtiny85のADCピンを分圧回路、オペアンプ出力、またはNTCサーミスタブリッジに配線すると、analogRead()はそのピンの実際のSPICE解決電圧を返します。",
         "q6": "無料ですか？",
-        "a6": "はい — VelxioはGNU AGPLv3の下で完全に無料でオープンソースです。アカウントは不要です。"
+        "a6": "はい — CircuitSkillはGNU AGPLv3の下で完全に無料でオープンソースです。アカウントは不要です。"
       },
       "bottom": {
         "title": "ハードウェアなしでATtiny85ファームウェアを開発",
@@ -68,14 +68,14 @@
       "hero": {
         "title": "Arduinoエミュレーター",
         "accent": "本物のAVR8＆RP2040エミュレーション、無料",
-        "subtitle": "Velxioはブラウザ内で完全に動作するサイクル精度のArduinoエミュレーターです。すべてのAVRオペコードが16 MHzで忠実に実行されます — ハードウェアを購入することなく、実際のハードウェアと同じシリコン動作を実現。",
+        "subtitle": "CircuitSkillはブラウザ内で完全に動作するサイクル精度のArduinoエミュレーターです。すべてのAVRオペコードが16 MHzで忠実に実行されます — ハードウェアを購入することなく、実際のハードウェアと同じシリコン動作を実現。",
         "ctaPrimary": "エミュレーターを開く",
         "ctaSecondary": "エミュレーションの詳細",
         "trust": "無料＆オープンソース · avr8js & rp2040js 搭載 · サインアップ不要"
       },
       "accuracy": {
         "heading": "エミュレーションの精度",
-        "leadPrefix": "Velxioは ",
+        "leadPrefix": "CircuitSkillは ",
         "leadAvr": "avr8js",
         "leadMid": " をAVR8に、",
         "leadRp": "rp2040js",
@@ -119,14 +119,14 @@
         "heading": "よくある質問",
         "q1": "Arduinoエミュレーターとは？",
         "a1": "Arduinoエミュレーターは、物理的なArduinoマイクロコントローラーの動作をソフトウェアで再現します — CPU命令実行、ペリフェラルレジスタ（GPIO、USART、ADC、タイマー、PWM）、割り込み — ハードウェアは不要です。",
-        "q2": "VelxioのArduinoエミュレーションの精度は？",
-        "a2": "Velxioはavr8jsを使用しており、サイクル精度のAVR8命令エミュレーションを提供します。すべてのAVRオペコードが16 MHzで忠実にエミュレートされるため、実際のハードウェアにフラッシュする前に実際のファームウェアを開発およびデバッグするのに信頼性があります。",
-        "q3": "VelxioはどのArduinoボードをエミュレートできますか？",
+        "q2": "CircuitSkillのArduinoエミュレーションの精度は？",
+        "a2": "CircuitSkillはavr8jsを使用しており、サイクル精度のAVR8命令エミュレーションを提供します。すべてのAVRオペコードが16 MHzで忠実にエミュレートされるため、実際のハードウェアにフラッシュする前に実際のファームウェアを開発およびデバッグするのに信頼性があります。",
+        "q3": "CircuitSkillはどのArduinoボードをエミュレートできますか？",
         "a3": "Arduino Uno（ATmega328P）、Arduino Nano、Arduino Mega 2560（ATmega2560）、ATtiny85（AVR8）、Arduino Leonardo（ATmega32u4）、Arduino Pro Mini、Raspberry Pi PicoおよびPico W（RP2040）、および複数のESP32/RISC-Vボード。5つのCPUアーキテクチャにわたる19のボード。",
         "q4": "どのペリフェラルがエミュレートされますか？",
         "a4": "GPIOポート（PORTB、PORTC、PORTD）、ハードウェアタイマー（Timer0、Timer1、Timer2）、8/16ビットPWM、USARTシリアル、10ビットADC（アナログ入力）、SPI、I2C。すべての標準Arduinoライブラリ関数が正しく動作します。",
-        "q5": "VelxioはWokwiとどう違いますか？",
-        "a5": "Velxioは完全に自己ホスト型で、GNU AGPLv3の下でオープンソースです。Wokwiと同じavr8jsエミュレーションライブラリを使用しますが、完全に自分のマシン上で動作します — クラウド依存なし、登録不要、サブスクリプション不要。"
+        "q5": "CircuitSkillはWokwiとどう違いますか？",
+        "a5": "CircuitSkillは完全に自己ホスト型で、GNU AGPLv3の下でオープンソースです。Wokwiと同じavr8jsエミュレーションライブラリを使用しますが、完全に自分のマシン上で動作します — クラウド依存なし、登録不要、サブスクリプション不要。"
       },
       "bottom": {
         "title": "今すぐArduinoエミュレーションを開始",
@@ -146,7 +146,7 @@
       },
       "boards": {
         "heading": "サポートされているESP32ボード",
-        "lead": "Velxioは完全なESP32ファミリーをエミュレート — Xtensa LX6（ESP32）、Xtensa LX7（ESP32-S3）、RISC-V（ESP32-C3）。各ボードは近似ではなく実際のCPUエミュレーションで動作します。",
+        "lead": "CircuitSkillは完全なESP32ファミリーをエミュレート — Xtensa LX6（ESP32）、Xtensa LX7（ESP32-S3）、RISC-V（ESP32-C3）。各ボードは近似ではなく実際のCPUエミュレーションで動作します。",
         "devkitTitle": "ESP32 DevKit V1 / C V4",
         "devkitBody": "240 MHzのXtensa LX6デュアルコア。WiFi + Bluetooth。34 GPIOピン、12ビットADC、2× DAC、SPI、I2C、UART。",
         "s3Title": "ESP32-S3 DevKitC",
@@ -181,11 +181,11 @@
       "faq": {
         "heading": "よくある質問",
         "q1": "このESP32シミュレーターは無料ですか？",
-        "a1": "はい。Velxioは完全に無料でオープンソース（GNU AGPLv3）です。ブラウザでESP32コードをシミュレートするか、1つのDockerコマンドでプラットフォーム全体をセルフホスト — アカウント不要、支払い不要。",
+        "a1": "はい。CircuitSkillは完全に無料でオープンソース（GNU AGPLv3）です。ブラウザでESP32コードをシミュレートするか、1つのDockerコマンドでプラットフォーム全体をセルフホスト — アカウント不要、支払い不要。",
         "q2": "ESP32エミュレーションはどのように動作しますか？",
-        "a2": "VelxioはQEMU（lcgamboaフォーク）を使用して240 MHzのXtensa LX6 CPUをエミュレートします。Arduinoスケッチは公式のESP32 Arduinoコアでコンパイルされ、結果のファームウェアがエミュレートされたハードウェア上で実行されます — 実際のシリコンと同じです。",
+        "a2": "CircuitSkillはQEMU（lcgamboaフォーク）を使用して240 MHzのXtensa LX6 CPUをエミュレートします。Arduinoスケッチは公式のESP32 Arduinoコアでコンパイルされ、結果のファームウェアがエミュレートされたハードウェア上で実行されます — 実際のシリコンと同じです。",
         "q3": "どのESP32ボードがサポートされていますか？",
-        "a3": "VelxioはESP32 DevKit V1、ESP32 DevKit C V4、ESP32-CAM、Arduino Nano ESP32、ESP32-S3 DevKitC、XIAO ESP32-S3、ESP32-C3 DevKit、XIAO ESP32-C3、ESP32-C3 SuperMiniをサポートしています。",
+        "a3": "CircuitSkillはESP32 DevKit V1、ESP32 DevKit C V4、ESP32-CAM、Arduino Nano ESP32、ESP32-S3 DevKitC、XIAO ESP32-S3、ESP32-C3 DevKit、XIAO ESP32-C3、ESP32-C3 SuperMiniをサポートしています。",
         "q4": "センサーやディスプレイを使ってESP32をシミュレートできますか？",
         "a4": "はい。48以上のインタラクティブコンポーネントを接続：DHT22、HC-SR04超音波、MPU6050 IMU、サーボモーター、ILI9341 TFTディスプレイ、LED、ボタン、7セグメントディスプレイなど。",
         "q5": "ESP32用のシリアルモニターはサポートされていますか？",
@@ -209,7 +209,7 @@
       },
       "boards": {
         "heading": "サポートされているESP32-S3ボード",
-        "lead": "Velxioは3つのESP32-S3ボードをエミュレート。各ボードはarduino-cliでコンパイルされた公式ESP32 Arduinoコアを実行します。",
+        "lead": "CircuitSkillは3つのESP32-S3ボードをエミュレート。各ボードはarduino-cliでコンパイルされた公式ESP32 Arduinoコアを実行します。",
         "devkitTitle": "ESP32-S3 DevKitC-1",
         "devkitBody": "Espressif公式開発ボード。240 MHzのデュアルコアXtensa LX7、45 GPIO、USB OTG、512 KB SRAM。",
         "xiaoTitle": "XIAO ESP32-S3",
@@ -233,11 +233,11 @@
         "q1": "ESP32-S3とは？",
         "a1": "ESP32-S3はEspressifによる240 MHzで動作するXtensa LX7デュアルコアマイクロコントローラーです。元のESP32と比較して、USB OTG、AI/ML用ベクトル命令、最大45 GPIOピンを追加しています。",
         "q2": "ESP32-S3シミュレーターは無料ですか？",
-        "a2": "はい。Velxioは100%無料でオープンソースです。QEMU経由の実際のXtensa LX7エミュレーションでブラウザ内でESP32-S3コードをシミュレート — クラウド不要、サブスクリプション不要。",
+        "a2": "はい。CircuitSkillは100%無料でオープンソースです。QEMU経由の実際のXtensa LX7エミュレーションでブラウザ内でESP32-S3コードをシミュレート — クラウド不要、サブスクリプション不要。",
         "q3": "どのESP32-S3ボードがサポートされていますか？",
-        "a3": "VelxioはESP32-S3 DevKitC-1、Seeed XIAO ESP32-S3、Arduino Nano ESP32（ESP32-S3チップ使用）をサポートしています。",
+        "a3": "CircuitSkillはESP32-S3 DevKitC-1、Seeed XIAO ESP32-S3、Arduino Nano ESP32（ESP32-S3チップ使用）をサポートしています。",
         "q4": "ESP32-S3でArduinoライブラリを使用できますか？",
-        "a4": "はい。Velxioは公式のESP32 Arduinoコアでスケッチをコンパイルします。Arduinoライブラリマネージャーから任意のライブラリをインストールし、ESP32-S3プロジェクトで使用できます。",
+        "a4": "はい。CircuitSkillは公式のESP32 Arduinoコアでスケッチをコンパイルします。Arduinoライブラリマネージャーから任意のライブラリをインストールし、ESP32-S3プロジェクトで使用できます。",
         "q5": "ESP32とESP32-S3の違いは？",
         "a5": "ESP32-S3は新しいXtensa LX7アーキテクチャ（LX6に対して）を使用し、ネイティブUSBデバイスサポートのためのUSB OTGを追加し、AIワークロード用のベクトル命令を含み、より多くのGPIOピン（45対34）を備えています。"
       },

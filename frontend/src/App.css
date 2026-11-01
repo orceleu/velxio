@@ -115,15 +115,6 @@ body {
   background: var(--color-wash-active);
 }
 
-.header-nav-discord {
-  color: #7289da;
-}
-
-.header-nav-discord:hover {
-  color: var(--color-accent-fg);
-  background: rgba(114, 137, 218, 0.1);
-}
-
 .header-right {
   display: flex;
   align-items: center;

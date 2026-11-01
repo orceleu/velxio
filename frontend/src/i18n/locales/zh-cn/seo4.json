@@ -27,7 +27,7 @@
       },
       "build": {
         "heading": "你能构建什么？",
-        "lead": "ATtiny85项目在小型、低功耗和模拟感知方面表现出色——这正是Velxio结合SPICE求解器的优势。",
+        "lead": "ATtiny85项目在小型、低功耗和模拟感知方面表现出色——这正是CircuitSkill结合SPICE求解器的优势。",
         "blinkTitle": "闪烁与PWM渐变",
         "blinkBody": "经典入门——通过Timer0在PB1上实现硬件PWM驱动的LED渐变，以及PB4上的高速Timer1 PWM。",
         "buttonTitle": "按钮驱动LED",
@@ -46,17 +46,17 @@
       "faq": {
         "heading": "常见问题",
         "q1": "这是真正的ATtiny85仿真器吗？",
-        "a1": "是的。Velxio使用avr8js——周期精确的AVR8仿真器——逐字节执行编译后的ATtiny85固件，就像在真实DIP-8芯片上运行一样。",
+        "a1": "是的。CircuitSkill使用avr8js——周期精确的AVR8仿真器——逐字节执行编译后的ATtiny85固件，就像在真实DIP-8芯片上运行一样。",
         "q2": "支持哪些ATtiny85特性？",
         "a2": "所有6个GPIO引脚（PB0–PB5）、带PWM的Timer0（8位）、带PWM和高速模式的Timer1（8位）、看门狗定时器、带4个输入通道（ADC0–ADC3）的10位ADC、用于I²C（TWI）和SPI位碰撞的USI外设、引脚变化中断和外部中断（INT0）。",
-        "q3": "如何在Velxio中编程ATtiny85？",
-        "a3": "在Monaco编辑器中用C/C++（Arduino语法）编写草图。Velxio通过捆绑的arduino-cli使用ATTinyCore板级支持包编译，生成真实的.hex文件——与通过USBasp烧录的文件相同。",
+        "q3": "如何在CircuitSkill中编程ATtiny85？",
+        "a3": "在Monaco编辑器中用C/C++（Arduino语法）编写草图。CircuitSkill通过捆绑的arduino-cli使用ATTinyCore板级支持包编译，生成真实的.hex文件——与通过USBasp烧录的文件相同。",
         "q4": "我可以使用Arduino兼容库吗？",
         "a4": "是的。库管理器索引了完整的Arduino库注册表。许多库在ATtiny85上通过适当的引脚分配工作——用于I²C的TinyWireM、通过USI的SoftwareSerial、TinyServo等。",
         "q5": "我可以将其连接到模拟电路吗？",
-        "a5": "是的。Velxio包含实时SPICE求解器——将ATtiny85 ADC引脚连接到分压器、运放输出或NTC热敏电阻桥，analogRead()将返回该引脚的实际SPICE求解电压。",
+        "a5": "是的。CircuitSkill包含实时SPICE求解器——将ATtiny85 ADC引脚连接到分压器、运放输出或NTC热敏电阻桥，analogRead()将返回该引脚的实际SPICE求解电压。",
         "q6": "它是免费的吗？",
-        "a6": "是的——Velxio完全免费开源，采用GNU AGPLv3许可。无需账户。"
+        "a6": "是的——CircuitSkill完全免费开源，采用GNU AGPLv3许可。无需账户。"
       },
       "bottom": {
         "title": "无需硬件开发ATtiny85固件",
@@ -68,14 +68,14 @@
       "hero": {
         "title": "Arduino仿真器",
         "accent": "真实的AVR8和RP2040仿真，免费",
-        "subtitle": "Velxio是一个周期精确的Arduino仿真器，完全在浏览器中运行。每个AVR操作码在16 MHz下忠实执行——与真实硬件相同的硅行为，无需购买硬件。",
+        "subtitle": "CircuitSkill是一个周期精确的Arduino仿真器，完全在浏览器中运行。每个AVR操作码在16 MHz下忠实执行——与真实硬件相同的硅行为，无需购买硬件。",
         "ctaPrimary": "打开仿真器",
         "ctaSecondary": "仿真详情",
         "trust": "免费开源 · 基于avr8js和rp2040js · 无需注册"
       },
       "accuracy": {
         "heading": "仿真精度",
-        "leadPrefix": "Velxio使用",
+        "leadPrefix": "CircuitSkill使用",
         "leadAvr": "avr8js",
         "leadMid": "用于AVR8和",
         "leadRp": "rp2040js",
@@ -119,14 +119,14 @@
         "heading": "常见问题",
         "q1": "什么是Arduino仿真器？",
         "a1": "Arduino仿真器在软件中再现物理Arduino微控制器的行为——CPU指令执行、外设寄存器（GPIO、USART、ADC、定时器、PWM）和中断——无需硬件。",
-        "q2": "Velxio的Arduino仿真有多精确？",
-        "a2": "Velxio使用avr8js，提供周期精确的AVR8指令仿真。每个AVR操作码在16 MHz下忠实仿真，使其在烧录到硬件之前可靠地开发和调试真实固件。",
-        "q3": "Velxio可以仿真哪些Arduino开发板？",
+        "q2": "CircuitSkill的Arduino仿真有多精确？",
+        "a2": "CircuitSkill使用avr8js，提供周期精确的AVR8指令仿真。每个AVR操作码在16 MHz下忠实仿真，使其在烧录到硬件之前可靠地开发和调试真实固件。",
+        "q3": "CircuitSkill可以仿真哪些Arduino开发板？",
         "a3": "Arduino Uno (ATmega328P)、Arduino Nano、Arduino Mega 2560 (ATmega2560)、ATtiny85 (AVR8)、Arduino Leonardo (ATmega32u4)、Arduino Pro Mini、Raspberry Pi Pico和Pico W (RP2040)，以及多个ESP32/RISC-V开发板。5种CPU架构下的19块开发板。",
         "q4": "仿真了哪些外设？",
         "a4": "GPIO端口（PORTB、PORTC、PORTD）、硬件定时器（Timer0、Timer1、Timer2）、8/16位PWM、USART串口、10位ADC（模拟输入）、SPI和I2C。所有标准Arduino库函数都能正常工作。",
-        "q5": "Velxio与Wokwi有何不同？",
-        "a5": "Velxio完全自托管且开源，采用GNU AGPLv3许可。它使用与Wokwi相同的avr8js仿真库，但完全在您自己的机器上运行——无云依赖、无注册、无订阅。"
+        "q5": "CircuitSkill与Wokwi有何不同？",
+        "a5": "CircuitSkill完全自托管且开源，采用GNU AGPLv3许可。它使用与Wokwi相同的avr8js仿真库，但完全在您自己的机器上运行——无云依赖、无注册、无订阅。"
       },
       "bottom": {
         "title": "今天开始仿真Arduino",
@@ -146,7 +146,7 @@
       },
       "boards": {
         "heading": "支持的ESP32开发板",
-        "lead": "Velxio仿真完整的ESP32系列——Xtensa LX6 (ESP32)、Xtensa LX7 (ESP32-S3)和RISC-V (ESP32-C3)。每块开发板都运行真实的CPU仿真，而非近似。",
+        "lead": "CircuitSkill仿真完整的ESP32系列——Xtensa LX6 (ESP32)、Xtensa LX7 (ESP32-S3)和RISC-V (ESP32-C3)。每块开发板都运行真实的CPU仿真，而非近似。",
         "devkitTitle": "ESP32 DevKit V1 / C V4",
         "devkitBody": "Xtensa LX6双核240 MHz。WiFi + 蓝牙。34个GPIO引脚、12位ADC、2× DAC、SPI、I2C、UART。",
         "s3Title": "ESP32-S3 DevKitC",
@@ -181,11 +181,11 @@
       "faq": {
         "heading": "常见问题",
         "q1": "这个ESP32模拟器免费吗？",
-        "a1": "是的。Velxio完全免费开源（GNU AGPLv3）。在浏览器中模拟ESP32代码，或通过一个Docker命令自托管整个平台——无需账户、无需付费。",
+        "a1": "是的。CircuitSkill完全免费开源（GNU AGPLv3）。在浏览器中模拟ESP32代码，或通过一个Docker命令自托管整个平台——无需账户、无需付费。",
         "q2": "ESP32仿真如何工作？",
-        "a2": "Velxio使用QEMU（lcgamboa分支）在240 MHz下仿真Xtensa LX6 CPU。您的Arduino草图使用官方ESP32 Arduino核心编译，生成的固件在仿真硬件上运行——与真实硅片相同。",
+        "a2": "CircuitSkill使用QEMU（lcgamboa分支）在240 MHz下仿真Xtensa LX6 CPU。您的Arduino草图使用官方ESP32 Arduino核心编译，生成的固件在仿真硬件上运行——与真实硅片相同。",
         "q3": "支持哪些ESP32开发板？",
-        "a3": "Velxio支持ESP32 DevKit V1、ESP32 DevKit C V4、ESP32-CAM、Arduino Nano ESP32、ESP32-S3 DevKitC、XIAO ESP32-S3、ESP32-C3 DevKit、XIAO ESP32-C3和ESP32-C3 SuperMini。",
+        "a3": "CircuitSkill支持ESP32 DevKit V1、ESP32 DevKit C V4、ESP32-CAM、Arduino Nano ESP32、ESP32-S3 DevKitC、XIAO ESP32-S3、ESP32-C3 DevKit、XIAO ESP32-C3和ESP32-C3 SuperMini。",
         "q4": "我可以模拟带传感器和显示屏的ESP32吗？",
         "a4": "是的。连接48+个交互组件：DHT22、HC-SR04超声波、MPU6050 IMU、舵机、ILI9341 TFT显示屏、LED、按钮、7段数码管等。",
         "q5": "它支持ESP32的串口监视器吗？",
@@ -209,7 +209,7 @@
       },
       "boards": {
         "heading": "支持的ESP32-S3开发板",
-        "lead": "Velxio仿真三块ESP32-S3开发板。每块都运行通过arduino-cli编译的官方ESP32 Arduino核心。",
+        "lead": "CircuitSkill仿真三块ESP32-S3开发板。每块都运行通过arduino-cli编译的官方ESP32 Arduino核心。",
         "devkitTitle": "ESP32-S3 DevKitC-1",
         "devkitBody": "乐鑫官方开发板。双核Xtensa LX7，240 MHz，45个GPIO，USB OTG，512 KB SRAM。",
         "xiaoTitle": "XIAO ESP32-S3",
@@ -233,11 +233,11 @@
         "q1": "什么是ESP32-S3？",
         "a1": "ESP32-S3是乐鑫推出的Xtensa LX7双核微控制器，运行频率240 MHz。与原始ESP32相比，它增加了USB OTG、用于AI/ML的向量指令以及多达45个GPIO引脚。",
         "q2": "ESP32-S3模拟器免费吗？",
-        "a2": "是的。Velxio 100%免费开源。通过QEMU在浏览器中模拟ESP32-S3代码，进行真实的Xtensa LX7仿真——无需云、无需订阅。",
+        "a2": "是的。CircuitSkill 100%免费开源。通过QEMU在浏览器中模拟ESP32-S3代码，进行真实的Xtensa LX7仿真——无需云、无需订阅。",
         "q3": "支持哪些ESP32-S3开发板？",
-        "a3": "Velxio支持ESP32-S3 DevKitC-1、Seeed XIAO ESP32-S3和Arduino Nano ESP32（使用ESP32-S3芯片）。",
+        "a3": "CircuitSkill支持ESP32-S3 DevKitC-1、Seeed XIAO ESP32-S3和Arduino Nano ESP32（使用ESP32-S3芯片）。",
         "q4": "我可以在ESP32-S3上使用Arduino库吗？",
-        "a4": "是的。Velxio使用官方ESP32 Arduino核心编译您的草图。从Arduino库管理器安装任何库，并在您的ESP32-S3项目中使用。",
+        "a4": "是的。CircuitSkill使用官方ESP32 Arduino核心编译您的草图。从Arduino库管理器安装任何库，并在您的ESP32-S3项目中使用。",
         "q5": "ESP32和ESP32-S3有什么区别？",
         "a5": "ESP32-S3使用更新的Xtensa LX7架构（vs LX6），增加了USB OTG以支持原生USB设备，包含用于AI工作负载的向量指令，并拥有更多GPIO引脚（45 vs 34）。"
       },

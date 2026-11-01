@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { startSimulation } from '../simulation/spice/start';
 import { useSEO } from '../utils/useSEO';
 import { getLocaleFromPath, localizedPath } from '../i18n/path';
-import { restoreStashedWorkspace } from '../utils/workspaceDraft';
 import { CodeEditor } from '../components/editor/CodeEditor';
 import { EditorToolbar } from '../components/editor/EditorToolbar';
 import { FileExplorer } from '../components/editor/FileExplorer';
@@ -20,7 +19,6 @@ import { SerialMonitor } from '../components/simulator/SerialMonitor';
 import { Oscilloscope } from '../components/simulator/Oscilloscope';
 import { AppHeader } from '../components/layout/AppHeader';
 import { triggerSaveAction } from '../lib/proSaveAction';
-import { GitHubStarBanner } from '../components/layout/GitHubStarBanner';
 import { NewsAnnouncer } from '../components/layout/NewsAnnouncer';
 import { useSimulatorStore } from '../store/useSimulatorStore';
 import { useEditorStore } from '../store/useEditorStore';
@@ -58,10 +56,6 @@ const EXPLORER_DEFAULT = 124;
 // /editor within the same SPA session.
 let starterDialogShownThisLoad = false;
 
-function announceStarBanner(action: 'shown' | 'click' | 'dismiss', round: 1 | 2): void {
-  window.dispatchEvent(new CustomEvent('velxio-star-banner', { detail: { action, round } }));
-}
-
 const resizeHandleStyle: React.CSSProperties = {
   height: 5,
   flexShrink: 0,
@@ -74,7 +68,7 @@ const resizeHandleStyle: React.CSSProperties = {
 export const EditorPage: React.FC = () => {
   const { t } = useTranslation();
   useSEO({
-    title: 'Multi-Board Simulator Editor — Arduino, ESP32, RP2040, RISC-V | Velxio',
+    title: 'Multi-Board Simulator Editor — Arduino, ESP32, RP2040, RISC-V | CircuitSkill',
     description:
       'Write, compile and simulate Arduino, ESP32, Raspberry Pi Pico, ESP32-C3, and Raspberry Pi 3 code in your browser. 19 boards, 5 CPU architectures, 48+ components. Free and open-source.',
     url: 'https://velxio.dev/editor',
@@ -104,9 +98,6 @@ export const EditorPage: React.FC = () => {
   const compileLogs = useCompileLogsStore((s) => s.logs);
   const setCompileLogs = useCompileLogsStore((s) => s.setLogs);
   const [bottomPanelHeight, setBottomPanelHeight] = useState(BOTTOM_PANEL_DEFAULT);
-  const [showStarBanner, setShowStarBanner] = useState(false);
-  const [starRound, setStarRound] = useState<1 | 2>(1);
-
   // ── Electrical simulation (one-time mount) ────────────────────────────────
   // `startSimulation()` is the single entry point: it constructs the
   // CircuitSimulationService, mounts the ADC bridge, and subscribes
@@ -116,12 +107,6 @@ export const EditorPage: React.FC = () => {
     return startSimulation();
   }, []);
 
-  // Restore an in-progress workspace stashed before a login redirect, so a
-  // user who was building something and signed in lands back on their circuit
-  // (not the empty starter board). One-shot; see utils/workspaceDraft.
-  useEffect(() => {
-    restoreStashedWorkspace();
-  }, []);
 
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
 
@@ -166,88 +151,6 @@ export const EditorPage: React.FC = () => {
     };
   }, []);
 
-  // ── GitHub star prompt (show twice at most, after 10 min in the editor) ────
-  // Three localStorage flags drive this:
-  //   velxio_star_prompted     → dismissed the first ask
-  //   velxio_star_prompted_v2  → dismissed the follow-up ask (stop forever)
-  //   velxio_star_clicked      → clicked through to the repo (stop forever)
-  // Anyone who dismissed the first ask WITHOUT clicking through gets one
-  // follow-up (round 2) with a stronger message; clicking the repo link at
-  // any time opts them out permanently.
-  //
-  // The banner waits for 10 minutes of the current editor session: asking
-  // before someone has built anything reads as noise. STAR_RESET_KEY clears
-  // the dismiss flags once for everybody who never clicked through, so the
-  // people who dismissed the old early prompt get asked again at the new time.
-  //
-  // Every transition is also announced as a `velxio-star-banner` window event
-  // ({ action: 'shown' | 'click' | 'dismiss', round }) so a deployment can
-  // count it; the OSS build has no listener.
-  useEffect(() => {
-    const STAR_KEY = 'velxio_star_prompted';
-    const STAR_KEY_V2 = 'velxio_star_prompted_v2';
-    const STAR_CLICKED_KEY = 'velxio_star_clicked';
-    const STAR_RESET_KEY = 'velxio_star_reset_2026_10';
-    const TEN_MIN = 10 * 60 * 1000;
-
-    try {
-      // Never bother people who already starred.
-      if (localStorage.getItem(STAR_CLICKED_KEY)) return;
-
-      if (!localStorage.getItem(STAR_RESET_KEY)) {
-        localStorage.removeItem(STAR_KEY);
-        localStorage.removeItem(STAR_KEY_V2);
-        localStorage.removeItem('velxio_editor_visits');
-        localStorage.removeItem('velxio_editor_first_visit');
-        localStorage.setItem(STAR_RESET_KEY, '1');
-      }
-
-      // Stop for good once the follow-up was dismissed too.
-      if (localStorage.getItem(STAR_KEY_V2)) return;
-    } catch {
-      return; // storage blocked: never nag someone we cannot remember
-    }
-
-    const timer = setTimeout(() => {
-      try {
-        if (localStorage.getItem(STAR_CLICKED_KEY) || localStorage.getItem(STAR_KEY_V2)) return;
-        // Round 2 = they dismissed the first ask (without clicking through).
-        const round = localStorage.getItem(STAR_KEY) ? 2 : 1;
-        setStarRound(round);
-        setShowStarBanner(true);
-        announceStarBanner('shown', round);
-      } catch {
-        /* storage blocked */
-      }
-    }, TEN_MIN);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleDismissStarBanner = () => {
-    // First dismiss → mark round 1; second dismiss → mark round 2 (stop forever).
-    try {
-      if (localStorage.getItem('velxio_star_prompted')) {
-        localStorage.setItem('velxio_star_prompted_v2', '1');
-      } else {
-        localStorage.setItem('velxio_star_prompted', '1');
-      }
-    } catch {
-      /* storage blocked */
-    }
-    announceStarBanner('dismiss', starRound);
-    setShowStarBanner(false);
-  };
-
-  const handleStarClick = () => {
-    // They went to the repo — opt them out of any further prompts.
-    try {
-      localStorage.setItem('velxio_star_clicked', '1');
-    } catch {
-      /* storage blocked */
-    }
-    announceStarBanner('click', starRound);
-    setShowStarBanner(false);
-  };
   const [explorerWidth, setExplorerWidth] = useState(EXPLORER_DEFAULT);
   const [isMobile, setIsMobile] = useState(
     () => window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches,
@@ -462,12 +365,7 @@ export const EditorPage: React.FC = () => {
      tree scrolls ABOVE it instead of disappearing underneath a floating
      box; when the explorer is collapsed it falls back to the small fixed
      corner box (avatar only there — no room for a name). */
-  const accountBlock = !isMobile ? (
-    // Just the account button. Language lives in the menubar's Language
-    // menu (for everyone) and inside the account menu (for signed-in
-    // users) — the standalone globe crowded the footer for no gain.
-    <div data-velxio-slot="header-auth" style={{ display: 'contents' }} />
-  ) : undefined;
+  const accountBlock = undefined;
 
   const unifiedToolbar = !isMobile ? (
         <div className="unified-toolbar">
@@ -821,13 +719,6 @@ export const EditorPage: React.FC = () => {
         </div>
       </div>
 
-      {showStarBanner && (
-        <GitHubStarBanner
-          onClose={handleDismissStarBanner}
-          onStarClick={handleStarClick}
-          round={starRound}
-        />
-      )}
       <NewsAnnouncer />
       <NewProjectDialog
         isOpen={showNewProjectDialog}

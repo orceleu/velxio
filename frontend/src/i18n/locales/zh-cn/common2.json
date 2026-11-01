@@ -21,7 +21,7 @@
         "title": "搜索并安装 Arduino 库",
         "label": "库"
       },
-      "import": "导入项目 (.vlx Velxio 或 .zip Wokwi)",
+      "import": "导入项目 (.vlx CircuitSkill 或 .zip Wokwi)",
       "export": "将当前项目导出为 .zip 文件",
       "uploadFirmware": "上传固件 (.hex, .bin, .elf, .ihex) 以跳过编译",
       "toggleConsole": "切换输出控制台",
@@ -406,8 +406,8 @@
       "toggleExplorer": "文件资源管理器",
       "toggleConsole": "输出控制台",
       "toggleScope": "示波器 / 逻辑分析仪",
-      "home": "Velxio 主页",
-      "about": "关于 Velxio",
+      "home": "CircuitSkill 主页",
+      "about": "关于 CircuitSkill",
       "discord": "Discord 社区",
       "github": "GitHub 仓库",
       "compile": "编译",
@@ -432,7 +432,7 @@
       "title": "烧录 {{board}}",
       "close": "关闭",
       "detectingPorts": "正在检测 USB 串口...",
-      "needsDesktop": "烧录实体板需要 Velxio Desktop。网页版无法访问本地 USB 串口。",
+      "needsDesktop": "烧录实体板需要 CircuitSkill Desktop。网页版无法访问本地 USB 串口。",
       "noPorts": "未检测到 USB 串口。",
       "noPortsHint": "把开发板插到 USB 口并点击“刷新”。在 Linux 上可能需要把自己加入 dialout 组：",
       "noPortsHintLogout": "（执行后请注销并重新登录。）",
@@ -462,7 +462,7 @@
       "retryCompile": "重新编译并烧录",
       "cancel": "取消",
       "hide": "隐藏",
-      "paidOnlyTitle": "烧录实体板属于 Velxio Desktop 付费许可的功能",
+      "paidOnlyTitle": "烧录实体板属于 CircuitSkill Desktop 付费许可的功能",
       "paidOnlyBody": "把程序上传到 USB 连接的实体板，需要 Personal、Commercial 或 Enterprise 许可。模拟器本身仍然免费。",
       "seePlans": "查看方案",
       "log": {
@@ -493,15 +493,15 @@
   },
   "about": {
     "hero": {
-      "title": "关于 Velxio",
+      "title": "关于 CircuitSkill",
       "subtitle": "一个免费、开源的嵌入式系统仿真器 — 由一位对硬件和开源充满热情的个人开发者构建。"
     },
     "story": {
       "heading": "故事",
-      "p1": "Velxio 始于一次个人探索，研究微控制器仿真器内部如何工作 — CPU 指令、内存管理、外设时序和底层架构。最初只是一个假期中的学习项目，但很快发展成了更大的东西。",
+      "p1": "CircuitSkill 始于一次个人探索，研究微控制器仿真器内部如何工作 — CPU 指令、内存管理、外设时序和底层架构。最初只是一个假期中的学习项目，但很快发展成了更大的东西。",
       "p2": "想法很简单：<strong>如果任何人都可以直接在浏览器中模拟 Arduino、ESP32 和 Raspberry Pi 板，无需购买硬件、无需安装工具链、无需云账户，会怎样？</strong>",
-      "p3": "Velxio v1 在 Product Hunt 和 Hacker News 上发布，支持 Arduino Uno 和 Raspberry Pi Pico。来自创客和嵌入式社区的反馈令人难以置信 — 并推动了项目向前发展。",
-      "p4": "<strong>Velxio 2.0</strong> 通过 QEMU（使用 lcgamboa 分支）提供了 ESP32 仿真、运行真实 Linux 的 Raspberry Pi 3、对 ESP32-C3 和 CH32V003 的 RISC-V 支持、逼真的传感器仿真（DHT22、HC-SR04、WS2812B NeoPixel），以及跨越 5 种 CPU 架构的 19 块板 — 全部运行真实编译的代码。",
+      "p3": "CircuitSkill v1 在 Product Hunt 和 Hacker News 上发布，支持 Arduino Uno 和 Raspberry Pi Pico。来自创客和嵌入式社区的反馈令人难以置信 — 并推动了项目向前发展。",
+      "p4": "<strong>CircuitSkill 2.0</strong> 通过 QEMU（使用 lcgamboa 分支）提供了 ESP32 仿真、运行真实 Linux 的 Raspberry Pi 3、对 ESP32-C3 和 CH32V003 的 RISC-V 支持、逼真的传感器仿真（DHT22、HC-SR04、WS2812B NeoPixel），以及跨越 5 种 CPU 架构的 19 块板 — 全部运行真实编译的代码。",
       "p5": "v2 发布在 <strong>Hacker News 首页停留超过 20 小时</strong>，在不到 24 小时内获得了近 600 个 GitHub 星标和数千名访问者。现在，它被世界各地的学生、教授和创客使用。"
     },
     "howItWorks": {
@@ -513,7 +513,7 @@
     },
     "openSource": {
       "heading": "开源理念",
-      "lead": "Velxio 在 AGPLv3 许可下 <strong>100% 开源</strong>。无云依赖、无学生账户、无数据离开您的网络。大学和训练营可以使用单个 Docker 命令将其部署在自己的服务器上，让每个学生都能免费访问完整的嵌入式开发环境。",
+      "lead": "CircuitSkill 在 AGPLv3 许可下 <strong>100% 开源</strong>。无云依赖、无学生账户、无数据离开您的网络。大学和训练营可以使用单个 Docker 命令将其部署在自己的服务器上，让每个学生都能免费访问完整的嵌入式开发环境。",
       "creditsIntro": "该项目建立在社区出色的开源工作之上：",
       "credits": {
         "avr8js": "Wokwi 的 AVR8 CPU 仿真",
@@ -522,7 +522,7 @@
         "qemuLcgamboa": "ESP32 和 Raspberry Pi QEMU 仿真",
         "arduinoCli": "Arduino 编译工具链"
       },
-      "inspiredBy": "Velxio 的灵感来自 <a>Wokwi</a>，这是一个很棒的工具。Velxio 的目标是走一条不同的道路：完全开源、可自托管，并在同一电路中支持多个异构板。"
+      "inspiredBy": "CircuitSkill 的灵感来自 <a>Wokwi</a>，这是一个很棒的工具。CircuitSkill 的目标是走一条不同的道路：完全开源、可自托管，并在同一电路中支持多个异构板。"
     },
     "creator": {
       "heading": "创建者",
@@ -562,7 +562,7 @@
       }
     },
     "cta": {
-      "title": "准备好尝试 Velxio 了吗？",
+      "title": "准备好尝试 CircuitSkill 了吗？",
       "subtitle": "无需注册。100% 在浏览器中运行。免费且开源。",
       "openEditor": "打开编辑器"
     }

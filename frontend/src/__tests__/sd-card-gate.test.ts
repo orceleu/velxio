@@ -25,6 +25,13 @@ describe('proSdCardGate', () => {
     expect(sdCardUploadAllowed()).toBe(true);
   });
 
+  it('uses the Pro query override when present', () => {
+    vi.stubGlobal('window', { location: { search: '?pro=false' } });
+    expect(sdCardUploadAllowed()).toBe(false);
+    vi.stubGlobal('window', { location: { search: '?pro=true' } });
+    expect(sdCardUploadAllowed()).toBe(true);
+  });
+
   it('fails open (allow) if the installed impl throws', () => {
     installSdCardUploadGate(() => {
       throw new Error('boom');

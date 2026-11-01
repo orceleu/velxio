@@ -24,6 +24,7 @@ import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import type { PropertyDescriptor } from '../types/component-metadata';
+import { isProUnlocked } from '../lib/proAccess';
 import { loadDoc, productPageHref, productLinkKind, type ComponentDoc } from './componentDocs';
 import { trackProductPageClick } from '../utils/analytics';
 import { scalableSvgThumbnail } from '../utils/svgThumbnail';
@@ -308,7 +309,7 @@ export const ComponentInfoPanel: React.FC<ComponentInfoPanelProps> = ({
           <span className="cip-badges">
             <span className="cip-cat">{data.category}</span>
             {data.custom && <span className="cip-custom">CUSTOM</span>}
-            {data.pro_only && <span className="cip-pro">PRO</span>}
+            {data.pro_only && !isProUnlocked() && <span className="cip-pro">PRO</span>}
             {data.pinCount > 0 && <span className="cip-pins">{data.pinCount} pins</span>}
           </span>
           {brand && <span className="cip-brand">by {brand}</span>}

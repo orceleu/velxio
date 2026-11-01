@@ -4,7 +4,7 @@
       "hero": {
         "title": "独自のカスタムチップを構築",
         "accent": "C、Rust、またはAssemblyScriptで",
-        "subtitle": "Wokwi互換のカスタムチップAPIを使用して、独自の集積回路を定義します。チップをC、Rust、またはAssemblyScriptで記述し、VelxioがWebAssemblyにコンパイルして、他のコンポーネントと同様にキャンバス上で実行します。Arduino、ESP32、またはRP2040ファームウェアによって駆動されます。",
+        "subtitle": "Wokwi互換のカスタムチップAPIを使用して、独自の集積回路を定義します。チップをC、Rust、またはAssemblyScriptで記述し、CircuitSkillがWebAssemblyにコンパイルして、他のコンポーネントと同様にキャンバス上で実行します。Arduino、ESP32、またはRP2040ファームウェアによって駆動されます。",
         "ctaPrimary": "エディターを開く",
         "ctaSecondary": "ドキュメントを読む",
         "trust": "Wokwi互換API · 無料＆オープンソース · WASM駆動、ブラウザで動作"
@@ -27,7 +27,7 @@
       },
       "api": {
         "heading": "APIが提供するもの",
-        "lead": "Velxioカスタムチップランタイムは完全にWokwi互換であり、SPICEおよびマルチボード環境向けの拡張機能を備えています。",
+        "lead": "CircuitSkillカスタムチップランタイムは完全にWokwi互換であり、SPICEおよびマルチボード環境向けの拡張機能を備えています。",
         "pinTitle": "ピンI/O",
         "pinBody": "ピン状態の読み取り、デジタルHigh/Lowの書き込み、プルアップの設定、ピンウォッチコールバックによるエッジへの応答。",
         "attrTitle": "属性",
@@ -43,14 +43,14 @@
       },
       "faq": {
         "heading": "よくある質問",
-        "q1": "Velxioのカスタムチップとは何ですか？",
-        "a1": "カスタムチップはユーザー定義の集積回路です。チップのロジックをC、Rust、またはAssemblyScriptで記述します。VelxioはそれをWebAssemblyにコンパイルし、他のコンポーネントと同様にキャンバス上にインスタンス化し、シミュレータからピンを駆動します。",
-        "q2": "VelxioはどのAPIを使用しますか？",
-        "a2": "VelxioはWokwiカスタムチップAPIを実装しています。これはWokwiが使用するのと同じAPIであるため、Velxio用に記述したチップはWokwiに移植可能であり、その逆も可能です。VelxioはWASIシムを追加しているため、チップコードで標準ライブラリ関数を使用できます。",
+        "q1": "CircuitSkillのカスタムチップとは何ですか？",
+        "a1": "カスタムチップはユーザー定義の集積回路です。チップのロジックをC、Rust、またはAssemblyScriptで記述します。CircuitSkillはそれをWebAssemblyにコンパイルし、他のコンポーネントと同様にキャンバス上にインスタンス化し、シミュレータからピンを駆動します。",
+        "q2": "CircuitSkillはどのAPIを使用しますか？",
+        "a2": "CircuitSkillはWokwiカスタムチップAPIを実装しています。これはWokwiが使用するのと同じAPIであるため、CircuitSkill用に記述したチップはWokwiに移植可能であり、その逆も可能です。CircuitSkillはWASIシムを追加しているため、チップコードで標準ライブラリ関数を使用できます。",
         "q3": "何を構築できますか？",
         "a3": "実際のICの動作モデル（センサー、デコーダ、レベル変換器、プロトコルブリッジ）、カスタムデジタルロジック、まだ手元にないハードウェアのセンサー代用、ファームウェアテスト用のプロトコルレベルのモック。チップはピンを駆動し、属性を読み取り、タイマーを登録し、I²C/SPIバスにブリッジできます。",
         "q4": "チップを共有または再利用するにはどうすればよいですか？",
-        "a4": "チップをVelxioアカウントに保存し、プロジェクト間で再利用します。チップ定義にはピンレイアウト、属性、コンパイル済みWASMが含まれており、組み込みコンポーネントのように任意のプロジェクトキャンバスにドロップできます。",
+        "a4": "チップをCircuitSkillアカウントに保存し、プロジェクト間で再利用します。チップ定義にはピンレイアウト、属性、コンパイル済みWASMが含まれており、組み込みコンポーネントのように任意のプロジェクトキャンバスにドロップできます。",
         "q5": "チップを実行するためにバックエンドは必要ですか？",
         "a5": "いいえ。コンパイルされたチップWASMは、シミュレーションの残りと同じブラウザタブで実行されます。ピン更新、属性読み取り、タイマーティックはすべてローカルです。",
         "q6": "カスタムチップはArduinoと通信できますか？",
@@ -89,7 +89,7 @@
       },
       "audience": {
         "heading": "教師、学生、愛好家向け",
-        "lead": "VelxioはAGPLv3のもとで無料です。ライセンス費用、シート単位の料金、クラウドアカウントは不要。大学のラボ向けに1つのDockerコマンドでセルフホスト。",
+        "lead": "CircuitSkillはAGPLv3のもとで無料です。ライセンス費用、シート単位の料金、クラウドアカウントは不要。大学のラボ向けに1つのDockerコマンドでセルフホスト。",
         "coursesTitle": "コース向け",
         "coursesBody": "第1週（オームの法則、分圧器）からArduinoプロジェクト、オペアンプ信号チェーンまで同じツールを使用。1つのUIで全シラバスをカバー。",
         "labsTitle": "ラボ向け",
@@ -99,16 +99,16 @@
       },
       "faq": {
         "heading": "よくある質問",
-        "q1": "Velxioは完全な電子回路シミュレータですか？",
-        "a1": "はい。VelxioはSPICE精度のアナログソルバー、19種類のシミュレート済みマイクロコントローラ（Arduino、ESP32、RP2040、ATtiny85、Raspberry Pi 3）、100以上のコンポーネント、オシロスコープ、電圧計、電流計、信号発生器を組み合わせています。電子回路プロジェクトをエンドツーエンドで設計・検証するために必要なすべてを備えています。",
+        "q1": "CircuitSkillは完全な電子回路シミュレータですか？",
+        "a1": "はい。CircuitSkillはSPICE精度のアナログソルバー、19種類のシミュレート済みマイクロコントローラ（Arduino、ESP32、RP2040、ATtiny85、Raspberry Pi 3）、100以上のコンポーネント、オシロスコープ、電圧計、電流計、信号発生器を組み合わせています。電子回路プロジェクトをエンドツーエンドで設計・検証するために必要なすべてを備えています。",
         "q2": "仮想ブレッドボードのように使用できますか？",
         "a2": "はい。コンポーネントをキャンバスにドロップし、ピン間にワイヤをドラッグすると、シミュレータが自動的にSPICEネットリストを構築します。ワイヤはグリッドにスナップし、コンポーネントは90度単位で回転します。信号タイプの色でVCC、GND、デジタル、アナログ経路をマークします。",
         "q3": "何かをインストールする必要がありますか？",
         "a3": "いいえ。任意の最新ブラウザでvelxio.devを開いてすぐに開始できます。SPICEソルバーとAVR/RP2040エミュレータはブラウザ内でローカルに実行されます。XtensaおよびRISC-Vボード（ESP32、ESP32-C3、CH32V003）とRaspberry Pi 3 Linuxは、DockerイメージにバンドルされたQEMU lcgamboaを介して実行されます。Arduinoスケッチのコンパイルにはクラウドのarduino-cliバックエンドを使用します。",
         "q4": "電子回路の教育に適していますか？",
         "a4": "はい。それが設計目標の1つです。無料、インストール不要、アカウント不要、ライセンス費用不要。100以上の配線済みサンプル回路が、分圧器、RCフィルタ、オペアンプ増幅器、トランジスタスイッチ、整流器、完全なArduinoプロジェクトをカバーしています。大学のラボや独学者に最適です。",
-        "q5": "VelxioはTinkercad/Falstadの代替品ですか？",
-        "a5": "はい。そしてより正確です。Velxioは本物のngspice（プロフェッショナルEDAツールが使用するエンジン）を実行し、それらのツールとは異なり、回路を駆動するマイクロコントローラ上のファームウェアも実行します。AGPLv3のもとでオープンソースです。"
+        "q5": "CircuitSkillはTinkercad/Falstadの代替品ですか？",
+        "a5": "はい。そしてより正確です。CircuitSkillは本物のngspice（プロフェッショナルEDAツールが使用するエンジン）を実行し、それらのツールとは異なり、回路を駆動するマイクロコントローラ上のファームウェアも実行します。AGPLv3のもとでオープンソースです。"
       },
       "bottom": {
         "title": "仮想ブレッドボードを開く",
@@ -127,7 +127,7 @@
       },
       "what": {
         "heading": "何をシミュレートできますか？",
-        "lead": "Velxioは完全なAVR8 CPU精度でArduinoプログラムをシミュレートします。GPIOポート、ハードウェアタイマー、USART、ADC、PWM、SPI、I2Cを含みます。近似やショートカットはありません。",
+        "lead": "CircuitSkillは完全なAVR8 CPU精度でArduinoプログラムをシミュレートします。GPIOポート、ハードウェアタイマー、USART、ADC、PWM、SPI、I2Cを含みます。近似やショートカットはありません。",
         "unoTitle": "Arduino Uno & Nano",
         "unoBody": "16 MHzでの完全なATmega328Pシミュレーション。PORTB、PORTC、PORTDレジスタエミュレーション。14のデジタルピンと6のアナログピンすべて。",
         "megaTitle": "Arduino Mega 2560",
@@ -145,7 +145,7 @@
       },
       "how": {
         "heading": "シミュレータの仕組み",
-        "leadPrefix": "Velxioは",
+        "leadPrefix": "CircuitSkillは",
         "leadHighlight": "avr8js",
         "leadSuffix": "を使用します。これは実績のあるオープンソースのAVR8エミュレーションライブラリで、コンパイルされたファームウェアをバイト単位で、物理ハードウェア上で実行されるのとまったく同じように実行します。",
         "writeTitle": "1. 記述",
@@ -158,15 +158,15 @@
       "faq": {
         "heading": "よくある質問",
         "q1": "このArduinoシミュレータは無料ですか？",
-        "a1": "はい。Velxioは完全に無料でオープンソース（GNU AGPLv3）です。アカウント不要、支払い不要、クラウドサブスクリプション不要。ブラウザで実行するか、1つのDockerコマンドでセルフホストできます。",
+        "a1": "はい。CircuitSkillは完全に無料でオープンソース（GNU AGPLv3）です。アカウント不要、支払い不要、クラウドサブスクリプション不要。ブラウザで実行するか、1つのDockerコマンドでセルフホストできます。",
         "q2": "Arduinoシミュレータはインストールなしで動作しますか？",
         "a2": "シミュレーションエンジンは完全にブラウザ内で実行されます。コードのコンパイルにはarduino-cliバックエンドが必要ですが、ローカルまたはDocker経由で実行できます。IDEのインストールは不要です。",
         "q3": "どのArduinoボードをシミュレートできますか？",
-        "a3": "Velxioは19のボードをサポートしています：Arduino Uno（ATmega328P）、Arduino Nano、Arduino Mega 2560、ATtiny85、Arduino Leonardo、Arduino Pro Mini（AVR8）に加え、Raspberry Pi Pico（RP2040）、ESP32-C3 / XIAO ESP32-C3 / CH32V003（RISC-V）、ESP32 / ESP32-S3 / ESP32-CAM（QEMU経由のXtensa）、Raspberry Pi 3B（QEMU経由のLinux）。",
+        "a3": "CircuitSkillは19のボードをサポートしています：Arduino Uno（ATmega328P）、Arduino Nano、Arduino Mega 2560、ATtiny85、Arduino Leonardo、Arduino Pro Mini（AVR8）に加え、Raspberry Pi Pico（RP2040）、ESP32-C3 / XIAO ESP32-C3 / CH32V003（RISC-V）、ESP32 / ESP32-S3 / ESP32-CAM（QEMU経由のXtensa）、Raspberry Pi 3B（QEMU経由のLinux）。",
         "q4": "LED、センサー、ディスプレイをシミュレートできますか？",
-        "a4": "はい。Velxioには48以上のインタラクティブなwokwi-elementsが含まれています：LED、抵抗、ボタン、サーボモーター、超音波センサー、ILI9341 TFTディスプレイ、LCD、NeoPixelストリップ、ブザー、DHT22など。",
-        "q5": "VelxioはWokwiの代替品ですか？",
-        "a5": "はい。Velxioは無料でセルフホスト可能なWokwiの代替品です。同じavr8jsエミュレーションライブラリとwokwi-elementsビジュアルコンポーネントを使用しますが、クラウド依存なしで完全に自分のマシン上で実行されます。"
+        "a4": "はい。CircuitSkillには48以上のインタラクティブなwokwi-elementsが含まれています：LED、抵抗、ボタン、サーボモーター、超音波センサー、ILI9341 TFTディスプレイ、LCD、NeoPixelストリップ、ブザー、DHT22など。",
+        "q5": "CircuitSkillはWokwiの代替品ですか？",
+        "a5": "はい。CircuitSkillは無料でセルフホスト可能なWokwiの代替品です。同じavr8jsエミュレーションライブラリとwokwi-elementsビジュアルコンポーネントを使用しますが、クラウド依存なしで完全に自分のマシン上で実行されます。"
       },
       "bottom": {
         "title": "Arduinoのシミュレーション準備はできましたか？",
@@ -190,7 +190,7 @@
       "pico": "Picoシミュレータ",
       "rpiPico": "RP2040シミュレータ",
       "rpi": "Raspberry Pi 3シミュレータ",
-      "v25": "Velxio 2.5リリース",
+      "v25": "CircuitSkill 2.5リリース",
       "examples": "プロジェクト例",
       "examplesAnalog": "アナログ例",
       "examplesAll": "すべての例",

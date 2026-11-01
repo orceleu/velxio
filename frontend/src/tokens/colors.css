@@ -1,7 +1,7 @@
 /* Color tokens — primitive palette + semantic mappings.
  *
  * Layers:
- *   1. Primitives (--gray-*, --blue-*, etc.) — raw scale, never used directly
+ *   1. Primitives (--gray-*, --blue-*, --emerald-*, etc.) — raw scale, never used directly
  *      in components.
  *   2. Semantics (--color-bg-*, --color-fg-*, --color-action-*) — used by
  *      components. Swap themes by remapping semantics to different primitives.
@@ -40,6 +40,11 @@
   --blue-500:  #0a84ff;
   --blue-600:  #0071e3;
   --blue-700:  #0058b3;
+
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
 
   --red-500:   #ff453a;
   --red-600:   #d70015;
@@ -120,23 +125,23 @@
    * on every panel depth. In light mode these flip to black at low alpha. */
   --color-wash-hover:    rgba(255, 255, 255, 0.06);
   --color-wash-active:   rgba(255, 255, 255, 0.10);
-  --color-wash-selected: rgba(0, 113, 227, 0.25);
+  --color-wash-selected: rgba(5, 150, 105, 0.25);
 
   /* Semantic — actions */
   /* Solid UI doctrine: interactive surfaces use SOLID fills of these
    * tokens (white text/icon, border:none) — never neon hues or
-   * translucent "outline" borders. Green/red are semantic only
-   * (success/error). See branding/README.md "Solid UI doctrine". */
-  --color-action-primary:       var(--blue-600);
-  --color-action-primary-hover: var(--blue-500);
+   * translucent "outline" borders. Emerald is the primary brand accent;
+   * green/red remain semantic success/error colors. */
+  --color-action-primary:       var(--emerald-600);
+  --color-action-primary-hover: var(--emerald-500);
   --color-action-primary-fg:    var(--gray-0);
   --color-action-secondary:     var(--gray-800);
   --color-action-secondary-hover: var(--gray-700);
 
   /* Accent washes — tinted backgrounds for selected/active accents. */
-  --color-accent-soft:        rgba(0, 113, 227, 0.14);
-  --color-accent-soft-strong: rgba(0, 113, 227, 0.30);
-  --color-accent-fg:          var(--blue-400);
+  --color-accent-soft:        rgba(5, 150, 105, 0.14);
+  --color-accent-soft-strong: rgba(5, 150, 105, 0.30);
+  --color-accent-fg:          var(--emerald-400);
 
   /* Semantic — feedback */
   --color-feedback-error:   var(--red-500);
@@ -153,14 +158,14 @@
   --color-feedback-error-border:   rgba(255, 69, 58, 0.32);
   --color-feedback-success-border: rgba(48, 209, 88, 0.32);
   --color-feedback-warning-border: rgba(255, 159, 10, 0.32);
-  --color-accent-border:           rgba(0, 113, 227, 0.38);
+  --color-accent-border:           rgba(5, 150, 105, 0.38);
 
   /* Focus ring — used by *:focus-visible across all interactives */
   --color-focus-ring: 0 0 0 2px var(--color-action-primary);
 
   /* Tier badges (pro overlay reads these) */
   --color-tier-free:  var(--gray-500);
-  --color-tier-pro:   var(--blue-600);
+  --color-tier-pro:   var(--emerald-600);
   --color-tier-team:  var(--amber-500);
 
   /* ── Simulator canvas ─────────────────────────────────────────────────
@@ -288,19 +293,19 @@
 
   --color-wash-hover:    rgba(0, 0, 0, 0.05);
   --color-wash-active:   rgba(0, 0, 0, 0.09);
-  --color-wash-selected: rgba(0, 113, 227, 0.16);
+  --color-wash-selected: rgba(5, 150, 105, 0.16);
 
-  /* Actions. Hover DARKENS on light (blue-700) where dark LIGHTENS it
-   * (blue-500) — hover has to move away from the page, not toward it. */
-  --color-action-primary:       var(--blue-600);
-  --color-action-primary-hover: var(--blue-700);
+  /* Actions. Hover DARKENS on light (emerald-700) where dark LIGHTENS it
+   * (emerald-500) — hover has to move away from the page, not toward it. */
+  --color-action-primary:       var(--emerald-600);
+  --color-action-primary-hover: var(--emerald-700);
   --color-action-primary-fg:    var(--gray-0);
   --color-action-secondary:     var(--gray-200);
   --color-action-secondary-hover: var(--gray-300);
 
-  --color-accent-soft:        rgba(0, 113, 227, 0.10);
-  --color-accent-soft-strong: rgba(0, 113, 227, 0.20);
-  --color-accent-fg:          var(--blue-700);
+  --color-accent-soft:        rgba(5, 150, 105, 0.10);
+  --color-accent-soft-strong: rgba(5, 150, 105, 0.20);
+  --color-accent-fg:          var(--emerald-700);
 
   /* Feedback — the 500s are tuned for contrast against black and go muddy
    * on white, so light mode drops to the 600s. */
@@ -316,10 +321,10 @@
   --color-feedback-error-border:   rgba(215, 0, 21, 0.32);
   --color-feedback-success-border: rgba(36, 138, 61, 0.35);
   --color-feedback-warning-border: rgba(201, 52, 0, 0.30);
-  --color-accent-border:           rgba(0, 113, 227, 0.35);
+  --color-accent-border:           rgba(5, 150, 105, 0.35);
 
   --color-tier-free:  var(--gray-600);
-  --color-tier-pro:   var(--blue-600);
+  --color-tier-pro:   var(--emerald-600);
   --color-tier-team:  var(--amber-600);
 
   /* Canvas */

@@ -280,7 +280,7 @@ export class ComponentRegistry {
     }
     this.processMetadata(Array.from(byId.values()));
     // The overlay merges AFTER its dynamic import lands - notify subscribers so
-    // an already-open picker recomputes (ONLINE ad cards vs real components).
+    // an already-open picker recomputes the available components.
     this._version++;
     for (const l of this._changeListeners) l();
   }

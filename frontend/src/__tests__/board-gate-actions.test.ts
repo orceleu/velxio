@@ -26,6 +26,7 @@ function installWindowStub() {
   const listeners = new Map<string, Listener[]>();
   const dispatched: Array<{ type: string; detail: unknown }> = [];
   const win = {
+    location: { search: '' },
     addEventListener: (type: string, cb: Listener) => {
       listeners.set(type, [...(listeners.get(type) ?? []), cb]);
     },
@@ -63,6 +64,19 @@ describe('board gate actions', () => {
     expect(boardGateVerdict('stm32-bluepill', 'add')).toEqual({ decision: 'allow' });
     expect(boardGateVerdict('stm32-bluepill', 'run')).toEqual({ decision: 'allow' });
     expect(boardGateDecision('raspberry-pi-4')).toBe('allow');
+  });
+
+  it('pro=true overrides a blocking entitlement gate for Pro boards', () => {
+    stub.win.location.search = '?pro=true';
+    installBoardGateImpl(() => 'block');
+    expect(boardGateDecision('stm32-bluepill', 'run')).toBe('allow');
+  });
+
+  it('pro=false blocks Pro boards even when the entitlement gate allows them', () => {
+    stub.win.location.search = '?pro=false';
+    installBoardGateImpl(() => 'allow');
+    expect(boardGateDecision('stm32-bluepill', 'add')).toBe('block');
+    expect(boardGateDecision('raspberry-pi-4', 'run')).toBe('block');
   });
 
   it('a non-Pro board never consults the impl', () => {

@@ -11,7 +11,7 @@
       },
       "what": {
         "heading": "何をシミュレートできますか？",
-        "lead": "Velxioは、プロのEDAツールが使用する本物のngspiceソルバーを毎ティック実行します。これは線形近似ではありません。ダイオードは適切な順方向降下を持ち、BJTは遮断と飽和を起こし、オペアンプはレールに達し、レギュレータはドロップアウトします。"
+        "lead": "CircuitSkillは、プロのEDAツールが使用する本物のngspiceソルバーを毎ティック実行します。これは線形近似ではありません。ダイオードは適切な順方向降下を持ち、BJTは遮断と飽和を起こし、オペアンプはレールに達し、レギュレータはドロップアウトします。"
       },
       "cards": {
         "passive": {
@@ -41,13 +41,13 @@
       },
       "how": {
         "heading": "アナログシミュレーションの仕組み",
-        "leadPrefix": "Velxioは ",
+        "leadPrefix": "CircuitSkillは ",
         "leadHighlight": "ngspice-WASM",
         "leadMid": " をオープンソースの ",
         "leadCode": "eecircuit-engine",
         "leadSuffix": " を介して使用します。キャンバス上のすべての配線はSPICEネットに、すべての部品はSPICEデバイスカードになり、ソルバーは各ティックで完全な修正節点解析を実行します。",
         "wireTitle": "1. 配線",
-        "wireBody": "部品を配置し、配線をドラッグします。Velxioは、構築中にリアルタイムで配線グラフをSPICEネットに結合・検出します。",
+        "wireBody": "部品を配置し、配線をドラッグします。CircuitSkillは、構築中にリアルタイムで配線グラフをSPICEネットに結合・検出します。",
         "solveTitle": "2. 解析",
         "solveBody": "ngspiceは約60Hzで完全な回路を解析します。非線形デバイスは収束するまで反復 — 近道や理想化はありません。",
         "probeTitle": "3. プローブ",
@@ -55,7 +55,7 @@
       },
       "co": {
         "heading": "ユニークな機能：ハイブリッドデジタル＋アナログ同時シミュレーション",
-        "lead": "ほとんどのブラウザ回路シミュレータはパッシブアナログで止まります。Velxioは、回路を駆動するマイクロコントローラ上のファームウェアも同じクロックで実行します。",
+        "lead": "ほとんどのブラウザ回路シミュレータはパッシブアナログで止まります。CircuitSkillは、回路を駆動するマイクロコントローラ上のファームウェアも同じクロックで実行します。",
         "gpioTitle": "GPIOが回路を駆動",
         "gpioBodyPrefix": "",
         "gpioBodyCode": "digitalWrite(HIGH)",
@@ -70,17 +70,17 @@
       "faq": {
         "heading": "よくある質問",
         "q1": "この回路シミュレータは本当に無料ですか？",
-        "a1": "はい。VelxioはGNU AGPLv3ライセンスの下で完全に無料かつオープンソースです。アカウント不要、クラウドサブスクリプション不要、ペイウォール付き部品なし — シミュレータのすべての部分がブラウザで動作します。",
-        "q2": "Velxioはどのようなアナログシミュレーションを使用しますか？",
-        "a2": "Velxioは、プロのEDAツールが使用するオープンソースのSPICEシミュレータであるngspiceを、eecircuit-engineを介してWebAssemblyにコンパイルして実行します。各ティックで完全な修正節点解析を実行するため、非線形デバイス（ダイオード、BJT、MOSFET、飽和を伴うオペアンプ）は、理想化された近似ではなく、実際のシリコンのように動作します。",
+        "a1": "はい。CircuitSkillはGNU AGPLv3ライセンスの下で完全に無料かつオープンソースです。アカウント不要、クラウドサブスクリプション不要、ペイウォール付き部品なし — シミュレータのすべての部分がブラウザで動作します。",
+        "q2": "CircuitSkillはどのようなアナログシミュレーションを使用しますか？",
+        "a2": "CircuitSkillは、プロのEDAツールが使用するオープンソースのSPICEシミュレータであるngspiceを、eecircuit-engineを介してWebAssemblyにコンパイルして実行します。各ティックで完全な修正節点解析を実行するため、非線形デバイス（ダイオード、BJT、MOSFET、飽和を伴うオペアンプ）は、理想化された近似ではなく、実際のシリコンのように動作します。",
         "q3": "マイクロコントローラを回路に接続できますか？",
         "a3": "はい — これがユニークな機能です。GPIOピンはSPICEネットを電圧源として駆動し、ADC入力は解析されたアナログノード電圧をファームウェアに読み戻します。PWM駆動のRCフィルタ、トランジスタスイッチ、オペアンプ信号チェーン、またはMOSFETモータドライバを構築し、ファームウェアと回路がリアルタイムで相互作用するのを確認できます。",
         "q4": "どのような部品が利用可能ですか？",
         "a4": "抵抗、コンデンサ、インダクタ、ポテンショメータ、フォトレジスタ（LDR）、フォトダイオード、NTCサーミスタ、バッテリー（9V/AA/コイン）、5つのBJT（2N2222、2N3055、2N3906、BC547、BC557）、4つのMOSFET（2N7000、IRF540、IRF9540、FQP27P06）、5つのオペアンプ（LM358、LM741、TL072、LM324、理想）、4つのリニアレギュレータ（7805、7812、7905、LM317）、ツェナーおよびショットキーダイオード、フォトカプラ（4N25、PC817）、リレー、L293DデュアルHブリッジドライバ、および7つの論理ゲートと7つの74HCシリーズIC（DIP-14パッケージ）。",
         "q5": "シミュレータにはオシロスコープと電圧計がありますか？",
-        "a5": "はい。Velxioには、マルチチャンネルオシロスコープ、電圧計、電流計、および信号発生器（正弦波、方形波、DC）がライブ計器として含まれており、キャンバスに配置できます。これらは任意のノードや配線をプローブし、シミュレーション実行中にリアルタイムで更新されます。",
+        "a5": "はい。CircuitSkillには、マルチチャンネルオシロスコープ、電圧計、電流計、および信号発生器（正弦波、方形波、DC）がライブ計器として含まれており、キャンバスに配置できます。これらは任意のノードや配線をプローブし、シミュレーション実行中にリアルタイムで更新されます。",
         "q6": "これはFalstad / CircuitLab / Tinkercadの代替品ですか？",
-        "a6": "アナログ回路に関しては、はい — そしてより正確です。Velxioは簡略化されたソルバーではなく、本物のngspiceエンジンを実行するためです。これらのツールとは異なり、Velxioは回路を駆動するマイクロコントローラ上のファームウェアも実行するため、ブラウザから離れることなくファームウェアとハードウェアを一緒に検証できます。"
+        "a6": "アナログ回路に関しては、はい — そしてより正確です。CircuitSkillは簡略化されたソルバーではなく、本物のngspiceエンジンを実行するためです。これらのツールとは異なり、CircuitSkillは回路を駆動するマイクロコントローラ上のファームウェアも実行するため、ブラウザから離れることなくファームウェアとハードウェアを一緒に検証できます。"
       },
       "bottom": {
         "title": "回路をシミュレートする準備はできましたか？",
@@ -114,8 +114,8 @@
         "usartBody": "設定可能なボーレートの全二重シリアル。TX、RX、UDRE割り込み。内蔵シリアルモニタで動作。"
       },
       "boards": {
-        "heading": "VelxioのATmega328Pボード",
-        "lead": "ATmega328Pは、いくつかの人気Arduinoボードを動かしています — すべてVelxioで選択可能。より広いAVR8ファミリには、ATmega2560（Mega）およびATtiny85も含まれます。",
+        "heading": "CircuitSkillのATmega328Pボード",
+        "lead": "ATmega328Pは、いくつかの人気Arduinoボードを動かしています — すべてCircuitSkillで選択可能。より広いAVR8ファミリには、ATmega2560（Mega）およびATtiny85も含まれます。",
         "unoTitle": "Arduino Uno R3",
         "unoBody": "クラシックボード。14デジタルI/Oピン（6 PWM）、6アナログ入力、32KBフラッシュ。最も広く使用されているATmega328Pボード。",
         "nanoTitle": "Arduino Nano",
@@ -132,7 +132,7 @@
         "q1": "ATmega328Pとは何ですか？",
         "a1": "ATmega328Pは、Microchip（旧Atmel）による8ビットAVRマイクロコントローラです。Arduino UnoおよびArduino Nanoの心臓部であり、16MHzで動作し、32KBフラッシュ、2KB SRAM、1KB EEPROMを搭載しています。",
         "q2": "ATmega328Pのレジスタレベルのコードをシミュレートできますか？",
-        "a2": "はい。VelxioのAVR8エミュレーションは、すべてのATmega328Pレジスタを忠実に実行します：DDRB/C/D、PORTB/C/D、PINB/C/D、TCCR0/1/2、OCR0/1/2、UBRR、UDR、ADCL/ADCH、およびすべての割り込みベクタ — Arduino抽象化層なしの直接レジスタ操作を含む。",
+        "a2": "はい。CircuitSkillのAVR8エミュレーションは、すべてのATmega328Pレジスタを忠実に実行します：DDRB/C/D、PORTB/C/D、PINB/C/D、TCCR0/1/2、OCR0/1/2、UBRR、UDR、ADCL/ADCH、およびすべての割り込みベクタ — Arduino抽象化層なしの直接レジスタ操作を含む。",
         "q3": "ATmega328Pのタイマーを正しくエミュレートしますか？",
         "a3": "Timer0（8ビット）、Timer1（16ビット）、Timer2（8ビット）はすべて、完全なプリスケーラサポート、PWMモード、オーバーフロー割り込み、出力比較一致割り込みでエミュレーションされています。millis()、delay()、analogWrite()、tone()はすべて正しく動作します。",
         "q4": "シミュレータでanalogRead()とanalogWrite()を使用できますか？",
@@ -158,7 +158,7 @@
       },
       "boards": {
         "heading": "サポートされているRISC-Vボード",
-        "lead": "Velxioは、QEMU lcgamboaフォークを介してRISC-Vマイクロコントローラをエミュレートします — Xtensa ESP32 / ESP32-S3に使用されるのと同じバックエンドパターンで、libqemu-xtensaの代わりにlibqemu-riscv32を使用します。",
+        "lead": "CircuitSkillは、QEMU lcgamboaフォークを介してRISC-Vマイクロコントローラをエミュレートします — Xtensa ESP32 / ESP32-S3に使用されるのと同じバックエンドパターンで、libqemu-xtensaの代わりにlibqemu-riscv32を使用します。",
         "devkitTitle": "ESP32-C3 DevKitM-1",
         "devkitBody": "RISC-V RV32IMC、160MHz。WiFi + BLE 5.0、22 GPIO、400KB SRAM。公式Espressif開発ボード。",
         "xiaoTitle": "XIAO ESP32-C3",
@@ -192,11 +192,11 @@
         "q2": "ESP32-C3シミュレータはブラウザで動作しますか？",
         "a2": "はい。XtensaベースのESP32とは異なり、ESP32-C3のRISC-Vエミュレーションは完全にブラウザ内で動作します — QEMUバックエンドは不要です。これにより、シミュレートするのに最速のESP32バリアントになります。",
         "q3": "これはRISC-Vシミュレータでもありますか？",
-        "a3": "はい。ESP32-C3はRISC-V RV32IMC命令セットを使用します。VelxioはCH32V003（RV32EC、48MHz）もサポートしています — もう1つの人気のあるRISC-Vマイクロコントローラです。",
+        "a3": "はい。ESP32-C3はRISC-V RV32IMC命令セットを使用します。CircuitSkillはCH32V003（RV32EC、48MHz）もサポートしています — もう1つの人気のあるRISC-Vマイクロコントローラです。",
         "q4": "どのESP32-C3ボードがサポートされていますか？",
-        "a4": "VelxioはESP32-C3 DevKitM-1、Seeed XIAO ESP32-C3、およびESP32-C3 SuperMini（Aitewinrobot）をサポートしています。3つすべてが同じRISC-Vコアを使用しています。",
+        "a4": "CircuitSkillはESP32-C3 DevKitM-1、Seeed XIAO ESP32-C3、およびESP32-C3 SuperMini（Aitewinrobot）をサポートしています。3つすべてが同じRISC-Vコアを使用しています。",
         "q5": "ESP32-C3でArduinoコードを使用できますか？",
-        "a5": "はい。Velxioは、ESP32-C3ボードターゲットで公式のESP32 Arduinoコアを使用して.inoスケッチをコンパイルします。すべての標準Arduino関数が動作します — Serial、GPIO、analogReadなど。"
+        "a5": "はい。CircuitSkillは、ESP32-C3ボードターゲットで公式のESP32 Arduinoコアを使用して.inoスケッチをコンパイルします。すべての標準Arduino関数が動作します — Serial、GPIO、analogReadなど。"
       },
       "bottom": {
         "title": "ESP32-C3をシミュレートする準備はできましたか？",
