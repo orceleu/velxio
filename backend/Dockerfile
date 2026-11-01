@@ -9,9 +9,10 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         curl \
         xz-utils \
         ca-certificates \
-    && curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh \
-    && mv bin/arduino-cli /usr/local/bin/ \
-    && rm -rf bin \
+    && (cd /tmp \
+        && curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh \
+        && mv /tmp/bin/arduino-cli /usr/local/bin/ \
+        && rm -rf /tmp/bin) \
     && curl -fL https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-${WASI_SDK_VERSION}/wasi-sdk-${WASI_SDK_VERSION}.0-linux.tar.gz \
        | tar -xz -C /opt \
     && mv /opt/wasi-sdk-${WASI_SDK_VERSION}.0 /opt/wasi-sdk \
