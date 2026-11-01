@@ -17,6 +17,7 @@ import { ExternalPinScopeFeed } from '../simulation/externalPinScope';
 import { SignalRouter } from '../simulation/SignalRouter';
 import { requestElectricalResolve } from '../simulation/spice/electricalResolveHook';
 import { ledcSignalForChannel } from '../simulation/esp32-signals';
+import type { Component } from '../types/component';
 import type { Wire, WireInProgress, WireEndpoint } from '../types/wire';
 import type { BoardKind, BoardInstance, LanguageMode, WifiStatus } from '../types/board';
 import {
@@ -78,8 +79,6 @@ import {
   setInterconnectRuntime,
 } from '../simulation/Interconnect';
 import {
-  SENSOR_CONTROLS,
-  getSensorControl,
   getSensorControlForComponent,
   projectSensorValues,
 } from '../simulation/sensorControlConfig';
@@ -1346,6 +1345,7 @@ const simulatorMap = new BusBoundSimulatorMap<
   | RP2040Simulator
   | RiscVSimulator
   | Esp32C3Simulator
+  | ProBoardSimulator
   | Esp32BridgeShim
   | Stm32BridgeShim
   | PiBridgeShim
@@ -1544,15 +1544,6 @@ function isRiscVEsp32Kind(kind: BoardKind): boolean {
   return ESP32_RISCV_KINDS.has(kind) || fam === 'esp32-c3' || fam === 'esp32-c6';
 }
 
-// ── Component type ────────────────────────────────────────────────────────
-interface Component {
-  id: string;
-  metadataId: string;
-  x: number;
-  y: number;
-  properties: Record<string, unknown>;
-}
-
 // ── Undo/redo history ────────────────────────────────────────────────────
 /**
  * One entry on the canvas undo/redo stack.
@@ -1679,6 +1670,7 @@ interface SimulatorState {
     | RP2040Simulator
     | RiscVSimulator
     | Esp32C3Simulator
+    | ProBoardSimulator
     | Esp32BridgeShim
     | Stm32BridgeShim
     | PiBridgeShim
@@ -2530,8 +2522,7 @@ export const useSimulatorStore = create<SimulatorState>((set, get) => {
         // "no active board on the canvas" and has to spend a turn on
         // set_active_board. Manual placements via the UI already auto-active
         // through the picker; this just closes the API gap.
-        const stillExists = s.boards.some((b) => b.id === s.activeBoardId);
-        const nextActive = stillExists ? s.activeBoardId : id;
+        const nextActive = s.boards.find((b) => b.id === s.activeBoardId)?.id ?? id;
         // Keep `simulator` in sync with `activeBoardId`. setActiveBoardId is the
         // only other place that promotes a board, and it sets BOTH — if addBoard
         // promotes a board (first board, or the active one was removed) without
@@ -4443,7 +4434,7 @@ export const useSimulatorStore = create<SimulatorState>((set, get) => {
     setWires: (wires) =>
       set((state) => ({
         // Ensure every wire has waypoints (backwards-compatible with saved projects)
-        wires: wires.map((w) => ({ waypoints: [], ...w })),
+        wires: wires.map((w) => ({ ...w, waypoints: w.waypoints ?? [] })),
         // Bulk replacement clears history for the same reason as setComponents.
         history: [],
         historyIndex: -1,
@@ -5056,7 +5047,10 @@ export const useSimulatorStore = create<SimulatorState>((set, get) => {
       } else {
         let latin1 = '';
         for (const byte of bytes) latin1 += String.fromCharCode(byte);
-        getBoardSimulator(boardId)?.serialWrite(latin1);
+        const simulator = getBoardSimulator(boardId);
+        if (simulator && 'serialWrite' in simulator && typeof simulator.serialWrite === 'function') {
+          simulator.serialWrite(latin1);
+        }
       }
     },
 
@@ -5118,7 +5112,10 @@ export const useSimulatorStore = create<SimulatorState>((set, get) => {
           esp32Bridge.sendSerialBytes(Array.from(new TextEncoder().encode(text)));
         }
       } else {
-        getBoardSimulator(boardId)?.serialWrite(text);
+        const simulator = getBoardSimulator(boardId);
+        if (simulator && 'serialWrite' in simulator && typeof simulator.serialWrite === 'function') {
+          simulator.serialWrite(text);
+        }
       }
     },
 

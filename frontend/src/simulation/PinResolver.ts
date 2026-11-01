@@ -31,7 +31,7 @@
  */
 
 import type { Wire } from '../types/wire';
-import type { Component } from '../types/components';
+import type { Component } from '../types/component';
 import type { BoardInstance } from '../types/board';
 
 /** Default Vcc when an owner board can't be identified. Matches Arduino Uno. */

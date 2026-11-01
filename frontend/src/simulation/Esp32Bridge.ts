@@ -368,7 +368,7 @@ export class Esp32Bridge {
    * explicitly remaps via `Serial.setPins()`.
    */
   private uart0TxPin(): number {
-    switch (this.boardKind) {
+    switch (String(this.boardKind)) {
       case 'esp32-s3':
       case 'xiao-esp32-s3':
       case 'arduino-nano-esp32':

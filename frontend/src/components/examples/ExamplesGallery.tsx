@@ -252,6 +252,12 @@ export const ExamplesGallery: React.FC<ExamplesGalleryProps> = ({ onLoadExample 
           <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
         </svg>
       ),
+      motors: (
+        <svg {...svgProps}>
+          <circle cx="12" cy="12" r="8" />
+          <path d="M12 8v8M8 12h8" />
+        </svg>
+      ),
     };
     return icons[category];
   };

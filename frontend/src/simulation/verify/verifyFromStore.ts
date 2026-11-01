@@ -11,7 +11,7 @@ import { useSimulatorStore } from '../../store/useSimulatorStore';
 import { buildInputFromStore } from '../spice/storeAdapter';
 import { boardPinGroupFor } from '../spice/boardPinGroups';
 import { pinNameToArduinoPin } from '../spice/collectPinStates';
-import type { BoardKind } from '../../store/useSimulatorStore';
+import type { BoardKind } from '../../types/board';
 import type { PinSourceState } from '../spice/types';
 import type { StoreSnapshot } from '../spice/storeAdapter';
 import type { Wire } from '../../types/wire';
@@ -61,7 +61,7 @@ export function buildPreflightSnapshot(state: PreflightState): PreflightSnapshot
   // If the bare canvas cannot even be built, fall back to the old rule: the
   // verify below will fail the same way and the caller treats that as
   // "don't block".
-  const bareWires: Wire[] = state.wires.map((w) => ({
+  const bareWires: StoreSnapshot['wires'] = state.wires.map((w) => ({
     id: w.id,
     start: { componentId: w.start.componentId, pinName: w.start.pinName },
     end: { componentId: w.end.componentId, pinName: w.end.pinName },

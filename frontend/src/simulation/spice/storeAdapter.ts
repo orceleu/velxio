@@ -14,7 +14,6 @@ import type {
   PinSourceState,
   AnalysisMode,
 } from './types';
-import type { Wire } from '../../types/wire';
 import { analogScopeWantsTransient } from './analogScopeFeed';
 import type { BoardKind } from '../../types/board';
 import { boardPinGroupFor } from './boardPinGroups';
@@ -165,7 +164,7 @@ export interface StoreSnapshot {
     metadataId: string;
     properties: Record<string, unknown>;
   }>;
-  wires: Wire[];
+  wires: WireForSpice[];
   boards: Array<{
     id: string;
     boardKind: BoardKind;

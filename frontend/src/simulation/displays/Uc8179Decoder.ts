@@ -185,7 +185,7 @@ export class Uc8179Decoder {
     const w = this.width;
     const white = this.setBitIsWhite;
     const cy = this.cy;
-    if (cy >= 0 && cy < this.height) {
+    if (cy >= this.winY0 && cy <= this.winY1 && cy >= 0 && cy < this.height) {
       const base = cy * w;
       for (let k = 0; k < 8; k++) {
         const x = this.cx + k;

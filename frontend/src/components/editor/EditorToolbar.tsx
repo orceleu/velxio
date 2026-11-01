@@ -124,48 +124,6 @@ interface EditorToolbarProps {
   rightSlot?: React.ReactNode;
 }
 
-const BOARD_PILL_ICON: Record<BoardKind, string> = {
-  'arduino-uno': '⬤',
-  'arduino-nano': '▪',
-  'arduino-mega': '▬',
-  'raspberry-pi-pico': '◆',
-  'raspberry-pi-3': '⬛',
-  'raspberry-pi-4': '⬛',
-  'raspberry-pi-5': '⬛',
-  esp32: '⬡',
-  'esp32-s3': '⬡',
-  'esp32-c3': '⬡',
-  'stm32-bluepill': '◈',
-  'stm32-blackpill': '◈',
-  'stm32-bluepill-f103cb': '◈',
-  'stm32-blackpill-f401': '◈',
-  'stm32-f4-discovery': '◈',
-  'stm32-olimex-h405': '◈',
-  'stm32-netduino-plus2': '◈',
-  'stm32-netduino2': '◈',
-};
-
-const BOARD_PILL_COLOR: Record<BoardKind, string> = {
-  'arduino-uno': '#4fc3f7',
-  'arduino-nano': '#4fc3f7',
-  'arduino-mega': '#4fc3f7',
-  'raspberry-pi-pico': '#ce93d8',
-  'raspberry-pi-3': 'var(--color-feedback-error)',
-  'raspberry-pi-4': 'var(--color-feedback-error)',
-  'raspberry-pi-5': 'var(--color-feedback-error)',
-  esp32: 'var(--color-feedback-success)',
-  'esp32-s3': 'var(--color-feedback-success)',
-  'esp32-c3': 'var(--color-feedback-success)',
-  'stm32-bluepill': 'var(--color-accent-fg)',
-  'stm32-blackpill': 'var(--wb-12)',
-  'stm32-bluepill-f103cb': 'var(--color-accent-fg)',
-  'stm32-blackpill-f401': 'var(--wb-12)',
-  'stm32-f4-discovery': 'var(--color-accent-fg)',
-  'stm32-olimex-h405': 'var(--color-feedback-success)',
-  'stm32-netduino-plus2': '#ce93d8',
-  'stm32-netduino2': '#ce93d8',
-};
-
 export const EditorToolbar = ({
   consoleOpen,
   setConsoleOpen,
@@ -262,7 +220,9 @@ export const EditorToolbar = ({
   // Synchronous re-entrancy guard: a click while a run/verify is already in
   // flight is ignored, so rapid clicks can't stack multiple verifications.
   const runInFlightRef = useRef(false);
-  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [message, setMessage] = useState<
+    { type: 'success' | 'error' | 'info'; text: string } | null
+  >(null);
   const [libManagerOpen, setLibManagerOpen] = useState(false);
   const [pendingLibraries, setPendingLibraries] = useState<string[]>([]);
   const [installModalOpen, setInstallModalOpen] = useState(false);

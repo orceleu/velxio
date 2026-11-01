@@ -1,6 +1,7 @@
 import { AVRSimulator } from '../AVRSimulator';
 import { RP2040Simulator } from '../RP2040Simulator';
 import type { PinResolver } from '../PinResolver';
+import type { ProBoardSimulator } from '../../lib/proBoardRegistry';
 
 /** Any simulator that components can interact with (AVR, RP2040, or ESP32 bridge shim). */
 export type AnySimulator =
@@ -11,6 +12,7 @@ export type AnySimulator =
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       [key: string]: any;
     }
+  | ProBoardSimulator
   | AVRSimulator
   | RP2040Simulator;
 

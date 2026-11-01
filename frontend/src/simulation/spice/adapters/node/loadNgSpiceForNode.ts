@@ -34,12 +34,18 @@ import path from 'node:path';
  * Subset of the emscripten Module surface we use.  The vendored
  * build adds plenty more, but we only depend on these.
  */
+type CwrapArgument<T extends string> = T extends 'string' ? string : number;
+type CwrapArguments<T extends readonly string[]> = {
+  [K in keyof T]: T[K] extends string ? CwrapArgument<T[K]> : never;
+};
+type CwrapReturn<T extends string | null> = T extends 'string' ? string : number;
+
 export interface NgSpiceEmscriptenModule {
-  cwrap: (
+  cwrap: <const ReturnType extends string | null, const ArgTypes extends readonly string[]>(
     name: string,
-    returnType: string | null,
-    argTypes: readonly string[],
-  ) => (...args: unknown[]) => unknown;
+    returnType: ReturnType,
+    argTypes: ArgTypes,
+  ) => (...args: CwrapArguments<ArgTypes>) => CwrapReturn<ReturnType>;
   addFunction: (fn: (...args: unknown[]) => unknown, signature: string) => number;
   removeFunction: (ptr: number) => void;
   UTF8ToString: (ptr: number) => string;

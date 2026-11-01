@@ -60,7 +60,15 @@ export interface ExampleProject {
   id: string;
   title: string;
   description: string;
-  category: 'basics' | 'sensors' | 'displays' | 'communication' | 'games' | 'robotics' | 'circuits';
+  category:
+    | 'basics'
+    | 'sensors'
+    | 'displays'
+    | 'communication'
+    | 'games'
+    | 'robotics'
+    | 'circuits'
+    | 'motors';
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   /** Target board — defaults to 'arduino-uno' if omitted. Ignored when boards[] is set. */
   boardType?:

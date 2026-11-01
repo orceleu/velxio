@@ -454,7 +454,7 @@ interface ChannelPickerProps {
   activeChannels: OscChannel[];
   onClose: () => void;
   anchorRect: DOMRect;
-  dropdownRef: React.RefObject<HTMLDivElement>;
+  dropdownRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const ChannelPicker: React.FC<ChannelPickerProps> = ({

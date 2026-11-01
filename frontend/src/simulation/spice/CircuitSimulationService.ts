@@ -32,6 +32,7 @@ import { buildNetlist, sanitizeSpiceId } from './NetlistBuilder';
 import type { TimeWaveforms } from './types';
 import { digitalGatesEnabled, isAllDigital } from '../digital/digitalGateEngine';
 import { PadTimeline, stateKey, type WindowResult, type WindowState } from './PadTimeline';
+import type { BoardKind } from '../../types/board';
 
 /** What the service needs from the simulator store. */
 export interface SimulatorStorePort {
@@ -42,7 +43,7 @@ export interface SimulatorStorePort {
       start: { componentId: string; pinName: string };
       end: { componentId: string; pinName: string };
     }>;
-    boards: Array<{ id: string; boardKind: string; running?: boolean; pinStates?: Record<string, unknown> }>;
+    boards: Array<{ id: string; boardKind: BoardKind; running?: boolean; pinStates?: Record<string, unknown> }>;
     /** Components destroyed at runtime (P4) — excluded from the netlist so a
      *  burnt part actually goes open. Optional for non-store ports. */
     burntComponents?: Set<string>;
@@ -304,13 +305,22 @@ export class CircuitSimulationService {
 
   /** Set by `stop()`. Once true, nothing schedules solver work again. */
   private stopped = false;
+  private readonly simStore: SimulatorStorePort;
+  private readonly electricalStore: ElectricalStorePort;
+  private readonly scheduler: MixedModeSchedulerPort;
+  private readonly options: ServiceOptions;
 
   constructor(
-    private readonly simStore: SimulatorStorePort,
-    private readonly electricalStore: ElectricalStorePort,
-    private readonly scheduler: MixedModeSchedulerPort,
-    private readonly options: ServiceOptions,
-  ) {}
+    simStore: SimulatorStorePort,
+    electricalStore: ElectricalStorePort,
+    scheduler: MixedModeSchedulerPort,
+    options: ServiceOptions,
+  ) {
+    this.simStore = simStore;
+    this.electricalStore = electricalStore;
+    this.scheduler = scheduler;
+    this.options = options;
+  }
 
   /**
    * Permanently stop the orchestration loop. Work already on the chain
@@ -658,7 +668,7 @@ export class CircuitSimulationService {
         ) as never,
       })),
     };
-    const input = buildInputFromStore(snap as Parameters<typeof buildInputFromStore>[0]);
+    const input = buildInputFromStore(snap);
     const { netlist, pinNetMap, nets, voltageSources, sourcedNets } = buildNetlist(input);
     this.note({
       rebuild: this.rebuildCount,

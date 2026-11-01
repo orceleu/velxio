@@ -323,6 +323,12 @@ export class NgSpiceNodeAdapter implements SolverPort {
     if (this.api) {
       try { this.api.reset(); } catch { /* ignore */ }
     }
+    if (this.module) {
+      for (const pointer of this.callbackPointers) {
+        this.module.removeFunction(pointer);
+      }
+    }
+    this.callbackPointers = [];
     this.initialised = false;
     this.initPromise = null;
   }

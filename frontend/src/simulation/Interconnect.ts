@@ -73,8 +73,6 @@ export function setInterconnectRuntime(r: RuntimeAccessors): void {
 
 // ── Internal types ───────────────────────────────────────────────────────────
 
-type BoardKindOrId = string;
-
 interface BoardEntry {
   id: string;
   kind: BoardKind;

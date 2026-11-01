@@ -33,7 +33,6 @@ import { useAutoSaveProject } from '../hooks/useAutoSaveProject';
 import { registerEditorCommand } from '../lib/editorCommands';
 import { whenNewsClear } from '../lib/newsGate';
 import { EditorMenuBar } from '../components/editor/EditorMenuBar';
-import type { CompilationLog } from '../utils/compilationLogger';
 import '../App.css';
 
 const MOBILE_BREAKPOINT = 768;
@@ -89,7 +88,6 @@ export const EditorPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const resizingRef = useRef(false);
   const serialMonitorOpen = useSimulatorStore((s) => s.serialMonitorOpen);
-  const activeBoardId = useSimulatorStore((s) => s.activeBoardId);
   const oscilloscopeOpen = useOscilloscopeStore((s) => s.open);
   const [consoleOpen, setConsoleOpen] = useState(false);
   // compileLogs live in a Zustand store so the velxio-pro agent overlay

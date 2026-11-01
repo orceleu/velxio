@@ -77,9 +77,11 @@ export async function* streamFlash(req: FlashRequest): AsyncGenerator<FlashEvent
   const bytes = isBinary
     ? base64ToUint8Array(req.programData)
     : new TextEncoder().encode(req.programData);
+  const blobBuffer = new ArrayBuffer(bytes.byteLength);
+  new Uint8Array(blobBuffer).set(bytes);
   fd.append(
     'program',
-    new Blob([bytes], { type: 'application/octet-stream' }),
+    new Blob([blobBuffer], { type: 'application/octet-stream' }),
     `program.${req.programFormat}`,
   );
 

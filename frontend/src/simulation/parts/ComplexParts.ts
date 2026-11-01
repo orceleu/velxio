@@ -3,7 +3,7 @@ import { PartSimulationRegistry } from './PartSimulationRegistry';
 import { attachSpiDevice } from '../buses';
 import type { AnySimulator, PartSimulationLogic } from './PartSimulationRegistry';
 import { RP2040Simulator } from '../RP2040Simulator';
-import { getADC, setAdcVoltage, emitPropertyChange, elementNumber } from './partUtils';
+import { setAdcVoltage, emitPropertyChange, elementNumber } from './partUtils';
 import { registerSensorUpdate, unregisterSensorUpdate } from '../SensorUpdateRegistry';
 import { LOG_SLIDER_STEPS, logSliderToValue } from '../sensorControlConfig';
 

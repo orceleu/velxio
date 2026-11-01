@@ -22,6 +22,7 @@
  */
 
 import type { AVRTWI, TWIEventHandler } from 'avr8js';
+import type { RPI2C } from 'rp2040js';
 import type {
   GuestClock,
   I2cControllerPort,
@@ -151,16 +152,8 @@ export class I2CBusManager implements TWIEventHandler, I2cControllerPort {
   }
 
   private bindEventHandler(master: I2CMaster): void {
-    if (
-      master !== null &&
-      typeof master === 'object' &&
-      'eventHandler' in (master as object)
-    ) {
-      try {
-        (master as { eventHandler: TWIEventHandler }).eventHandler = this;
-      } catch {
-        /* setter rejected — caller will wire events manually */
-      }
+    if ('eventHandler' in master) {
+      master.eventHandler = this;
     }
   }
 
@@ -272,13 +265,7 @@ export function nullI2CMaster(): I2CMaster {
  * pattern RPI2C uses (it does not have a single `eventHandler`).
  */
 export function wireRpI2cToBus(
-  master: I2CMaster & {
-    onStart?: () => void;
-    onConnect?: (address: number, mode?: number) => void;
-    onWriteByte?: (value: number) => void;
-    onReadByte?: (ack?: boolean) => void;
-    onStop?: () => void;
-  },
+  master: RPI2C,
   bus: I2CBusManager,
 ): void {
   master.onStart = () => bus.start(false);
@@ -307,7 +294,11 @@ export class I2CMemoryDevice implements I2CDevice {
   /** Callback fired whenever a register is written */
   public onRegisterWrite: ((reg: number, value: number) => void) | null = null;
 
-  constructor(public address: number) {}
+  public address: number;
+
+  constructor(address: number) {
+    this.address = address;
+  }
 
   writeByte(value: number): boolean {
     if (this.firstByte) {

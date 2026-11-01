@@ -35,10 +35,10 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { BoardInstance } from '../../store/useSimulatorStore';
+import type { BoardInstance } from '../../types/board';
 import { useSimulatorStore } from '../../store/useSimulatorStore';
 import { isTauri, listSerialPorts, type SerialPortInfo } from '../../desktop/tauriBridge';
-import { streamFlash, type FlashEvent } from '../../services/flashService';
+import { streamFlash } from '../../services/flashService';
 import {
   getWebFlashImpl,
   webFlashAvailable,

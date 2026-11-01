@@ -34,6 +34,12 @@ export interface ProBoardSimulator {
   readonly isProBoardSimulator: true;
   onSerialData: ((ch: string) => void) | null;
   onPinChangeWithTime: ((pin: number, state: boolean, time: number) => void) | null;
+  pinManager: import('../simulation/PinManager').PinManager;
+  setPinState(pin: number, state: boolean): void;
+  isRunning(): boolean;
+  start(): void;
+  reset(): void;
+  serialWrite?(text: string): void;
   /** The line the console is clocking (see store/serialWire.ts); optional — a
    *  simulator that does not report one leaves the monitor making no claim. */
   onBaudRateChange?:

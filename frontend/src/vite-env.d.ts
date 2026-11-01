@@ -1,8 +1,10 @@
 /// <reference types="vite/client" />
+import 'react';
 
 // Web Components JSX declarations
-declare namespace JSX {
-  interface IntrinsicElements {
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
     'wokwi-led': any;
     'wokwi-resistor': any;
     'wokwi-pushbutton': any;
@@ -101,5 +103,20 @@ declare namespace JSX {
     'velxio-flip-flop-t': any;
     'velxio-flip-flop-jk': any;
     'velxio-motor-driver-l293d': any;
+    'velxio-attiny85': any;
+    'velxio-epaper': any;
+    'velxio-esp32': any;
+    'velxio-pi-pico-w': any;
+    'velxio-raspberry-pi-4': any;
+    'velxio-raspberry-pi-5': any;
+    'velxio-stm32-bluepill': any;
+    'velxio-stm32-blackpill': any;
+    'velxio-stm32-bluepill-f103cb': any;
+    'velxio-stm32-blackpill-f401': any;
+    'velxio-stm32-f4-discovery': any;
+    'velxio-stm32-olimex-h405': any;
+    'velxio-stm32-netduino-plus2': any;
+    'velxio-stm32-netduino2': any;
+    }
   }
 }

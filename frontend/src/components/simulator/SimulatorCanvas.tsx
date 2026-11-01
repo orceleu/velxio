@@ -223,7 +223,6 @@ export const SimulatorCanvas = ({ headerSlot }: SimulatorCanvasProps = {}) => {
   useButtonKeyBindings(components);
 
   // Legacy derived values for components that still use them
-  const boardType = useSimulatorStore((s) => s.boardType);
   const boardPosition = useSimulatorStore((s) => s.boardPosition);
 
   // Wire management from store
@@ -2683,7 +2682,8 @@ export const SimulatorCanvas = ({ headerSlot }: SimulatorCanvasProps = {}) => {
       // primary way to pick pins, so the tiny overlay squares are hidden —
       // they're hard to hit with a finger anyway. Desktop shows overlays on
       // hover / while wiring only — selection alone doesn't light them up.
-      const showPinsForComponent = !dialogOpen && !isTouchDevice && (wireInProgress || isHovered);
+      const showPinsForComponent =
+        !dialogOpen && !isTouchDevice && (wireInProgress !== null || isHovered);
       return (
         <React.Fragment key={component.id}>
           <div
@@ -2729,7 +2729,7 @@ export const SimulatorCanvas = ({ headerSlot }: SimulatorCanvasProps = {}) => {
                 zoom={zoom}
                 wrapperOffsetX={0}
                 wrapperOffsetY={0}
-                wiring={wireInProgress}
+                wiring={wireInProgress !== null}
               />
             )}
           </div>
@@ -2752,7 +2752,8 @@ export const SimulatorCanvas = ({ headerSlot }: SimulatorCanvasProps = {}) => {
     // light them up (a selected breadboard lit 170 squares permanently).
     // Hidden when a dialog is open. Hidden entirely on touch — there the
     // PinPickerDialog (tap component → list of pins) replaces the overlays.
-    const showPinsForComponent = !dialogOpen && !isTouchDevice && (wireInProgress || isHovered);
+    const showPinsForComponent =
+      !dialogOpen && !isTouchDevice && (wireInProgress !== null || isHovered);
 
     // Breadboards are the physical base of a circuit — everything plugs into
     // them — so they always sit at the very back: below boards (z 0), other
@@ -2874,7 +2875,7 @@ export const SimulatorCanvas = ({ headerSlot }: SimulatorCanvasProps = {}) => {
                 showPins={showPinsForComponent}
                 zoom={zoom}
                 rotation={Number(component.properties?.rotation) || 0}
-                wiring={wireInProgress}
+                wiring={wireInProgress !== null}
               />
             )}
           </PartErrorBoundary>
@@ -3441,7 +3442,7 @@ export const SimulatorCanvas = ({ headerSlot }: SimulatorCanvasProps = {}) => {
               // Suppressed while a dialog is open. Hidden entirely on touch
               // since the PinPickerDialog (tap board to open list) replaces
               // the overlays — fingers can't reliably hit a 12px pin anyway.
-              const showPins = !dialogOpen && !isTouchDevice && (wireInProgress || isHovered);
+              const showPins = !dialogOpen && !isTouchDevice && (wireInProgress !== null || isHovered);
               return (
                 <BoardOnCanvas
                   key={board.id}
@@ -3449,7 +3450,7 @@ export const SimulatorCanvas = ({ headerSlot }: SimulatorCanvasProps = {}) => {
                   running={running}
                   isActive={isActive}
                   showPins={showPins}
-                  wiring={wireInProgress}
+                  wiring={wireInProgress !== null}
                   onboardLeds={board.running ? boardLedStates[board.id] : undefined}
                   onMouseEnter={() => setHoveredBoardId(board.id)}
                   onMouseLeave={() =>
