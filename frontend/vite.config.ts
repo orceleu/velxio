@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vite.dev/config/
 // avr8js / rp2040js / @wokwi/elements are resolved from npm via package.json.
@@ -13,7 +13,7 @@ import path from 'path'
 const proOverlayPath =
   process.env.VITE_PRO_BUILD && process.env.PRO_OVERLAY_PATH
     ? path.resolve(process.env.PRO_OVERLAY_PATH)
-    : path.resolve(__dirname, 'src/__pro_stub__')
+    : path.resolve(__dirname, 'src/__pro_stub__');
 
 export default defineConfig(({ command }) => ({
   plugins: [react()],
@@ -46,7 +46,7 @@ export default defineConfig(({ command }) => ({
   server: {
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8001',
+        target: 'https://arduino-simulator-8d36.onrender.com',
         changeOrigin: true,
       },
     },
@@ -85,4 +85,4 @@ export default defineConfig(({ command }) => ({
   },
   // Vitest config lives in `vitest.config.ts` (split out so CI can
   // reference it directly and so vite build doesn't pay test deps).
-}))
+}));
