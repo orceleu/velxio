@@ -162,11 +162,7 @@
         "q2": "Il simulatore Arduino funziona senza installare nulla?",
         "a2": "Il motore di simulazione funziona interamente nel tuo browser. La compilazione del codice richiede il backend arduino-cli, che puoi eseguire localmente o tramite Docker. Non è necessaria l'installazione dell'IDE.",
         "q3": "Quali schede Arduino posso simulare?",
-<<<<<<< HEAD
         "a3": "CircuitSkill supporta 19 schede: Arduino Uno (ATmega328P), Arduino Nano, Arduino Mega 2560, ATtiny85, Arduino Leonardo, Arduino Pro Mini (AVR8) — più Raspberry Pi Pico (RP2040), ESP32-C3 / XIAO ESP32-C3 / CH32V003 (RISC-V), ESP32 / ESP32-S3 / ESP32-CAM (Xtensa tramite QEMU) e Raspberry Pi 3B (Linux tramite QEMU).",
-=======
-        "a3": "Velxio supporta 19 schede: Arduino Uno (ATmega328P), Arduino Nano, Arduino Mega 2560, ATtiny85, Arduino Leonardo, Arduino Pro Mini (AVR8) — più Raspberry Pi Pico (RP2040), ESP32-C3 / XIAO ESP32-C3 (RISC-V), ESP32 / ESP32-S3 / ESP32-CAM (Xtensa tramite QEMU) e Raspberry Pi 3B (Linux tramite QEMU).",
->>>>>>> 17c989e7bf3e5e8675df3f95afb9a67c264bf548
         "q4": "Posso simulare LED, sensori e display?",
         "a4": "Sì. CircuitSkill include oltre 48 wokwi-elements interattivi: LED, resistori, pulsanti, servo motori, sensori a ultrasuoni, display TFT ILI9341, LCD, strisce NeoPixel, cicalini, DHT22 e altro.",
         "q5": "CircuitSkill è un'alternativa a Wokwi?",

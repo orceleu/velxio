@@ -190,11 +190,7 @@
         "q2": "ESP32-C3シミュレータはブラウザで動作しますか？",
         "a2": "はい。XtensaベースのESP32とは異なり、ESP32-C3のRISC-Vエミュレーションは完全にブラウザ内で動作します — QEMUバックエンドは不要です。これにより、シミュレートするのに最速のESP32バリアントになります。",
         "q3": "これはRISC-Vシミュレータでもありますか？",
-<<<<<<< HEAD
         "a3": "はい。ESP32-C3はRISC-V RV32IMC命令セットを使用します。CircuitSkillはCH32V003（RV32EC、48MHz）もサポートしています — もう1つの人気のあるRISC-Vマイクロコントローラです。",
-=======
-        "a3": "はい。ESP32-C3はRISC-V RV32IMC命令セットを使用します。",
->>>>>>> 17c989e7bf3e5e8675df3f95afb9a67c264bf548
         "q4": "どのESP32-C3ボードがサポートされていますか？",
         "a4": "CircuitSkillはESP32-C3 DevKitM-1、Seeed XIAO ESP32-C3、およびESP32-C3 SuperMini（Aitewinrobot）をサポートしています。3つすべてが同じRISC-Vコアを使用しています。",
         "q5": "ESP32-C3でArduinoコードを使用できますか？",

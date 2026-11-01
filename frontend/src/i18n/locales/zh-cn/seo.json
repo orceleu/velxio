@@ -190,11 +190,7 @@
         "q2": "ESP32-C3仿真器在浏览器中运行吗？",
         "a2": "是的。与基于Xtensa的ESP32不同，ESP32-C3 RISC-V仿真完全在浏览器中运行——无需QEMU后端。这使其成为仿真最快的ESP32变体。",
         "q3": "这也是RISC-V仿真器吗？",
-<<<<<<< HEAD
         "a3": "是的。ESP32-C3使用RISC-V RV32IMC指令集。CircuitSkill还支持CH32V003（RV32EC，48 MHz）——另一款流行的RISC-V微控制器。",
-=======
-        "a3": "是的。ESP32-C3使用RISC-V RV32IMC指令集。",
->>>>>>> 17c989e7bf3e5e8675df3f95afb9a67c264bf548
         "q4": "支持哪些ESP32-C3板？",
         "a4": "CircuitSkill支持ESP32-C3 DevKitM-1、Seeed XIAO ESP32-C3和ESP32-C3 SuperMini（Aitewinrobot）。三者使用相同的RISC-V核心。",
         "q5": "我可以将Arduino代码与ESP32-C3一起使用吗？",

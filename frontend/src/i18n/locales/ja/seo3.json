@@ -162,11 +162,7 @@
         "q2": "Arduinoシミュレータはインストールなしで動作しますか？",
         "a2": "シミュレーションエンジンは完全にブラウザ内で実行されます。コードのコンパイルにはarduino-cliバックエンドが必要ですが、ローカルまたはDocker経由で実行できます。IDEのインストールは不要です。",
         "q3": "どのArduinoボードをシミュレートできますか？",
-<<<<<<< HEAD
         "a3": "CircuitSkillは19のボードをサポートしています：Arduino Uno（ATmega328P）、Arduino Nano、Arduino Mega 2560、ATtiny85、Arduino Leonardo、Arduino Pro Mini（AVR8）に加え、Raspberry Pi Pico（RP2040）、ESP32-C3 / XIAO ESP32-C3 / CH32V003（RISC-V）、ESP32 / ESP32-S3 / ESP32-CAM（QEMU経由のXtensa）、Raspberry Pi 3B（QEMU経由のLinux）。",
-=======
-        "a3": "Velxioは19のボードをサポートしています：Arduino Uno（ATmega328P）、Arduino Nano、Arduino Mega 2560、ATtiny85、Arduino Leonardo、Arduino Pro Mini（AVR8）に加え、Raspberry Pi Pico（RP2040）、ESP32-C3 / XIAO ESP32-C3（RISC-V）、ESP32 / ESP32-S3 / ESP32-CAM（QEMU経由のXtensa）、Raspberry Pi 3B（QEMU経由のLinux）。",
->>>>>>> 17c989e7bf3e5e8675df3f95afb9a67c264bf548
         "q4": "LED、センサー、ディスプレイをシミュレートできますか？",
         "a4": "はい。CircuitSkillには48以上のインタラクティブなwokwi-elementsが含まれています：LED、抵抗、ボタン、サーボモーター、超音波センサー、ILI9341 TFTディスプレイ、LCD、NeoPixelストリップ、ブザー、DHT22など。",
         "q5": "CircuitSkillはWokwiの代替品ですか？",

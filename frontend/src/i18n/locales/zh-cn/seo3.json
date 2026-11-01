@@ -162,11 +162,7 @@
         "q2": "Arduino 模拟器无需安装任何东西就能工作吗？",
         "a2": "仿真引擎完全在浏览器中运行。编译代码需要 arduino-cli 后端，您可以在本地或通过 Docker 运行。无需安装 IDE。",
         "q3": "我可以模拟哪些 Arduino 板？",
-<<<<<<< HEAD
         "a3": "CircuitSkill 支持 19 种板：Arduino Uno (ATmega328P)、Arduino Nano、Arduino Mega 2560、ATtiny85、Arduino Leonardo、Arduino Pro Mini (AVR8)——以及 Raspberry Pi Pico (RP2040)、ESP32-C3 / XIAO ESP32-C3 / CH32V003 (RISC-V)、ESP32 / ESP32-S3 / ESP32-CAM (通过 QEMU 的 Xtensa) 和 Raspberry Pi 3B (通过 QEMU 的 Linux)。",
-=======
-        "a3": "Velxio 支持 19 种板：Arduino Uno (ATmega328P)、Arduino Nano、Arduino Mega 2560、ATtiny85、Arduino Leonardo、Arduino Pro Mini (AVR8)——以及 Raspberry Pi Pico (RP2040)、ESP32-C3 / XIAO ESP32-C3 (RISC-V)、ESP32 / ESP32-S3 / ESP32-CAM (通过 QEMU 的 Xtensa) 和 Raspberry Pi 3B (通过 QEMU 的 Linux)。",
->>>>>>> 17c989e7bf3e5e8675df3f95afb9a67c264bf548
         "q4": "我可以模拟 LED、传感器和显示器吗？",
         "a4": "可以。CircuitSkill 包含 48 多种交互式 wokwi-elements：LED、电阻、按钮、舵机、超声波传感器、ILI9341 TFT 显示器、LCD、NeoPixel 灯带、蜂鸣器、DHT22 等。",
         "q5": "CircuitSkill 是 Wokwi 的替代品吗？",

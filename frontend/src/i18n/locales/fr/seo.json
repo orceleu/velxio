@@ -190,11 +190,7 @@
         "q2": "Le simulateur ESP32-C3 fonctionne-t-il dans le navigateur ?",
         "a2": "Oui. Contrairement à l'ESP32 basé sur Xtensa, l'émulation RISC-V de l'ESP32-C3 fonctionne entièrement dans le navigateur — aucun backend QEMU nécessaire. Cela en fait la variante ESP32 la plus rapide à simuler.",
         "q3": "Est-ce aussi un simulateur RISC-V ?",
-<<<<<<< HEAD
         "a3": "Oui. L'ESP32-C3 utilise le jeu d'instructions RISC-V RV32IMC. CircuitSkill supporte également le CH32V003 (RV32EC à 48 MHz) — un autre microcontrôleur RISC-V populaire.",
-=======
-        "a3": "Oui. L'ESP32-C3 utilise le jeu d'instructions RISC-V RV32IMC.",
->>>>>>> 17c989e7bf3e5e8675df3f95afb9a67c264bf548
         "q4": "Quelles cartes ESP32-C3 sont supportées ?",
         "a4": "CircuitSkill supporte ESP32-C3 DevKitM-1, Seeed XIAO ESP32-C3 et ESP32-C3 SuperMini (Aitewinrobot). Les trois utilisent le même cœur RISC-V.",
         "q5": "Puis-je utiliser du code Arduino avec ESP32-C3 ?",

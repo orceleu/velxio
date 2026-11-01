@@ -162,11 +162,7 @@
         "q2": "Работает ли симулятор Arduino без установки?",
         "a2": "Движок симуляции работает полностью в вашем браузере. Компиляция кода требует бэкенда arduino-cli, который можно запустить локально или через Docker. Установка IDE не требуется.",
         "q3": "Какие платы Arduino можно симулировать?",
-<<<<<<< HEAD
         "a3": "CircuitSkill поддерживает 19 плат: Arduino Uno (ATmega328P), Arduino Nano, Arduino Mega 2560, ATtiny85, Arduino Leonardo, Arduino Pro Mini (AVR8) — а также Raspberry Pi Pico (RP2040), ESP32-C3 / XIAO ESP32-C3 / CH32V003 (RISC-V), ESP32 / ESP32-S3 / ESP32-CAM (Xtensa через QEMU) и Raspberry Pi 3B (Linux через QEMU).",
-=======
-        "a3": "Velxio поддерживает 19 плат: Arduino Uno (ATmega328P), Arduino Nano, Arduino Mega 2560, ATtiny85, Arduino Leonardo, Arduino Pro Mini (AVR8) — а также Raspberry Pi Pico (RP2040), ESP32-C3 / XIAO ESP32-C3 (RISC-V), ESP32 / ESP32-S3 / ESP32-CAM (Xtensa через QEMU) и Raspberry Pi 3B (Linux через QEMU).",
->>>>>>> 17c989e7bf3e5e8675df3f95afb9a67c264bf548
         "q4": "Можно ли симулировать светодиоды, датчики и дисплеи?",
         "a4": "Да. CircuitSkill включает 48+ интерактивных wokwi-elements: светодиоды, резисторы, кнопки, сервоприводы, ультразвуковые датчики, TFT-дисплеи ILI9341, ЖК-дисплеи, ленты NeoPixel, зуммеры, DHT22 и другие.",
         "q5": "Является ли CircuitSkill альтернативой Wokwi?",
