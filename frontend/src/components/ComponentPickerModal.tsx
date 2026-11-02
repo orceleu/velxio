@@ -32,8 +32,7 @@ interface CardHoverApi {
 }
 import type { BoardKind } from '../types/board';
 import { BOARD_KIND_LABELS } from '../types/board';
-import { isProBoardKind, triggerProUpgradePrompt } from '../lib/proBoardGate';
-import { getProQueryOverride, isProUnlocked } from '../lib/proAccess';
+import { isProBoardKind } from '../lib/proBoardGate';
 import { matchesSearch } from '../utils/searchMatch';
 import { boardSearchKeywords } from '../data/componentSearchKeywords';
 import {
@@ -647,26 +646,8 @@ export const ComponentPickerModal: React.FC<ComponentPickerModalProps> = ({
     });
   };
 
-  /**
-   * Place a part and remember it. Pro overlays can intercept pro-only
-   * components; the query override takes precedence for preview access.
-   */
+  /** Place a part and remember it. */
   const handleSelectComponent = (component: ComponentMetadata) => {
-    if (component.pro_only) {
-      const queryOverride = getProQueryOverride();
-      if (queryOverride === false) {
-        triggerProUpgradePrompt(component.name);
-        return;
-      }
-      if (queryOverride !== true) {
-        const gate = (
-          window as unknown as {
-            __velxio_pro_gate__?: (c: ComponentMetadata) => boolean;
-          }
-        ).__velxio_pro_gate__;
-        if (gate && gate(component)) return;
-      }
-    }
     setRecentIds(pushRecent(component.id));
     onSelectComponent(component);
   };
@@ -937,32 +918,6 @@ const PI_BOARD_ART: Record<string, string> = {
   'velxio-raspberry-pi-5': raspberryPi5Png,
 };
 
-/** Gold PRO pill shown on locked cards for paid-gated boards (Pi Linux + STM32). */
-const ProBadge: React.FC = () => (
-  <span
-    title="Pro board — you can place and wire it; running it depends on your plan"
-    style={{
-      position: 'absolute',
-      top: 8,
-      right: 8,
-      zIndex: 1,
-      padding: '3px 10px',
-      borderRadius: 999,
-      fontSize: 11,
-      fontWeight: 700,
-      letterSpacing: 0.6,
-      // Ink and fill both fixed: a gold PRO pill is gold on either theme,
-      // and --color-feedback-warning is a red-orange in light mode, which
-      // this gradient is not meant to be.
-      color: '#1a1205',
-      background: 'linear-gradient(180deg,#ffd566,#f5a623)',
-      boxShadow: '0 1px 4px rgba(0,0,0,0.35)',
-    }}
-  >
-    PRO
-  </span>
-);
-
 /** Violet CUSTOM pill: a chip from the user's own My Chips library. */
 const CustomBadge: React.FC = () => (
   <span
@@ -1089,9 +1044,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({ component, onSelect, hove
     >
       {component.custom ? (
         <CustomBadge />
-      ) : (
-        !isProUnlocked() && isProBoardKind(component.id) && <ProBadge />
-      )}
+      ) : null}
       <div className="card-thumbnail">
         {boardArt ? (
           <img
@@ -1251,7 +1204,6 @@ const BoardCard: React.FC<BoardCardProps> = ({ kind, onSelect, hoverApi }) => {
       style={{ position: 'relative' }}
       {...hover}
     >
-      {!isProUnlocked() && isProBoardKind(kind) && <ProBadge />}
       <div className="card-thumbnail">
         {reactThumbnail ? reactThumbnail : <div ref={thumbnailRef} className="component-preview" />}
       </div>

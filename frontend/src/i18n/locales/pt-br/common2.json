@@ -30,8 +30,8 @@
         "cta": "Gerenciador de Bibliotecas",
         "dismiss": "Dispensar"
       },
-      "exportBom": "Exportar Lista de Materiais (CSV — Pro)",
-      "exportScreenshot": "Exportar esquemático como imagem (PNG — Pro)",
+      "exportBom": "Exportar Lista de Materiais (CSV)",
+      "exportScreenshot": "Exportar esquemático como imagem (PNG)",
       "importLabel": "Importar projeto",
       "exportVlxLabel": "Exportar projeto (.vlx)",
       "exportLabel": "Exportar projeto (.zip)",

@@ -30,8 +30,8 @@
         "cta": "Менеджера библиотек",
         "dismiss": "Закрыть"
       },
-      "exportBom": "Экспорт спецификации (CSV — Pro)",
-      "exportScreenshot": "Экспорт схемы как изображение (PNG — Pro)",
+      "exportBom": "Экспорт спецификации (CSV)",
+      "exportScreenshot": "Экспорт схемы как изображение (PNG)",
       "importLabel": "Импортировать проект",
       "exportVlxLabel": "Экспортировать проект (.vlx)",
       "exportLabel": "Экспортировать проект (.zip)",

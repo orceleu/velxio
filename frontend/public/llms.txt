@@ -15,7 +15,7 @@
 - 19 supported boards across 5 CPU architectures (AVR, ARM Cortex-M, Xtensa, RISC-V, ARM Cortex-A for Pi 3/4/5).
 - Real-time SPICE analog co-simulation via WebAssembly ngspice — measures voltages, current, power and shorts.
 - Built-in AI agent (Claude-powered) that writes Arduino / MicroPython, drops components onto the canvas, and wires them.
-- GitHub Sync (Pro) — every project save commits sketch.ino + velxio.json + a generated README to the user's chosen repo.
+- BOM export (CSV) and schematic image export (PNG) are available from the File menu.
 - Iframe embed of any public project — https://velxio.dev/embed/<id>.
 - Desktop app for offline use (Maker / Pro): Linux deb, Windows MSI, macOS dmg.
 
@@ -25,7 +25,7 @@
 |---|---|---|---|---|
 | Free | $0 | 100 | public only | — |
 | Maker | $7 / mo | 500 | + unlisted | desktop offline, IoT gateway |
-| Pro | $19 / mo | 2 000 | + private | BOM export (CSV), schematic image (PNG), GitHub Sync, embed without "Powered by Velxio" watermark |
+| Pro | $19 / mo | 2 000 | + private | GitHub Sync, embed without "Powered by Velxio" watermark |
 
 ## Comparison vs alternatives
 
@@ -63,7 +63,7 @@
 
 ## Common questions
 
-**Is Velxio free?** Yes, the simulator is free forever. The AI agent has a daily message cap that resets midnight UTC. Paid tiers ($7 Maker, $19 Pro) increase the cap and unlock premium features (private projects, offline desktop, BOM, schematic export, GitHub Sync).
+**Is Velxio free?** Yes, the simulator is free forever. The AI agent has a daily message cap that resets midnight UTC. Paid tiers ($7 Maker, $19 Pro) increase the cap and unlock account features (private projects, offline desktop, GitHub Sync).
 
 **Does Velxio require installation?** No, it runs in any modern browser. A desktop app (Linux / Windows / macOS) is available to paid users for offline work.
 

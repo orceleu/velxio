@@ -30,8 +30,8 @@
         "cta": "Gestionnaire de bibliothèques",
         "dismiss": "Ignorer"
       },
-      "exportBom": "Exporter la nomenclature (CSV — Pro)",
-      "exportScreenshot": "Exporter le schéma en image (PNG — Pro)",
+      "exportBom": "Exporter la nomenclature (CSV)",
+      "exportScreenshot": "Exporter le schéma en image (PNG)",
       "importLabel": "Importer un projet",
       "exportVlxLabel": "Exporter le projet (.vlx)",
       "exportLabel": "Exporter le projet (.zip)",

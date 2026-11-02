@@ -695,9 +695,9 @@ export const DynamicComponent: React.FC<DynamicComponentProps> = ({
         );
       };
 
-      // microSD auto-copy (free, Wokwi model): bake the project's workspace
-      // files into a FAT16 image the card serves over SD-over-SPI. Paid uploads
-      // (the "SD Card" panel) will merge into this list in a later phase.
+      // microSD auto-copy: bake the project's workspace files into a FAT16
+      // image the card serves over SD-over-SPI. User uploads merge into this
+      // list as well.
       if (metadata.id === 'microsd-card') {
         try {
           const uploaded = decodeSdFiles(properties.sdFiles); // paid uploads (if any)

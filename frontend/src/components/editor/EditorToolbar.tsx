@@ -49,7 +49,8 @@ import {
 } from '../../utils/analytics';
 import './EditorToolbar.css';
 import { ThemeToggle } from '../layout/ThemeToggle';
-import { getResolvedTheme } from '../../lib/theme';
+import { exportSchematicPng } from '../../utils/exportSchematicPng';
+import componentRegistry from '../../services/ComponentRegistry';
 
 /**
  * Output-console group for circuit pre-flight + runtime faults. Routing these
@@ -1371,110 +1372,90 @@ export const EditorToolbar = ({
     }
   };
 
-  // Phase 3 D3.2 — Schematic screenshot. Pro-tier-gated by the backend.
-  // Same UX pattern as BOM export: everyone can click; 402 redirects to
-  // /pricing. The server-side headless chromium renders the canvas and
-  // returns a PNG, which we trigger a download for.
+  // Export the current circuit directly in the browser; it does not require
+  // a saved project or a server-side screenshot service.
   const handleExportScreenshot = async () => {
-    const projectId = currentProject?.id;
-    if (!projectId) {
-      setMessage({ type: 'error', text: 'Save the project before exporting an image.' });
-      return;
-    }
-    setMessage({ type: 'info', text: 'Rendering screenshot — may take 5-10 seconds…' });
+    const projectName =
+      currentProject?.slug ??
+      files.find((f) => f.name.endsWith('.ino'))?.name.replace('.ino', '') ??
+      'velxio-schematic';
+    const filename = `${projectName.replace(/[^a-z0-9_-]/gi, '-') || 'velxio-schematic'}.png`;
+    setMessage({ type: 'info', text: 'Rendering schematic image…' });
     try {
-      // The render happens in a headless browser on the server, which has
-      // no localStorage and therefore no idea which theme the user is
-      // looking at -- it used to hand back a dark image to someone working
-      // in light mode. Pass the RESOLVED theme so the export matches the
-      // canvas it was taken from.
-      const resp = await fetch(
-        `/api/pro/projects/${projectId}/screenshot.png?theme=${getResolvedTheme()}`,
-        { credentials: 'include' },
-      );
-      if (resp.status === 402) {
-        // Fire the in-place upgrade modal instead of bouncing to /pricing —
-        // keeps the user in the editor with full context. The pro overlay's
-        // UpgradeGate listens for this event and opens UpgradePromptModal.
-        window.dispatchEvent(new CustomEvent('velxio-pro-upgrade-prompt', {
-          detail: { componentName: 'Schematic screenshot export' },
-        }));
-        return;
-      }
-      if (resp.status === 401) {
-        setMessage({ type: 'error', text: 'Authentication is not configured.' });
-        return;
-      }
-      if (resp.status === 422) {
-        setMessage({ type: 'error', text: 'Add at least one component to export an image.' });
-        return;
-      }
-      if (!resp.ok) {
-        setMessage({ type: 'error', text: 'Screenshot export failed.' });
-        return;
-      }
-      const blob = await resp.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      const cd = resp.headers.get('Content-Disposition') || '';
-      const m = /filename="?([^"]+)"?/.exec(cd);
-      a.download = m ? m[1] : `velxio-${projectId}.png`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      setMessage({ type: 'success', text: 'Screenshot downloaded.' });
-    } catch {
-      setMessage({ type: 'error', text: 'Screenshot export failed.' });
+      await exportSchematicPng(filename);
+      setMessage({ type: 'success', text: 'Schematic image downloaded.' });
+    } catch (err) {
+      setMessage({
+        type: 'error',
+        text: `PNG export failed: ${err instanceof Error ? err.message : String(err)}`,
+      });
     }
   };
 
-  // Phase 3 D3.1 — BOM export. Pro-tier-gated by the backend (402 if not pro).
-  // We let everyone click; the 402 response feeds the upgrade prompt below
-  // so free/maker users hit the funnel naturally instead of an obviously-
-  // locked button (which they'd just dismiss).
-  const handleExportBom = async () => {
-    const projectId = currentProject?.id;
-    if (!projectId) {
-      setMessage({ type: 'error', text: 'Save the project before exporting a BOM.' });
+  const handleExportBom = () => {
+    const { boards, components } = useSimulatorStore.getState();
+    if (boards.length === 0 && components.length === 0) {
+      setMessage({ type: 'error', text: 'Add a board or component before exporting a BOM.' });
       return;
     }
+
+    const rows = new Map<string, { name: string; category: string; references: string[]; configuration: string }>();
+    for (const board of boards) {
+      const key = `board:${board.boardKind}`;
+      const row = rows.get(key) ?? {
+        name: boardDisplayName(board),
+        category: 'Board',
+        references: [],
+        configuration: '',
+      };
+      row.references.push(board.id);
+      rows.set(key, row);
+    }
+    for (const component of components) {
+      const configuration = JSON.stringify(component.properties ?? {});
+      const key = `component:${component.metadataId}:${configuration}`;
+      const row = rows.get(key) ?? {
+        name: componentRegistry.getById(component.metadataId)?.name ?? component.metadataId,
+        category: 'Component',
+        references: [],
+        configuration,
+      };
+      row.references.push(component.id);
+      rows.set(key, row);
+    }
+
+    const escapeCsv = (value: string) => `"${value.replace(/"/g, '""')}"`;
+    const csvRows = [
+      ['Name', 'Category', 'References', 'Quantity', 'Configuration'],
+      ...Array.from(rows.values()).map((row) => [
+        row.name,
+        row.category,
+        row.references.join(', '),
+        String(row.references.length),
+        row.configuration,
+      ]),
+    ];
+    const csv = `\uFEFF${csvRows.map((row) => row.map(escapeCsv).join(',')).join('\r\n')}`;
+    const projectName =
+      currentProject?.slug ??
+      files.find((f) => f.name.endsWith('.ino'))?.name.replace('.ino', '') ??
+      'velxio-project';
+    const filename = `bom-${projectName.replace(/[^a-z0-9_-]/gi, '-') || 'velxio-project'}.csv`;
     try {
-      const resp = await fetch(`/api/pro/projects/${projectId}/bom.csv`, {
-        credentials: 'include',
+      const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 0);
+      setMessage({ type: 'success', text: 'Bill of materials downloaded.' });
+    } catch (err) {
+      setMessage({
+        type: 'error',
+        text: `BOM export failed: ${err instanceof Error ? err.message : String(err)}`,
       });
-      if (resp.status === 402) {
-        // Fire the in-place upgrade modal instead of bouncing to /pricing —
-        // keeps the user in the editor with full context. The pro overlay's
-        // UpgradeGate listens for this event and opens UpgradePromptModal.
-        window.dispatchEvent(new CustomEvent('velxio-pro-upgrade-prompt', {
-          detail: { componentName: 'BOM export' },
-        }));
-        return;
-      }
-      if (resp.status === 401) {
-        setMessage({ type: 'error', text: 'Authentication is not configured.' });
-        return;
-      }
-      if (!resp.ok) {
-        setMessage({ type: 'error', text: 'BOM export failed.' });
-        return;
-      }
-      const blob = await resp.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      // Filename comes from Content-Disposition; pick a fallback.
-      const cd = resp.headers.get('Content-Disposition') || '';
-      const m = /filename="?([^"]+)"?/.exec(cd);
-      a.download = m ? m[1] : `bom-${projectId}.csv`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    } catch {
-      setMessage({ type: 'error', text: 'BOM export failed.' });
     }
   };
 
@@ -2021,14 +2002,8 @@ export const EditorToolbar = ({
             {/* Import / Export moved to the File menu in the header — the
                 hidden input above stays because the File-menu command
                 clicks it through the editorCommands registry. */}
-            {/* Overflow "More" menu — collects the secondary actions
-                (BOM, Schematic image, Upload firmware) so the toolbar no
-                longer overflows on narrow widths.  The two Pro items show
-                a small "PRO" pill in the menu so users know they're
-                premium BEFORE clicking, instead of being surprised by an
-                upgrade prompt. */}
             {/* The "..." menu is gone: every item it held now lives in the
-                File menu (with PRO pills where they apply). */}
+                File menu. */}
             <div className="tb-divider" />
 
             {/* Output Console toggle */}

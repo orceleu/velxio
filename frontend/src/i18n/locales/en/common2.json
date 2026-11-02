@@ -32,8 +32,8 @@
         "cta": "Library Manager",
         "dismiss": "Dismiss"
       },
-      "exportBom": "Export Bill of Materials (CSV — Pro)",
-      "exportScreenshot": "Export schematic as image (PNG — Pro)",
+      "exportBom": "Export Bill of Materials (CSV)",
+      "exportScreenshot": "Export schematic as image (PNG)",
       "importLabel": "Import project",
       "exportVlxLabel": "Export project (.vlx)",
       "exportLabel": "Export project (.zip)",

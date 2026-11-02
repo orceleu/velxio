@@ -26,7 +26,6 @@ import { useOscilloscopeStore } from '../../store/useOscilloscopeStore';
 import { useEditorStore, type EditorViewMode } from '../../store/useEditorStore';
 import { useThemeMode } from '../../hooks/useTheme';
 import type { ThemeMode } from '../../lib/theme';
-import { isProUnlocked } from '../../lib/proAccess';
 import { LOCALES, LOCALE_META, type Locale } from '../../i18n/config';
 import { getLocaleFromPath, switchLocale } from '../../i18n/path';
 import {
@@ -44,7 +43,6 @@ type Item =
       id: EditorCommandId;
       label: string;
       shortcut?: string;
-      pro?: boolean;
       /** Hide the row entirely when no handler is registered, instead of
        *  the default "render disabled". For account-scoped items the
        *  absence of a handler is not "temporarily unavailable" but "does
@@ -131,18 +129,15 @@ export const EditorMenuBar: React.FC = () => {
       kind: 'command',
       id: 'project.exportBom',
       label: t('editor.toolbar.exportBomLabel', 'Bill of Materials (CSV)'),
-      pro: true,
     },
     {
       kind: 'command',
       id: 'project.exportScreenshot',
       label: t('editor.toolbar.exportScreenshotLabel', 'Schematic image (PNG)'),
-      pro: true,
     },
     { kind: 'separator' },
-    // The toolbar's "..." menu folded in here — same actions, same PRO
-    // pills, one button fewer in the strip.
-    {
+    // The toolbar's "..." menu folded in here, one button fewer in the strip.
+    /*{
       kind: 'command',
       id: 'project.share',
       label: t('editor.toolbar.shareLabel', 'Share / Embed'),
@@ -151,28 +146,25 @@ export const EditorMenuBar: React.FC = () => {
       kind: 'command',
       id: 'project.githubSync',
       label: t('editor.toolbar.githubSyncLabel', 'Sync to GitHub'),
-      pro: true,
-    },
+    },*/
     {
       kind: 'command',
       id: 'project.connectAgent',
       label: t('editor.toolbar.connectAgentLabel', 'Connect AI agent (Claude/Codex)'),
-      pro: true,
       // Only the pro overlay registers a handler; hide (not grey out) the
       // row in builds where connecting an external agent cannot exist.
-      optional: false,
+      optional: true,
     },
     {
       kind: 'command',
       id: 'firmware.upload',
       label: t('editor.toolbar.uploadFirmwareLabel', 'Upload firmware'),
     },
-    {
+    /*{
       kind: 'command',
       id: 'sim.record',
       label: t('editor.toolbar.recordLabel', 'Record simulation'),
-      pro: true,
-    },
+    },*/
   ];
 
   // Undo/redo render specially above (live canvas history state); the rest
@@ -249,10 +241,7 @@ export const EditorMenuBar: React.FC = () => {
         runEditorCommand(item.id);
       }}
     >
-      <span>
-        {item.label}
-        {item.pro && !isProUnlocked() && <span className="emb-pro">PRO</span>}
-      </span>
+      <span>{item.label}</span>
       {item.shortcut && <span className="emb-shortcut">{item.shortcut}</span>}
     </button>
   );

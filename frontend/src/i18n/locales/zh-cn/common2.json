@@ -30,8 +30,8 @@
         "cta": "库管理器",
         "dismiss": "忽略"
       },
-      "exportBom": "导出物料清单 (CSV — Pro)",
-      "exportScreenshot": "导出原理图为图片 (PNG — Pro)",
+      "exportBom": "导出物料清单 (CSV)",
+      "exportScreenshot": "导出原理图为图片 (PNG)",
       "importLabel": "导入项目",
       "exportVlxLabel": "导出项目 (.vlx)",
       "exportLabel": "导出项目 (.zip)",

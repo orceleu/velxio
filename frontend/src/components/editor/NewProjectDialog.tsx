@@ -1,8 +1,7 @@
 /**
  * NewProjectDialog — starter-template picker.
  *
- * Shown (a) on a pristine `/editor` visit (over an emptied canvas), and
- * (b) from the "New workspace" button / File menu entry. Offers a blank
+ * Opened from the "New workspace" button / File menu entry. Offers a blank
  * workspace plus a ready-to-run Blink starter per board family — Arduino,
  * ESP32 (one card per chip generation, XIAO variant preferred), M5Stack
  * (overlay-registered all-in-ones, listed ahead of STM32), STM32, Raspberry
@@ -11,17 +10,14 @@
  *
  * Selecting a board loads its gallery Blink example when one exists (full
  * wiring: 220Ω resistor + LED); boards without one get a fresh board whose
- * default sketch blinks the on-board LED. Pro-gated boards (STM32 + QEMU
- * Raspberry Pi) carry the same locked-state PRO pill as the component picker
- * and go through the same board-gate seam ('add' action) before anything is created.
+ * default sketch blinks the on-board LED.
  */
 import React, { useEffect, useMemo, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import type { BoardKind } from '../../types/board';
 import { BOARD_KIND_LABELS } from '../../types/board';
-import { blockedByBoardGate, isProBoardKind } from '../../lib/proBoardGate';
-import { isProUnlocked } from '../../lib/proAccess';
+import { blockedByBoardGate } from '../../lib/proBoardGate';
 import {
   listProBoards,
   subscribeProBoards,
@@ -268,8 +264,8 @@ export function buildStarterSections(defs: ProBoardDef[]): StarterSection[] {
       ],
     },
     // M5Stack all-in-ones (overlay): ahead of STM32 by operator request —
-    // they run on Free and are a friendlier first pick than the Pro-gated
-    // STM32 family. Cardputer first, then the Core.
+    // they run on Free and are a friendlier first pick than the STM32 family.
+    // Cardputer first, then the Core.
     { title: 'M5Stack', entries: [...pro('cardputer-adv'), ...pro('m5stack-core')] },
     // Hardware partners (overlay kinds, same shape as M5Stack): each section
     // lists only the boards the overlay actually registered, so an OSS build
@@ -308,12 +304,6 @@ export function buildStarterSections(defs: ProBoardDef[]): StarterSection[] {
     },
   ];
 }
-
-const ProPill: React.FC = () => (
-  <span className="new-project-pro" title="Pro board — you can place and wire it; running it depends on your plan">
-    PRO
-  </span>
-);
 
 export const NewProjectDialog: React.FC<NewProjectDialogProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
@@ -409,7 +399,6 @@ export const NewProjectDialog: React.FC<NewProjectDialogProps> = ({ isOpen, onCl
                             height={180}
                           />
                         </span>
-                        {!isProUnlocked() && isProBoardKind(kind) && <ProPill />}
                         <span className="new-project-card-info">
                           <span className="new-project-card-name">{label}</span>
                           <span className="new-project-card-desc">{blurb}</span>

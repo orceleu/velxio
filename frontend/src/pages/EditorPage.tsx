@@ -19,7 +19,6 @@ import { SerialMonitor } from '../components/simulator/SerialMonitor';
 import { Oscilloscope } from '../components/simulator/Oscilloscope';
 import { AppHeader } from '../components/layout/AppHeader';
 import { triggerSaveAction } from '../lib/proSaveAction';
-import { NewsAnnouncer } from '../components/layout/NewsAnnouncer';
 import { useSimulatorStore } from '../store/useSimulatorStore';
 import { useEditorStore } from '../store/useEditorStore';
 import { useCompileLogsStore } from '../store/useCompileLogsStore';
@@ -31,7 +30,6 @@ import {
 } from '../components/editor/NewProjectDialog';
 import { useAutoSaveProject } from '../hooks/useAutoSaveProject';
 import { registerEditorCommand } from '../lib/editorCommands';
-import { whenNewsClear } from '../lib/newsGate';
 import { EditorMenuBar } from '../components/editor/EditorMenuBar';
 import '../App.css';
 
@@ -49,11 +47,6 @@ const EXPLORER_MAX = 500;
 // name and typical file names, and every px saved here goes to the code
 // editor.
 const EXPLORER_DEFAULT = 124;
-
-// Once per full page load: the pristine-visit starter dialog must not pop
-// again when the user closes it and later navigates away from and back to
-// /editor within the same SPA session.
-let starterDialogShownThisLoad = false;
 
 const resizeHandleStyle: React.CSSProperties = {
   height: 5,
@@ -108,26 +101,10 @@ export const EditorPage: React.FC = () => {
 
   const [showNewProjectDialog, setShowNewProjectDialog] = useState(false);
 
-  // Pristine-visit starter dialog: a bare /editor landing still holds the
-  // hardcoded Uno + LED starter (see useSimulatorStore INITIAL_BOARD /
-  // builtin components). Clear it and offer the template picker over an
-  // EMPTY canvas instead of silently dropping the user into the Arduino
-  // blink (cancelling the dialog leaves a blank workspace). Guarded so it
-  // never fires over a loaded project/example URL, a restored login draft
-  // (both leave the stores non-pristine), or twice per page load. Declared
-  // AFTER the restoreStashedWorkspace effect — mount order is what makes
-  // the pristine check see the restored draft.
-  //
-  // Sequenced BEHIND the news announcement: the canvas is cleared right
-  // away, but the dialog itself waits until NewsAnnouncer reports the
-  // announcement flow is done (nothing to show, or its modal was closed).
-  // The 2.5s bound applies only while the news decision is pending, so a
-  // dead feed can't hold the dialog hostage — see lib/newsGate.ts.
+  // Start bare visits on an empty canvas without opening an onboarding
+  // dialog. The starter picker remains available from File > New workspace.
   useEffect(() => {
-    if (starterDialogShownThisLoad) return;
     const locale = getLocaleFromPath(window.location.pathname);
-    // /editor is prerendered, so a fresh load arrives as /editor/ (nginx
-    // adds the slash); client-side navigation lands on /editor. Both count.
     if (window.location.pathname.replace(/\/+$/, '') !== localizedPath('/editor', locale)) return;
     if (window.location.search) return;
     if (useProjectStore.getState().currentProject) return;
@@ -138,15 +115,7 @@ export const EditorPage: React.FC = () => {
       sim.components.length === 2 &&
       sim.components.every((c) => c.id === 'led_builtin' || c.id === 'r_builtin');
     if (!pristine) return;
-    starterDialogShownThisLoad = true;
     clearWorkspaceForStarter();
-    let cancelled = false;
-    void whenNewsClear(2500).then(() => {
-      if (!cancelled) setShowNewProjectDialog(true);
-    });
-    return () => {
-      cancelled = true;
-    };
   }, []);
 
   const [explorerWidth, setExplorerWidth] = useState(EXPLORER_DEFAULT);
@@ -717,7 +686,6 @@ export const EditorPage: React.FC = () => {
         </div>
       </div>
 
-      <NewsAnnouncer />
       <NewProjectDialog
         isOpen={showNewProjectDialog}
         onClose={() => setShowNewProjectDialog(false)}

@@ -1,53 +1,14 @@
 /**
- * Pro board-gate registry.
+ * Legacy board-gate integration seam.
  *
- * STM32 and the QEMU-backed Raspberry Pi family are Pro-only emulation
- * features. The OSS app knows *which* boards are Pro (public information —
- * `isProBoardKind`) and displays a PRO badge while they are locked. The pro
- * overlay installs the real gate via `installBoardGateImpl`, deciding whether
- * a given action on a board is allowed for the signed-in user on the web.
- *
- * Two actions go through the gate, and the overlay may answer them
- * differently:
- *
- *   - 'add'  the board is placed on the canvas (picker, new-project dialog).
- *            Placing costs nothing — the emulator is not involved — so an
- *            overlay can let anyone build and save a circuit around a Pro
- *            board and sell the run instead of the drawing.
- *   - 'run'  the board is started. This is the action that reaches an
- *            emulator, and the one a free tier is measured against.
- *
- * A 'block' verdict may carry the words for the prompt (`featureName`,
- * `description`, `requiredPlan`, `cta`) so the overlay can say *why* — a
- * quota that ran out reads differently from a feature that was never free —
- * without the OSS tree learning anything about plans or quotas.
- *
- * Mirrors the other OSS->Pro seams (`proSaveAction.ts`, `proSession.ts`,
- * `proRoutes.ts`): the OSS app defines a stable doorbell; the overlay plugs in.
- *
- *   - OSS without an overlay  -> default impl returns 'allow'. Self-hosted
- *     deployments don't block in the UI: the board can be placed and the
- *     project stays loadable, but nothing starts. Since 2026-09-06 the
- *     emulators themselves are not in this repo at all (they live in the
- *     optional app.pro_boards backend package), so the simulation route
- *     answers start_pi / start_stm32 with board_access.PRO_BOARD_MESSAGE.
- *     Availability is a backend answer, never a UI lie.
- *   - With the pro overlay     -> installBoardGateImpl() decides per action
- *     for a non-paid user on the web, and the caller fires the upgrade
- *     prompt with the verdict's words.
- *   - Desktop (Tauri)          -> overlay returns 'allow'; the per-board QEMU
- *     download prompt (Stm32QemuPrompt / RaspberryPiQemuPrompt) handles it.
- *
- * The backend is the authority for a run either way: when the server refuses
- * a start (`error` on the simulation socket), the store reports it through
- * `reportBoardRunRefused`, which dispatches BOARD_RUN_REFUSED_EVENT so an
- * overlay can refresh whatever it keyed its verdict on and prompt in place.
+ * Board classification and registration remain for compatibility, but the
+ * client-side gate always allows boards. A backend can still report that a
+ * runtime is unavailable; that is separate from frontend entitlement checks.
  */
 
 import type { BoardKind } from '../types/board';
 import { isPiBoardKind, isStm32BoardKind } from '../types/board';
 import { getProBoard } from './proBoardRegistry';
-import { getProQueryOverride } from './proAccess';
 
 export type BoardGateDecision = 'allow' | 'block';
 
@@ -73,9 +34,8 @@ export interface BoardGateBlock {
 export type BoardGateVerdict = { decision: 'allow' } | BoardGateBlock;
 
 /**
- * Static, public predicate: which board kinds are Pro emulation features.
- * Used for the locked-state PRO badge and as the precondition the overlay's
- * gate checks. STM32 (libqemu-arm) + every QEMU Raspberry Pi
+ * Static, public predicate retained for board metadata and legacy integrations.
+ * STM32 (libqemu-arm) + every QEMU Raspberry Pi
  * (Zero/1/2/3/4/5; excludes the Pico, which is browser emulation).
  */
 export function isProBoardKind(kind: BoardKind | string): boolean {
@@ -100,29 +60,11 @@ export function hasBoardGateImpl(): boolean {
 }
 
 /**
- * Full verdict for `action` on a board of `kind`. Non-Pro boards are always
- * allowed. For Pro boards, the overlay's impl decides; with no overlay the
- * OSS default is 'allow'. A string answer from the impl is normalised so
- * every caller sees the object form.
+ * The legacy gate remains as an integration seam, but boards are available
+ * without a paid entitlement in this build.
  */
-export function boardGateVerdict(kind: BoardKind, action: BoardGateAction): BoardGateVerdict {
-  if (!isProBoardKind(kind)) return { decision: 'allow' };
-  const queryOverride = getProQueryOverride();
-  if (queryOverride !== null) return { decision: queryOverride ? 'allow' : 'block' };
-  if (typeof window !== 'undefined' && window.location?.pathname?.includes('/pro')) {
-    return { decision: 'block' };
-  }
-  if (!_impl) return { decision: 'allow' };
-  try {
-    const raw = _impl(kind, action);
-    if (raw === 'allow') return { decision: 'allow' };
-    if (raw === 'block') return { decision: 'block' };
-    return raw;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.warn('[oss] board-gate impl threw:', err);
-    return { decision: 'allow' };
-  }
+export function boardGateVerdict(_kind: BoardKind, _action: BoardGateAction): BoardGateVerdict {
+  return { decision: 'allow' };
 }
 
 /**

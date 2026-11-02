@@ -25,8 +25,8 @@ import type { ExampleProject } from './examples';
 const UNO_CODE = `// microSD card over SPI (Arduino Uno)
 // Wiring: CS->10  MOSI->11  MISO->12  SCK->13  VCC->5V  GND->GND
 //
-// The card already holds this project's files (auto-copied, free). Paid users
-// can add their own files via the component's "SD Card" panel. Open the Serial
+// The card already holds this project's files (auto-copied). Add more files
+// via the component's "SD Card" panel. Open the Serial
 // Monitor (9600 baud) to watch it list the card, then write and read a file.
 #include <SPI.h>
 #include <SD.h>
@@ -83,8 +83,8 @@ void loop() {}
 const ESP32_CODE = `// microSD card over SPI (ESP32, VSPI default)
 // Wiring: CS->5  MOSI->23  MISO->19  SCK->18  VCC->3V3  GND->GND
 //
-// The card already holds this project's files (auto-copied, free). Paid users
-// can add their own files via the component's "SD Card" panel. Open the Serial
+// The card already holds this project's files (auto-copied). Add more files
+// via the component's "SD Card" panel. Open the Serial
 // Monitor (115200 baud) to watch it list the card, then write and read a file.
 #include <SPI.h>
 #include <SD.h>

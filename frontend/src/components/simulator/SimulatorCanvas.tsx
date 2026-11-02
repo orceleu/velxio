@@ -3061,17 +3061,6 @@ export const SimulatorCanvas = ({ headerSlot }: SimulatorCanvasProps = {}) => {
                         togglePanel();
                         return;
                       }
-                      // A private overlay (velxio.dev) can install a synchronous
-                      // gate to keep the IoT gateway behind a paid plan. When it
-                      // returns true it has already handled the click (e.g. shown
-                      // an in-place upgrade modal), so we don't open the tab.
-                      // OSS builds have no hook → always open.
-                      const gate = (
-                        window as unknown as {
-                          __velxio_iot_gateway_open_gate__?: () => boolean;
-                        }
-                      ).__velxio_iot_gateway_open_gate__;
-                      if (gate && gate()) return;
                       // Boards whose network stack lives in THIS tab (Pico W,
                       // and any ESP32 on the in-browser JS engine — wifiStatus
                       // carries inBrowser) open in the in-app iframe: a new tab

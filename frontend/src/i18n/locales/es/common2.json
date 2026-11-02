@@ -32,8 +32,8 @@
         "cta": "Administrador de librerías",
         "dismiss": "Descartar"
       },
-      "exportBom": "Exportar lista de materiales (CSV — Pro)",
-      "exportScreenshot": "Exportar esquemático como imagen (PNG — Pro)",
+      "exportBom": "Exportar lista de materiales (CSV)",
+      "exportScreenshot": "Exportar esquemático como imagen (PNG)",
       "importLabel": "Importar proyecto",
       "exportVlxLabel": "Exportar proyecto (.vlx)",
       "exportLabel": "Exportar proyecto (.zip)",

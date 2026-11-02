@@ -470,10 +470,6 @@
 }
 
 
-/* Pro pill — signals premium items in the overflow menu BEFORE the user
-   clicks. Used in place of a hidden gate so free users aren't surprised
-   by an upgrade prompt on what looked like a free button. */
-
 /* ── Error detail bar (for long compiler errors) ── */
 .toolbar-error-detail {
   background: var(--color-feedback-error-soft);

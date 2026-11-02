@@ -30,8 +30,8 @@
         "cta": "Bibliotheksmanager",
         "dismiss": "Schließen"
       },
-      "exportBom": "Stückliste exportieren (CSV — Pro)",
-      "exportScreenshot": "Schaltplan als Bild exportieren (PNG — Pro)",
+      "exportBom": "Stückliste exportieren (CSV)",
+      "exportScreenshot": "Schaltplan als Bild exportieren (PNG)",
       "importLabel": "Projekt importieren",
       "exportVlxLabel": "Projekt exportieren (.vlx)",
       "exportLabel": "Projekt exportieren (.zip)",

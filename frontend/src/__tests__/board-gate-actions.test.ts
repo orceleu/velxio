@@ -16,7 +16,6 @@ import {
   boardGateVerdict,
   installBoardGateImpl,
   reportBoardRunRefused,
-  type BoardGateAction,
 } from '../lib/proBoardGate';
 
 type Listener = (e: { detail: unknown }) => void;
@@ -66,62 +65,35 @@ describe('board gate actions', () => {
     expect(boardGateDecision('raspberry-pi-4')).toBe('allow');
   });
 
-  it('pro=true overrides a blocking entitlement gate for Pro boards', () => {
-    stub.win.location.search = '?pro=true';
-    installBoardGateImpl(() => 'block');
-    expect(boardGateDecision('stm32-bluepill', 'run')).toBe('allow');
-  });
-
-  it('pro=false blocks Pro boards even when the entitlement gate allows them', () => {
+  it('all board actions are allowed regardless of query parameters or installed gates', () => {
     stub.win.location.search = '?pro=false';
-    installBoardGateImpl(() => 'allow');
-    expect(boardGateDecision('stm32-bluepill', 'add')).toBe('block');
-    expect(boardGateDecision('raspberry-pi-4', 'run')).toBe('block');
+    installBoardGateImpl(() => 'block');
+    expect(boardGateDecision('stm32-bluepill', 'add')).toBe('allow');
+    expect(boardGateDecision('stm32-bluepill', 'run')).toBe('allow');
+    expect(boardGateDecision('raspberry-pi-4', 'run')).toBe('allow');
   });
 
-  it('a non-Pro board never consults the impl', () => {
+  it('a board gate implementation is not consulted', () => {
     const impl = vi.fn(() => 'block' as const);
     installBoardGateImpl(impl);
     expect(boardGateDecision('arduino-uno', 'run')).toBe('allow');
     expect(impl).not.toHaveBeenCalled();
   });
 
-  it('the impl sees which action is asked and may answer them differently', () => {
-    const seen: BoardGateAction[] = [];
-    installBoardGateImpl((_kind, action) => {
-      seen.push(action);
-      return action === 'add' ? 'allow' : 'block';
-    });
+  it('a legacy gate implementation is not consulted', () => {
+    const impl = vi.fn(() => 'block' as const);
+    installBoardGateImpl(impl);
     expect(boardGateDecision('stm32-bluepill', 'add')).toBe('allow');
-    expect(boardGateDecision('stm32-bluepill', 'run')).toBe('block');
-    expect(seen).toEqual(['add', 'run']);
+    expect(boardGateDecision('stm32-bluepill', 'run')).toBe('allow');
+    expect(impl).not.toHaveBeenCalled();
   });
 
-  it("boardGateDecision without an action means 'run' (what every old caller meant)", () => {
-    const seen: BoardGateAction[] = [];
-    installBoardGateImpl((_kind, action) => {
-      seen.push(action);
-      return 'allow';
-    });
+  it("boardGateDecision without an action allows the default 'run' request", () => {
     boardGateDecision('raspberry-pi-3');
-    expect(seen).toEqual(['run']);
-  });
-
-  it('a string verdict is normalised to the object form', () => {
-    installBoardGateImpl(() => 'block');
-    expect(boardGateVerdict('stm32-bluepill', 'run')).toEqual({ decision: 'block' });
-  });
-
-  it('an impl that throws fails open', () => {
-    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-    installBoardGateImpl(() => {
-      throw new Error('boom');
-    });
     expect(boardGateVerdict('stm32-bluepill', 'run')).toEqual({ decision: 'allow' });
-    warn.mockRestore();
   });
 
-  it("blockedByBoardGate fires the upgrade prompt with the verdict's words", () => {
+  it('blockedByBoardGate never prompts for legacy gated boards', () => {
     installBoardGateImpl(() => ({
       decision: 'block',
       featureName: 'STM32 emulation',
@@ -129,30 +101,8 @@ describe('board gate actions', () => {
       requiredPlan: 'maker',
       cta: 'pricing',
     }));
-    expect(blockedByBoardGate('stm32-bluepill', 'run')).toBe(true);
-    expect(stub.dispatched).toEqual([
-      {
-        type: 'velxio-pro-upgrade-prompt',
-        detail: {
-          componentName: 'STM32 emulation',
-          featureName: 'STM32 emulation',
-          description: 'why this particular run is refused',
-          requiredPlan: 'maker',
-          cta: 'pricing',
-        },
-      },
-    ]);
-  });
-
-  it('a bare block keeps the family feature name and no extra words', () => {
-    installBoardGateImpl(() => 'block');
-    expect(blockedByBoardGate('raspberry-pi-5', 'run')).toBe(true);
-    expect(stub.dispatched).toEqual([
-      {
-        type: 'velxio-pro-upgrade-prompt',
-        detail: { componentName: 'Raspberry Pi emulation', featureName: 'Raspberry Pi emulation' },
-      },
-    ]);
+    expect(blockedByBoardGate('stm32-bluepill', 'run')).toBe(false);
+    expect(stub.dispatched).toEqual([]);
   });
 
   it('blockedByBoardGate on an allow fires nothing and returns false', () => {

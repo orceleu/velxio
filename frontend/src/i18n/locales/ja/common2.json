@@ -30,8 +30,8 @@
         "cta": "ライブラリマネージャー",
         "dismiss": "閉じる"
       },
-      "exportBom": "部品表をエクスポート (CSV — Pro)",
-      "exportScreenshot": "回路図を画像としてエクスポート (PNG — Pro)",
+      "exportBom": "部品表をエクスポート (CSV)",
+      "exportScreenshot": "回路図を画像としてエクスポート (PNG)",
       "importLabel": "プロジェクトをインポート",
       "exportVlxLabel": "プロジェクトをエクスポート (.vlx)",
       "exportLabel": "プロジェクトをエクスポート (.zip)",

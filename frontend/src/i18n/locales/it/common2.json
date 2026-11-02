@@ -30,8 +30,8 @@
         "cta": "Gestore librerie",
         "dismiss": "Ignora"
       },
-      "exportBom": "Esporta distinta base (CSV — Pro)",
-      "exportScreenshot": "Esporta schema come immagine (PNG — Pro)",
+      "exportBom": "Esporta distinta base (CSV)",
+      "exportScreenshot": "Esporta schema come immagine (PNG)",
       "importLabel": "Importa progetto",
       "exportVlxLabel": "Esporta progetto (.vlx)",
       "exportLabel": "Esporta progetto (.zip)",
