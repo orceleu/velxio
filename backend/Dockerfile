@@ -35,11 +35,20 @@ COPY board-indexes/package_drazzy.com_index.json /root/.arduino15/package_drazzy
 RUN arduino-cli config init \
     && arduino-cli config add board_manager.additional_urls \
         http://drazzy.com/package_drazzy.com_index.json \
+    && arduino-cli config add board_manager.additional_urls \
+        https://espressif.github.io/arduino-esp32/package_esp32_index.json \
+    && arduino-cli config add board_manager.additional_urls \
+        https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json \
     && (arduino-cli core update-index \
         || echo "WARNING: some board indexes failed to refresh; using seeded copies") \
     && arduino-cli core install arduino:avr \
     && arduino-cli core install ATTinyCore:avr@1.4.1
 
+# ESP32 (toutes variantes, dont C3/C6/S3) et Raspberry Pi Pico (RP2040/RP2350).
+# Dans un RUN séparé : si le téléchargement échoue, les couches précédentes
+# restent en cache et tu ne refais pas tout le build.
+RUN arduino-cli core install esp32:esp32 \
+    && arduino-cli core install rp2040:rp2040
 WORKDIR /app
 
 # Install Python dependencies
