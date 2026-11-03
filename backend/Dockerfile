@@ -16,21 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV WASI_SDK=/opt/wasi-sdk
 
 # Initialize arduino-cli and install cores.
-# - arduino:avr  → Uno / Nano / Mega / etc. (built-in core, always needed)
-# - ATTinyCore:avr@1.4.1 → ATtiny85 (Spence Konde's third-party core,
-#   drazzy.com index). Pinned to 1.4.1 because >=1.5.0 depends on
-#   micronucleus hosted at azduino.com (frequently unreachable). 1.4.1's
-#   micronucleus tool comes from github.com/digistump and still supports
-#   the FQBN clock options we ship (clock=16pll, etc.). We never invoke
-#   micronucleus — it is only required for USB upload, not compilation —
-#   but arduino-cli will not install a core whose tool deps cannot fetch.
-# The drazzy.com index is vendored (board-indexes/README.md) and copied in
-# BEFORE update-index: drazzy.com's TLS breaks often enough (issue #254)
-# that a hard dependency on it fails image builds for weeks at a time.
-# update-index is best-effort — a failed refresh keeps the seeded copy,
-# and the strict `core install` lines below still catch a truly broken
-# index. ATTinyCore 1.4.1's platform archive and micronucleus tool both
-# download from github.com, so the install works from the seed alone.
+# - arduino:avr  → Uno / Nano / Mega / etc.
+# - ATTinyCore:avr@1.4.1 → ATtiny85 (pinned, see board-indexes/README.md)
 COPY board-indexes/package_drazzy.com_index.json /root/.arduino15/package_drazzy.com_index.json
 RUN arduino-cli config init \
     && arduino-cli config add board_manager.additional_urls \
@@ -44,11 +31,12 @@ RUN arduino-cli config init \
     && arduino-cli core install arduino:avr \
     && arduino-cli core install ATTinyCore:avr@1.4.1
 
-# ESP32 (toutes variantes, dont C3/C6/S3) et Raspberry Pi Pico (RP2040/RP2350).
-# Dans un RUN séparé : si le téléchargement échoue, les couches précédentes
-# restent en cache et tu ne refais pas tout le build.
-RUN arduino-cli core install esp32:esp32 \
-    && arduino-cli core install rp2040:rp2040
+# ESP32 (série 2.x, sans C6) et Raspberry Pi Pico, dans un RUN séparé
+# pour profiter du cache Docker si un téléchargement échoue.
+RUN arduino-cli core install esp32:esp32@2.0.17 \
+    && arduino-cli core install rp2040:rp2040 \
+    && arduino-cli cache clean
+
 WORKDIR /app
 
 # Install Python dependencies
