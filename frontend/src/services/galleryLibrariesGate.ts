@@ -14,17 +14,25 @@
 import { getApiBase } from '../lib/apiBase';
 
 let cached: Promise<boolean> | null = null;
+const HEALTH_TIMEOUT_MS = 2_000;
 
 export function serverProvidesGalleryLibraries(): Promise<boolean> {
   if (cached === null) {
     cached = (async () => {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), HEALTH_TIMEOUT_MS);
       try {
-        const res = await fetch(`${getApiBase().replace(/\/api$/, '')}/health`, { credentials: 'same-origin' });
+        const res = await fetch(`${getApiBase().replace(/\/api$/, '')}/health`, {
+          credentials: 'same-origin',
+          signal: controller.signal,
+        });
         if (!res.ok) return false;
         const body = (await res.json()) as { libraries?: { ok?: unknown } };
         return body?.libraries?.ok === true;
       } catch {
         return false;
+      } finally {
+        clearTimeout(timeout);
       }
     })();
   }

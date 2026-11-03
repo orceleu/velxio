@@ -33,8 +33,10 @@ export async function ensureLibraries(
   onProgress?: (progress: LibraryInstallProgress | null) => void,
 ): Promise<void> {
   if (libs.length === 0) return;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5_000);
   try {
-    const installed = await getInstalledLibraries();
+    const installed = await getInstalledLibraries(controller.signal);
     const installedNames = new Set(
       installed.map((l) => (l.library?.name ?? l.name ?? '').toLowerCase()),
     );
@@ -44,11 +46,13 @@ export async function ensureLibraries(
     onProgress?.({ total: missing.length, done: 0, current: missing[0] });
     for (let i = 0; i < missing.length; i++) {
       onProgress?.({ total: missing.length, done: i, current: missing[i] });
-      await installLibrary(missing[i]);
+      await installLibrary(missing[i], undefined, controller.signal);
     }
     onProgress?.(null);
   } catch {
     onProgress?.(null);
+  } finally {
+    clearTimeout(timeout);
   }
 }
 

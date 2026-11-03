@@ -46,11 +46,16 @@ export async function searchLibraries(query: string): Promise<ArduinoLibrary[]> 
   return data.libraries || [];
 }
 
-export async function installLibrary(name: string, version?: string): Promise<{ success: boolean; error?: string; fallback?: boolean; requested_version?: string }> {
+export async function installLibrary(
+  name: string,
+  version?: string,
+  signal?: AbortSignal,
+): Promise<{ success: boolean; error?: string; fallback?: boolean; requested_version?: string }> {
   const res = await fetch(`${apiBase()}/install`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, version: version ?? null }),
+    signal,
   });
   const data = await res.json();
   return data;
@@ -66,8 +71,8 @@ export async function uninstallLibrary(name: string): Promise<{ success: boolean
   return data;
 }
 
-export async function getInstalledLibraries(): Promise<InstalledLibrary[]> {
-  const res = await fetch(`${apiBase()}/list`);
+export async function getInstalledLibraries(signal?: AbortSignal): Promise<InstalledLibrary[]> {
+  const res = await fetch(`${apiBase()}/list`, { signal });
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: 'Unknown error' }));
     throw new Error(err.detail || 'Failed to fetch installed libraries');

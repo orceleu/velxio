@@ -20,6 +20,7 @@ import {
   resetGalleryLibrariesGateForTest,
   serverProvidesGalleryLibraries,
 } from '../services/galleryLibrariesGate';
+import { ensureLibraries } from '../utils/loadExample';
 
 describe('manifest field, three-state', () => {
   it('omits an undeclared manifest, keeps a declared-empty one, passes a list through', () => {
@@ -94,7 +95,10 @@ describe('a server that is still starting', () => {
 
 describe('the gallery libraries gate', () => {
   beforeEach(() => resetGalleryLibrariesGateForTest());
-  afterEach(() => vi.unstubAllGlobals());
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+  });
 
   const health = (body: unknown, ok = true) => {
     const f = vi.fn(async () => ({ ok, json: async () => body }));
@@ -133,6 +137,37 @@ describe('the gallery libraries gate', () => {
     } finally {
       delete (window as { __VELXIO_API_BASE__?: string }).__VELXIO_API_BASE__;
     }
+  });
+  it('stops waiting when the health endpoint does not respond', async () => {
+    vi.useFakeTimers();
+    const f = vi.fn((_url: RequestInfo | URL, init?: RequestInit) =>
+      new Promise<Response>((_resolve, reject) => {
+        init?.signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')));
+      }),
+    );
+    vi.stubGlobal('fetch', f);
+    const result = serverProvidesGalleryLibraries();
+    await vi.advanceTimersByTimeAsync(2_000);
+    await expect(result).resolves.toBe(false);
+    expect(f.mock.calls[0]![1]?.signal?.aborted).toBe(true);
+    vi.useRealTimers();
+  });
+  it('stops waiting for library installs when the API is unreachable', async () => {
+    vi.useFakeTimers();
+    const f = vi.fn((_url: RequestInfo | URL, init?: RequestInit) =>
+      new Promise<Response>((_resolve, reject) => {
+        init?.signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')));
+      }),
+    );
+    vi.stubGlobal('fetch', f);
+    const progress: unknown[] = [];
+    const result = ensureLibraries(['Adafruit GFX Library'], (value) => progress.push(value));
+    await vi.advanceTimersByTimeAsync(5_000);
+    await result;
+    expect(f).toHaveBeenCalledOnce();
+    expect(f.mock.calls[0]![1]?.signal?.aborted).toBe(true);
+    expect(progress.at(-1)).toBeNull();
+    vi.useRealTimers();
   });
   it('clamps an absurd Retry-After', async () => {
     vi.useFakeTimers();
