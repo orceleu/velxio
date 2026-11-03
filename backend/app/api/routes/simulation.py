@@ -3,7 +3,6 @@ import logging
 import socket
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from app.services.esp_qemu_manager import esp_qemu_manager
-from app.services.board_access import PRO_BOARD_MESSAGE
 from app.services.esp32_lib_manager import esp_lib_manager
 from app.core.hooks import dispatch_ws_sim_message, dispatch_ws_sim_disconnect
 
@@ -74,14 +73,12 @@ async def simulation_websocket(websocket: WebSocket, client_id: str):
             msg_data: dict = message.get('data', {})
 
             # ── QEMU board lane: Raspberry Pi Linux + STM32 ──────────────
-            # Both families are paid-only (velxio.dev with a paid plan, or
-            # Velxio Desktop with a paid licence), so their emulators are not
-            # part of the open-source image at all: qemu_manager, boot_images
-            # and stm32_lib_manager live in an optional `app.pro_boards`
-            # package that registers itself through register_ws_sim_handler.
-            # With no extension installed these messages are ignored and the
-            # boards never start, which is the intent — the frontend already
-            # frames them as a Pro feature (board_access.PRO_BOARD_MESSAGE).
+            # Their emulator implementations live in an optional
+            # `app.pro_boards` package that registers itself through
+            # register_ws_sim_handler.
+            # With no extension installed these messages cannot start a
+            # board, so return an availability error rather than an
+            # entitlement message.
             #
             # `serial_input`, `gpio_in` and `pin_change` read as generic but
             # have only ever driven the Linux guests; the ESP32 and Pico lanes
@@ -99,12 +96,11 @@ async def simulation_websocket(websocket: WebSocket, client_id: str):
                     websocket, client_id, msg_type, msg_data, qemu_callback,
                 )
                 if not handled and msg_type in ('start_pi', 'start_stm32'):
-                    # No extension installed: say so instead of going quiet.
-                    # Silence here reads as a hung Run button — the user gets
-                    # no error, no serial output and no stop. Only the two
-                    # start messages answer; the rest of the lane's traffic
-                    # would just repeat the same line.
-                    await qemu_callback('error', {'message': PRO_BOARD_MESSAGE})
+                    # No extension installed: report the missing runtime
+                    # instead of implying that a subscription is required.
+                    await qemu_callback('error', {
+                        'message': 'This board runtime is not installed on this server.'
+                    })
 
             # ── ESP32 lifecycle ──────────────────────────────────────────
             elif msg_type == 'start_esp32':
